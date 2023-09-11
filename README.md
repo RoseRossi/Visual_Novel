@@ -1,22 +1,14 @@
 # Visual_Novel
 
-# Team Members. <br>
-
-Stefhania Noguera - 2125854 
-
-Javier Diaz - 1740763
-
-Isabela Rosero - 2128720
-
-Natalia Marin - 2041622
-
-Cristian Machado - 1940062
-
-Brayan Sanchez - 2043554
-
-Daniel Mora - 1841563
+Team Members. <br>
+Stefhania Noguera - 2125854 <br>
+Javier Diaz - 1740763 <br>
+Isabela Rosero - 2128720 <br>
+Natalia Marin - 2041622 <br>
+Cristian Machado - 1940062 <br>
+Brayan Sanchez - 2043554 <br>
+Daniel Mora - 1841563 <br>
 
 
-# Description.
-
+Description. <br>
 This project will be focused on the development of a visual novel with 3D elements, where the application of DevOps methodologies and concepts for efficient work plays a fundamental role. 
