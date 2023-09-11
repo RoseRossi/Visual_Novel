@@ -6,6 +6,7 @@ Javier Diaz - 1740763 <br>
 Isabela Rosero - 2128720 <br>
 Natalia Marin - 2041622 <br>
 Cristian Machado - 1940062 <br>
+Paula Giraldo - 2022411 <br>
 Brayan Sanchez - 2043554 <br>
 Daniel Mora - 1841563 <br>
 
