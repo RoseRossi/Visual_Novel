@@ -1,6 +1,6 @@
 # Visual_Novel
 
-## Team Members. 
+# Team Members. <br>
 Stefhania Noguera - 2125854 <br>
 Javier Diaz - 1740763 <br>
 Isabela Rosero - 2128720 <br>
