@@ -1,17 +1,13 @@
-name: Automate pull request
+name: Automate push
 
 on:
   push:
     branches:
       - main
-
 jobs:
-  create-pull-request:
+  push:
     runs-on: ubuntu-latest
     steps:
-      - name: GitHub Action for creating Pull Requests
-        uses: devops-infra/action-pull-request@v0.5.5
-        with:
-          title: New changes
-          body: These are the changes that have been made.
-          branch: main
+      - name: Push
+        run: |
+          git push origin main
