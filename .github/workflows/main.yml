@@ -2,6 +2,7 @@ name: Automate pull request
 
 on:
   push:
+  pull-request:
     branches:
       - main
 
@@ -9,8 +10,8 @@ jobs:
   create-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: Create pull request
-        uses: actions/create-pull-request@v3
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5.0.2
         with:
           title: New changes
           body: These are the changes that have been made.
