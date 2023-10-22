@@ -1,7 +1,7 @@
 name: Automation Node.js App
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
