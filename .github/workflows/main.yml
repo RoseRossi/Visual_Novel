@@ -11,3 +11,6 @@ jobs:
       - name: Push
         run: |
           git push origin main
+      - name: Print error
+        run: |
+          echo "Error: ${{ steps.push.outputs.error }}"

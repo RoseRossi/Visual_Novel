@@ -4,8 +4,7 @@
   "description": "Stefhania Noguera - 2125854 <br>\r Javier Diaz - 1740763 <br>\r Isabela Rosero - 2128720 <br>\r Natalia Marin - 2041622 <br>\r Cristian Machado - 1940062 <br>\r Paula Giraldo - 2022411 <br>\r Brayan Sanchez - 2043554 <br>\r Daniel Mora - 1841563 <br>",
   "main": "index.js",
   "scripts": {
-    "dev": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "react-scripts start"
   },
   "keywords": [],
   "author": "",
