@@ -1,4 +1,4 @@
-name: Automate pull request
+name: Automate push
 
 on:
   push:
