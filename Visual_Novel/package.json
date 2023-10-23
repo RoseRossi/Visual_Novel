@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "react-scripts start",
+    "build": "react-scripts build",
     "test": "jest"
   },
   "keywords": [],
@@ -14,6 +15,7 @@
     "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0",
     "react-scripts": "^5.0.1"
   },
   "browserslist": {
