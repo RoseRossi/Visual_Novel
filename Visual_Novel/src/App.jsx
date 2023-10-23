@@ -9,7 +9,7 @@ import {
 import Home from "./components/pages/Home";
 
 /**
- * Render Components and Pages
+ * Render Components and Pages comentario para probar el cambio de git 
  */
 const App = () => {
     return (
