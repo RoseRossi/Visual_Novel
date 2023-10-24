@@ -1,11 +1,13 @@
 const { Router, application } = require('express');
 const { 
-    isUserRegistered
+    isUserRegistered,
+    registerPersonalData
 } = require('../control/control');
 
 const router = Router();
 
-router.get('/', isUserRegistered);
+router.post('/isUserRegistered', isUserRegistered);
+router.post('/registerUser', registerPersonalData);
 
 // Export the router
 module.exports = router;
