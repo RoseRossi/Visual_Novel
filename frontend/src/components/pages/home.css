@@ -1,0 +1,87 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.titulo{
+    text-align: center;
+    color: rgb(255, 218, 56);
+    padding-bottom: 55px;
+    padding-top: 20px;
+    font-size: 55px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px black;
+}
+.textos{
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    text-shadow: 1.5px 1.5px 1.5px black;
+}
+
+.boton{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.almacen{
+    padding-top: 5px;
+    text-align: center;
+    padding-bottom: 5px;
+    background-color: rgba(16,33,40);
+    width: 250px;
+    border: 1px;
+    color: rgb(209,206,174,255);
+    font-style: bold;
+}
+
+.formlogin{
+    justify-content: center;
+    width: 10px;
+    height: 300px;
+    padding-left: 13%;
+    padding-right: 13%;
+    background-color: rgba(2, 17, 22, 0.644);
+    font-style: italic;
+    text-align: center;
+    color: rgb(209,206,174,255);
+    margin: 0 auto;
+    border-radius: 5%;
+
+}
+
+.boton{
+    background-color: rgb(53, 53, 53);
+    color: rgb(255, 218, 56);
+    margin-top: 25px;
+    margin-bottom: 5px;
+    height: 40px;
+    width: 90px;
+    font-family: 'Times New Roman', Times;
+    font-style: italic;
+    font-size: 18px;
+    border: 1px;
+    text-shadow: 2px 2px 2px black;
+}
+
+body {
+    background-image: url('/public/images/font.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+
+
+.register{
+    margin-top: 8px;
+    font-family: 'Times New Roman', Times;
+    font-style: normal;
+    font-size: 16px;
+    color: rgb(151, 151, 120);
+}

@@ -7,6 +7,7 @@ import {
 
 // Import Pages
 import Home from "./components/pages/Home";
+import Register from './components/pages/Register/Register';
 
 /**
  * Render Components and Pages comentario para probar el cambio de git 
@@ -16,6 +17,7 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<Home/>} />
+                <Route path="/Register" element={<Register/>} />
                 <Route
                     path="*"
                     element={
