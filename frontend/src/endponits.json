@@ -1,0 +1,4 @@
+{
+    "registerUser": "http://localhost:3700/registerUser/",
+    "isUserRegistered": "http://localhost:3700/isUserRegistered/"
+}

@@ -13,7 +13,7 @@ const app = express();
 const { PORT } = process.env;
 
 //configuraciones
-app.set('port', PORT || 3700);
+app.set('port', PORT || 3900);
 
 
 //middlewares

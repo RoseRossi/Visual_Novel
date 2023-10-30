@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSound from 'use-sound';
 import "./home.css";
+import json from '../../endponits.json';
 
 const Home = ({ ...props }) => {
     const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ const Home = ({ ...props }) => {
     const audioRef = useRef(null);
     const navigate = useNavigate();
     const [play] = useSound("../assets/bot.mp3");
+    const [isRegister, setIsRegister] = useState(false);
 
     const [playSound, setPlaySound] = useState(false);
 
@@ -22,6 +24,8 @@ const Home = ({ ...props }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setIsRegister(true);
+        fectUserRegistered({ email, contraseña });
     }
 
     const playAudio = () => {
@@ -44,6 +48,35 @@ const Home = ({ ...props }) => {
             setPlaySound(false);
         }
     }, [playSound]);
+    
+    /**
+     * Verifica si el usuario esta registrado
+     */
+    const fectUserRegistered = async ({
+        email,
+        contraseña,
+    }) => {
+        try {
+            const isUserRegistered = json.isUserRegistered;
+            const response = await fetch(isUserRegistered, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, contraseña }),
+            });
+            const data = await response.json();
+         
+            if (data.isLogged ) {
+                alert("Bienvenido");
+            } else {
+                alert("Usuario o contraseña incorrecta");
+            }
+            setIsRegister(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleButtonClick = () => {
         setPlaySound(true);
@@ -78,7 +111,14 @@ const Home = ({ ...props }) => {
                     value={contraseña}
                     onChange={handleContraseñaChange}
                 />
-                <button className="boton" style={{ cursor: 'pointer' }} type="submit" onClick={handleButtonClick}>Ingresar</button>
+                <button  
+                        disabled={isRegister} 
+                        className="boton" 
+                        style={{ cursor: 'pointer' }} 
+                        type="submit"
+                        onClick={handleButtonClick}>
+                        Ingresar
+                </button>
                 <Link to="/Register" className="register">Registrarse</Link>
             </form>
         </>

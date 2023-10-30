@@ -48,6 +48,7 @@ const registerPersonalData = async (req, res) =>
             lastname,
             phone
         } = req.body;
+        console.log(req.body);
 
         const newPersonal = new PersonalData({ 
             email,
@@ -63,9 +64,15 @@ const registerPersonalData = async (req, res) =>
 
         await newPersonal.save();
         await newAccount.save();
-        res.json({ message: 'Account registered' });
+        res.json({ 
+            message: 'Account registered',
+            register: true
+        });
     } catch (error) {
-        res.status(400).json({ message: 'Error to register account' });
+        res.status(400).json({ 
+            message: 'Error to register account',
+            register: false
+        });
         console.log(error);
     }
 }
