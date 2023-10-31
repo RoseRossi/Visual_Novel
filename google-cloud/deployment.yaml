@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webnovel2023
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webnovel
+  template:
+    metadata:
+      labels:
+        app: webnovel
+    spec:
+      containers:
+      - name: webnovel-frontend
+        image: cristiank/webnovel_frontend:latest
+        ports:
+        - containerPort: 3000
+      - name: webnovel-backend
+        image: cristiank/webnovel_backend:latest
+        ports:
+        - containerPort: 3700
