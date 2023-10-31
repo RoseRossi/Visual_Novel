@@ -3,11 +3,13 @@ services:
   frontend:
     build:
       context: ./frontend
+    image: webnovel_frontend
     ports:
       - "3000:3000"
 
   backend:
     build:
       context: ./backend 
+    image: webnovel_backend
     ports:
       - "3700:3700"
