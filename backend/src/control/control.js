@@ -48,7 +48,6 @@ const registerPersonalData = async (req, res) =>
             lastname,
             phone
         } = req.body;
-        console.log(req.body);
 
         const newPersonal = new PersonalData({ 
             email,

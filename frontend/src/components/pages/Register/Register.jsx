@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
-import json from '../../../endponits.json';
+import { fectUserRegistered } from "../../../api/fetchs.jsx";
 
 /**
  * 
@@ -15,41 +15,9 @@ const Register = ({
     const [email, setEmail] = React.useState("");
     const [contraseña, setContraseña] = React.useState("");
     const [name, setName] = React.useState("");
+    const [isRegister, setIsRegister] = React.useState(false);
 
     const navigate = useNavigate();
-
-    /**
-     * Verifica si el usuario esta registrado
-     */
-    const fectUserRegistered = async ({
-            email,
-            contraseña,
-            name
-    }) => {
-        try {
-            const isUserRegistered = json.registerUser;
-            const response = await fetch(isUserRegistered, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email: email, 
-                                       password: contraseña,
-                                       name: name,
-                                       lastname: "",
-                }),
-            });
-            const data = await response.json();
-            
-            if (data.register) {
-                alert("Bienvenido");
-            } else {
-                alert("Error al registrarse");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const handleonChangeEmail = (event) => {
         setEmail(event.target.value);
@@ -63,9 +31,25 @@ const Register = ({
         setName(event.target.value);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        fectUserRegistered({ email, contraseña, name });
+        setIsRegister(true);
+        if (email !== "" && contraseña !== "" && name !== "") {
+            const response = await fectUserRegistered({ 
+                email, 
+                contraseña,
+                name
+            });
+            
+            if (response.register) {
+                alert("Registrado correctamente");
+                navigate("/");
+            }
+            else {
+                alert("No se pudo registrar, intente nuevamente o ya esta registrado");
+            }
+        }
+        setIsRegister(false);
     };
 
     return (
@@ -96,8 +80,13 @@ const Register = ({
                         placeholder=""
                         onChange={handleonChangeContraseña}
                     />
-                <button className="button" style={{ cursor: 'pointer'}} type="submit">Registrarse</button>
-                </form>
+                <button className="button" 
+                        disabled={isRegister}
+                        style={{ cursor: 'pointer'}} 
+                        type="submit">Registrarse
+                </button>
+
+            </form>
         </>
     );
 }
