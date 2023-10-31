@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webnovel-service
+spec:
+  selector:
+    app: webnovel
+  ports:
+    - name: http-frontend
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+    - name: http-backend
+      protocol: TCP
+      port: 81
+      targetPort: 3700
+  type: NodePort
