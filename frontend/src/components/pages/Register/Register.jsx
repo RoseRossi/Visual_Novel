@@ -42,7 +42,7 @@ const Register = ({
             const data = await response.json();
             
             if (data.register) {
-                alert("Bienvenido");
+                alert("Bienvenido!");
             } else {
                 alert("Error al registrarse");
             }
