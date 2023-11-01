@@ -10,7 +10,7 @@ const Home = ({ ...props }) => {
     const [contraseña, setContraseña] = useState("");
     const audioRef = useRef(null);
     const navigate = useNavigate();
-    const [play] = useSound("../assets/bot.mp3");
+    const [play] = useSound("../assets/sounds/bot.mp3");
     const [isRegister, setIsRegister] = useState(false);
 
     const [playSound, setPlaySound] = useState(false);
@@ -73,7 +73,7 @@ const Home = ({ ...props }) => {
             <h1 className="titulo">CONDENA COMPARTIDA</h1>
 
             <audio ref={audioRef} loop>
-                <source src="../assets/inicio.mp3" type="audio/mpeg" />
+                <source src="../assets/sounds/inicio.mp3" type="audio/mpeg" />
             </audio>
 
             <form className="formlogin" onSubmit={handleSubmit}>
