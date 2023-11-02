@@ -1,4 +1,4 @@
 {
-    "registerUser": "http://localhost:3700/registerUser/",
-    "isUserRegistered": "http://localhost:3700/isUserRegistered/"
+    "registerUser": "http://34.36.142.110/backend/registerUser/",
+    "isUserRegistered": "http://34.36.142.110/backend/isUserRegistered/"
 }

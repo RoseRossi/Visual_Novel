@@ -12,6 +12,6 @@ spec:
       targetPort: 3000
     - name: http-backend
       protocol: TCP
-      port: 81
+      port: 3700
       targetPort: 3700
   type: NodePort
