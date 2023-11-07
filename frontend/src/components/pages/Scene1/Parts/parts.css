@@ -1,31 +1,21 @@
-.introduction {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-top: 18rem;
+    margin-left: 30rem;
   }
   
-  h2 {
-    padding-top: 10%;
-    text-align: center;
-    color: #FFDA38;
+  .title-part1 {
+    text-align: left;
+    color: #D1CEAE;
     font-size: 40px;
     font-family: "Gentium Book Basic-Bold, Helvetica";
-    font-weight: 400;
-    font-style: italic;
+    font-weight: 600;
+    font-style:normal;
     text-shadow: 2px 2px 2px black;
   }
 
-  h1 {
-    margin: 10px 50px;
-    text-align: center;
-    color: #FFDA38;
-    font-size: 70px;
-    font-family: "Gentium Book Basic-Bold, Helvetica";
-    font-weight: 600;
-    text-shadow: 2px 2px 2px black;
-  }
-  
   
   .button_continue {
     height: 60px;
@@ -44,7 +34,7 @@
   }
   
 
-  p {
+  .scene1part1-text {
     text-align:justify;
     color: #D1CEAE;
     font-size: 18px;
@@ -53,19 +43,13 @@
     font-style: italic;
   }
   
-  .scene-introduction {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
   
-  .prologue-container{
-    margin: 30px 50px;
+  .scene1part1-container{
+    margin: 35px 100px;
     background-color: #102128bd;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #102128;
     border-radius: 20px;
     height: fit-content;
-    width: 650px;
+    width: 600px;
   }
