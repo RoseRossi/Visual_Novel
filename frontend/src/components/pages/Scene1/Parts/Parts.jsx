@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import "./parts.css";
@@ -6,6 +6,23 @@ import "./parts.css";
 
 const Parts = () => {
   const boxRef = useRef();
+  const texts = [
+    "El bastardo hizo un árbol de navidad… en agosto",
+    "¡Funciona!",
+    "Texto diferente en el tercer clic",
+    "Otro texto más",
+    // Agrega más textos según sea necesario
+  ];
+  const titles = [
+    ""
+  ]
+
+  const [textIndex, setTextIndex] = useState(0);
+
+  const handleContinueClick = () => {
+    setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+  };
+
   const Part2 =()=>{
     return(
       <>
@@ -20,16 +37,17 @@ const Parts = () => {
       </>
     );
   };
+
   return (
     <>
       <div className="container">
           <div className="scene1part1-container">
-            <h className="title-part1">Thomas</h>
-                <p className="scene1part1-text">
-                    El bastardo hizo un árbol de navidad… en agosto
-                </p>
+            <h className="title-part1">{titles[textIndex]}</h>
+                <p className="scene1part1-text">{texts[textIndex]}</p>
           </div>
-          <button onClick={Part2} className="button_continue" type="submit">Continuar</button>
+          <button onClick={handleContinueClick} className="button_continue" type="submit">
+            Continuar
+          </button>
         </div>
       <Canvas
             shadows = {true}
