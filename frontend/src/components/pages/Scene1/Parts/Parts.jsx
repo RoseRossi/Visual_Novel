@@ -1,8 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./parts.css";
 import { Feather } from "./Feather";
+import { Notebook } from "./Notebook";
+import { Clock } from "three";
+
+const FeatherAnimation = () => {
+  const featherRef = useRef();
+  const clock = new Clock();
+
+  useFrame(({clock}) => {
+    if (featherRef.current) {
+      featherRef.current.position.x = Math.sin(clock.getElapsedTime()) * 1;
+    }
+  });
+
+  return (
+    <Feather ref={featherRef} position={[0, 2, -0.7]} scale={0.2} rotation={[-Math.PI / 2, Math.PI, 0]} />
+  );
+};
 
 const Parts = () => {
   const texts = [
@@ -27,13 +44,22 @@ const Parts = () => {
     "Detective",
     "Thomas",
   ]
-  
+
   const models = [
+    {
+      component: (
+        <group>
+          <Notebook position={[0, 0, 0]} scale={0.8} rotation={[-Math.PI/4, Math.PI, 0]} />
+          <FeatherAnimation />
+        </group>
+      ),
+      position: {x: -4, y: -2, z: 1},
+    },
     {
       component: <Feather />,
       position: { x: -3, y: 0, z: 1 },
       scale: 0.5,
-    },
+    }
   ];
 
   const [modelIndex, setModelIndex] = useState(0);
