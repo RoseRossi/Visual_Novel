@@ -45,6 +45,7 @@
     text-shadow: 2px 2px 2px black;
   }
 
+
   .options_scene1{
     height: 43px;
     width: 700px;
@@ -63,10 +64,12 @@
   
   .options_scene1:hover{
     background-color: #0b171c; 
+  }
+  .button_continue:hover {
+    background-color: #666355; 
     cursor: pointer;
   }
   
-
   .scene1part1-text {
     text-align:justify;
     color: #D1CEAE;
