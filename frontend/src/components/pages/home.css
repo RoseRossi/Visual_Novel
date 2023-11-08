@@ -69,7 +69,7 @@ form {
     text-shadow: 2px 2px 2px black;
 }
 
-body {
+.home-bg {
     background-image: url('/public/images/font.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;

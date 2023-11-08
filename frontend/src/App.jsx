@@ -8,16 +8,20 @@ import {
 // Import Pages
 import Home from "./components/pages/Home";
 import Register from './components/pages/Register/Register';
-
+import Prologue from './components/pages/Scene1/Prologue/Prologue';
+import Parts from './components/pages/Scene1/Parts/Parts';
 /**
  * Render Components and Pages comentario para probar el cambio de git 
  */
 const App = () => {
     return (
+        <>
         <Router>
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/Register" element={<Register/>} />
+                <Route path="/Prologue" element={<Prologue/>} />
+                <Route path="/Scene1-parts" element={<Parts/>} />
                 <Route
                     path="*"
                     element={
@@ -28,6 +32,7 @@ const App = () => {
                 />
             </Routes>
         </Router>
+        </>
     )
 }
 

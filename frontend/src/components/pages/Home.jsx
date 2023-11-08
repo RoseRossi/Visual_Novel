@@ -10,7 +10,7 @@ const Home = ({ ...props }) => {
     const [contraseña, setContraseña] = useState("");
     const audioRef = useRef(null);
     const navigate = useNavigate();
-    const [play] = useSound("../assets/bot.mp3");
+    const [play] = useSound("../assets/sounds/bot.mp3");
     const [isRegister, setIsRegister] = useState(false);
 
     const [playSound, setPlaySound] = useState(false);
@@ -37,7 +37,7 @@ const Home = ({ ...props }) => {
             });
 
             if (response.isLogged) {
-                alert("Bienvenido!! Estamos construyendo la pagina");
+                window.location.href = 'http://localhost:3000/Prologue';
                 setIsRegister(false);
                 return;
             }
@@ -70,42 +70,44 @@ const Home = ({ ...props }) => {
 
     return (
         <>
-            <h1 className="titulo">CONDENA COMPARTIDA</h1>
+            <div className="home-bg">
+                <h1 className="titulo">CONDENA COMPARTIDA</h1>
 
-            <audio ref={audioRef} loop>
-                <source src="../assets/inicio.mp3" type="audio/mpeg" />
-            </audio>
+                <audio ref={audioRef} loop>
+                    <source src="../assets/sounds/inicio.mp3" type="audio/mpeg" />
+                </audio>
 
-            <form className="formlogin" onSubmit={handleSubmit}>
-                <label className="textos">Email</label>
-                <input
-                    className="almacen"
-                    name="email"
-                    type="text"
-                    placeholder=""
-                    value={email}
-                    onChange={handleEmailChange}
-                />
+                <form className="formlogin" onSubmit={handleSubmit}>
+                    <label className="textos">Email</label>
+                    <input
+                        className="almacen"
+                        name="email"
+                        type="text"
+                        placeholder=""
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
 
-                <label className="textos">Contraseña</label>
-                <input
-                    className="almacen"
-                    name="contraseña"
-                    type="password"
-                    placeholder=""
-                    value={contraseña}
-                    onChange={handleContraseñaChange}
-                />
-                <button  
-                        disabled={isRegister} 
-                        className="boton" 
-                        style={{ cursor: 'pointer' }} 
-                        type="submit"
-                >
-                        Ingresar
-                </button>
-                <Link to="/Register" className="register">Registrarse</Link>
-            </form>
+                    <label className="textos">Contraseña</label>
+                    <input
+                        className="almacen"
+                        name="contraseña"
+                        type="password"
+                        placeholder=""
+                        value={contraseña}
+                        onChange={handleContraseñaChange}
+                    />
+                    <button  
+                            disabled={isRegister} 
+                            className="boton" 
+                            style={{ cursor: 'pointer' }} 
+                            type="submit"
+                    >
+                            Ingresar
+                    </button>
+                    <Link to="/Register" className="register">Registrarse</Link>
+                </form>
+            </div>
         </>
     );
 }
