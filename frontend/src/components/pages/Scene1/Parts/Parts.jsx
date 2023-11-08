@@ -38,7 +38,11 @@ const Parts = () => {
 
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
+  const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
   const handleContinueClick = () => {
+    if (textIndex === 0) {
+      setShowAdditionalButtons(true);
+    }
     const newIndex = (modelIndex + 1) % models.length;
     setModelIndex(newIndex);
     setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
@@ -86,13 +90,45 @@ const Parts = () => {
               <h className="title-part1">{titles[textIndex]}</h>
               <p className="scene1part1-text">{texts[textIndex]}
               </p>
+              {showAdditionalButtons && textIndex === 1 &&(
+            <div>
+              <div>
+              <button className="options_scene1" id="S1A">A. Thomas,  respeta a los muertos… esto es horrible</button>
+              </div>
+              <div>
+              <button className="options_scene1" id="S1B">B. Hahaha buena esa, Thomas. Hasta brilla y todo con la luz de las farolas</button>
+              </div>
+              <div>
+              <button className="options_scene1" id="S1C">C. *Darle un zape* no seas pagano…</button>
+              </div>
+              <div>
+              <button className="options_scene1" id="S1D">D. *No decir nada*</button>
+              </div>
+            </div>
+          )}
+          {showAdditionalButtons && textIndex === 7 &&(
+            <div>
+              <div>
+              <button className="options_scene1" id="S2A">A. No le haga caso, Martinez… sólo está bromeando </button>
+              </div>
+              <div>
+              <button className="options_scene1" id="S2B">B. Es cierto, Martinez. realmente no tenemos ninguna posibilidad… sólo mírelo y mírese…</button>
+              </div>
+              <div>
+              <button className="options_scene1" id="S2C">C. Pensar en lo inevitable no le hará ningún bien, Martinez</button>
+              </div>
+              <div>
+              <button className="options_scene1" id="S2D">D. (No diré nada…)</button>
+              </div>
+            </div>
+          )}
             </div>
             <button onClick={handleContinueClick} className="button_continue" type="submit">
               Continuar
             </button>
           </div>
         </div>
-        <div style={{ position: "relative", marginRight: "15rem", marginTop:"15rem" }}>
+        <div style={{ position: "relative", marginRight: "15rem", marginTop:"10rem" }}>
           <Canvas
             shadows={true}
             camera={{ position: [2, 1, 7] }}
@@ -113,7 +149,7 @@ const Parts = () => {
           </Canvas>
         </div>
       </div>
-    </div>                
+    </div>
   );
 };
 

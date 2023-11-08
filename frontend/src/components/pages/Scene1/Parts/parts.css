@@ -1,5 +1,5 @@
 .scene1-bg {
-  background-image: url('/public/images/fondo.jpg');
+  background-image: url('/public/images/bgParts.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -9,11 +9,12 @@
   top: 0;
   left: 0;
 }
+
 .container-2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15rem;
+    margin-top: 10rem;
     margin-left: 25rem;
   }
   
@@ -43,6 +44,27 @@
     font-style: italic;
     text-shadow: 2px 2px 2px black;
   }
+
+  .options_scene1{
+    height: 43px;
+    width: 700px;
+    background-color: #102128;
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+    text-align: center;
+    border-radius: 25px;
+    margin-bottom: 5px;
+  
+  }
+  
+  .options_scene1:hover{
+    background-color: #0b171c; 
+    cursor: pointer;
+  }
   
 
   .scene1part1-text {
@@ -62,5 +84,5 @@
     border: 1px solid #102128;
     border-radius: 20px;
     height: fit-content;
-    width: 600px;
+    width: 700px;
   }
