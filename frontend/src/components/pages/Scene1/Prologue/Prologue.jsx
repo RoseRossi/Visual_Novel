@@ -1,9 +1,11 @@
 import React from "react";
 import "./prologue.css";
+import { useNavigate } from 'react-router-dom';
 
 const Prologue = () => {
+  const navigate =  useNavigate();
   const handleContinueClick = () => {
-    window.location.href = 'http://localhost:3000/Scene1-parts';
+    navigate('/Scene1-parts');
   };
   return (
     <>
