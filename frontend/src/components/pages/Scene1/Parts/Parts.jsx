@@ -69,7 +69,7 @@ const Parts = () => {
     );
   };
   return (
-    <div className="page">
+    <div className="scene1-bg">
       <div 
         style={{
           display: "flex",
@@ -113,7 +113,7 @@ const Parts = () => {
           </Canvas>
         </div>
       </div>
-    </div>
+    </div>                
   );
 };
 

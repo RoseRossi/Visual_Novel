@@ -70,42 +70,44 @@ const Home = ({ ...props }) => {
 
     return (
         <>
-            <h1 className="titulo">CONDENA COMPARTIDA</h1>
+            <div className="home-bg">
+                <h1 className="titulo">CONDENA COMPARTIDA</h1>
 
-            <audio ref={audioRef} loop>
-                <source src="../assets/sounds/inicio.mp3" type="audio/mpeg" />
-            </audio>
+                <audio ref={audioRef} loop>
+                    <source src="../assets/sounds/inicio.mp3" type="audio/mpeg" />
+                </audio>
 
-            <form className="formlogin" onSubmit={handleSubmit}>
-                <label className="textos">Email</label>
-                <input
-                    className="almacen"
-                    name="email"
-                    type="text"
-                    placeholder=""
-                    value={email}
-                    onChange={handleEmailChange}
-                />
+                <form className="formlogin" onSubmit={handleSubmit}>
+                    <label className="textos">Email</label>
+                    <input
+                        className="almacen"
+                        name="email"
+                        type="text"
+                        placeholder=""
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
 
-                <label className="textos">Contraseña</label>
-                <input
-                    className="almacen"
-                    name="contraseña"
-                    type="password"
-                    placeholder=""
-                    value={contraseña}
-                    onChange={handleContraseñaChange}
-                />
-                <button  
-                        disabled={isRegister} 
-                        className="boton" 
-                        style={{ cursor: 'pointer' }} 
-                        type="submit"
-                >
-                        Ingresar
-                </button>
-                <Link to="/Register" className="register">Registrarse</Link>
-            </form>
+                    <label className="textos">Contraseña</label>
+                    <input
+                        className="almacen"
+                        name="contraseña"
+                        type="password"
+                        placeholder=""
+                        value={contraseña}
+                        onChange={handleContraseñaChange}
+                    />
+                    <button  
+                            disabled={isRegister} 
+                            className="boton" 
+                            style={{ cursor: 'pointer' }} 
+                            type="submit"
+                    >
+                            Ingresar
+                    </button>
+                    <Link to="/Register" className="register">Registrarse</Link>
+                </form>
+            </div>
         </>
     );
 }
