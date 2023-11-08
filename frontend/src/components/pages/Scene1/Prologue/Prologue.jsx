@@ -2,6 +2,9 @@ import React from "react";
 import "./prologue.css";
 
 const Prologue = () => {
+  const handleContinueClick = () => {
+    window.location.href = 'http://localhost:3000/Scene1-parts';
+  };
   return (
     <>
       <div className="introduction">
@@ -16,7 +19,7 @@ const Prologue = () => {
             homicidio cuidado en su repulsiva estética]
           </p>
           </div>
-          <button href="/Scene1-part1" className="button_continue" type="submit">Continuar</button>
+          <button className="button_continue" type="submit" onClick={handleContinueClick}>Continuar</button>
         </div>
       </div>
     </>

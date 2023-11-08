@@ -37,7 +37,7 @@ const Home = ({ ...props }) => {
             });
 
             if (response.isLogged) {
-                alert("Bienvenido!! Estamos construyendo la pagina");
+                window.location.href = 'http://localhost:3000/Prologue';
                 setIsRegister(false);
                 return;
             }
