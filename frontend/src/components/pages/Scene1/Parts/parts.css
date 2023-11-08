@@ -32,6 +32,11 @@
     font-style: italic;
     text-shadow: 2px 2px 2px black;
   }
+
+  .button_continue:hover {
+    background-color: #666355; 
+    cursor: pointer;
+  }
   
 
   .scene1part1-text {
