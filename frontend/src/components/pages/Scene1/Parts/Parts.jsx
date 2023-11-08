@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Snowman } from "./Snowman";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./parts.css";
+import { Feather } from "./Feather";
 
 const Parts = () => {
   const texts = [
@@ -27,9 +27,20 @@ const Parts = () => {
     "Detective",
     "Thomas",
   ]
+  
+  const models = [
+    {
+      component: <Feather />,
+      position: { x: -3, y: 0, z: 1 },
+      scale: 0.5,
+    },
+  ];
 
+  const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const handleContinueClick = () => {
+    const newIndex = (modelIndex + 1) % models.length;
+    setModelIndex(newIndex);
     setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
   };
 
@@ -67,6 +78,9 @@ const Parts = () => {
         maxWidth: "100vw", 
         maxHeight: "100vh", 
         overflow: "hidden",
+        background: `url('./assets/images/bgPrologue.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="container-1" style={{ marginRight: "-60px" }}>
@@ -88,14 +102,25 @@ const Parts = () => {
           ref={canvasRef}
           style={{ width: "50vw", height: "50vh" }}
         >
+          <ambientLight intensity={1} />
           <OrbitControls makeDefault />
+          {models.map((model, index) => (
+            <group key={index}>
+              {index === modelIndex && (
+                <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
+                  {model.component}
+                </group>
+              )}
+            </group>
+          ))}
+          {/* {models[modelIndex]}
           <Snowman
             position-x={-3}
             position-y={-2}
             position-z={1}
             rotation-y={-Math.PI * -0.03}
             scale={2.7}
-          />
+          /> */}
         </Canvas>
       </div>
     </div>
