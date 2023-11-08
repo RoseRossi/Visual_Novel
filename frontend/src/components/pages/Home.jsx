@@ -4,7 +4,6 @@ import useSound from 'use-sound';
 import "./home.css";
 import { fectIsUserRegistered } from "../../api/fetchs.jsx";
 
-
 const Home = ({ ...props }) => {
     const [email, setEmail] = useState("");
     const [contraseña, setContraseña] = useState("");
@@ -37,7 +36,7 @@ const Home = ({ ...props }) => {
             });
 
             if (response.isLogged) {
-                window.location.href = 'http://localhost:3000/Prologue';
+                navigate('/Prologue');
                 setIsRegister(false);
                 return;
             }
