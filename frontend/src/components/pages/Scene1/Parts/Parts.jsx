@@ -1,12 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Snowman } from "./Snowman";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./parts.css";
 
 const Parts = () => {
-  const canvasRef = useRef();
+  const texts = [
+    "El bastardo hizo un árbol de navidad… en agosto",
+    "¡Funciona!",
+    "Texto diferente en el tercer clic",
+    "Otro texto más",
+    // Agrega más textos según sea necesario
+  ];
+  const titles = [
+    "Thomas"
+  ]
+  const [textIndex, setTextIndex] = useState(0);
+  const handleContinueClick = () => {
+    setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+  };
 
+  const canvasRef = useRef();
   const resizeCanvas = () => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -14,12 +28,10 @@ const Parts = () => {
       canvas.style.height = "50vh"; // Alto en unidades de vista
     }
   };
-
   useEffect(() => {
     resizeCanvas();
   }, []);
 
-  const boxRef = useRef();
   const Part2 = () => {
     return (
       <>
@@ -46,12 +58,11 @@ const Parts = () => {
       <div className="container-1" style={{ marginRight: "-60px" }}>
         <div className="container-2">
           <div className="scene1part1-container">
-            <h className="title-part1">Thomas</h>
-            <p className="scene1part1-text">
-              El bastardo hizo un árbol de navidad… en agosto
+            <h className="title-part1">{titles[textIndex]}</h>
+            <p className="scene1part1-text">{texts[textIndex]}
             </p>
           </div>
-          <button onClick={Part2} className="button_continue" type="submit">
+          <button onClick={handleContinueClick} className="button_continue" type="submit">
             Continuar
           </button>
         </div>
