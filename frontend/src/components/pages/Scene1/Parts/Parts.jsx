@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { Snowman } from "./Snowman";
+import { Html, OrbitControls } from "@react-three/drei";
 import "./parts.css";
 
-
 const Parts = () => {
-  const boxRef = useRef();
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",
     "Haha...",
@@ -30,47 +29,76 @@ const Parts = () => {
   ]
 
   const [textIndex, setTextIndex] = useState(0);
-
   const handleContinueClick = () => {
     setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
   };
 
-  const Part2 =()=>{
-    return(
+  const canvasRef = useRef();
+  const resizeCanvas = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.style.width = "50vw"; 
+      canvas.style.height = "50vh";
+    }
+  };
+  useEffect(() => {
+    resizeCanvas();
+  }, []);
+
+  const Part2 = () => {
+    return (
       <>
         <div className="container">
-              <div className="scene1part1-container">
-                <h className="title-part1">Mila</h>
-                    <p className="scene1part1-text">
-                        Funciona?
-                    </p>
-              </div>
+          <div className="scene1part1-container">
+            <h className="title-part1">Mila</h>
+            <p className="scene1part1-text">Funciona?</p>
+          </div>
         </div>
       </>
     );
   };
 
   return (
-    <>
-      <div className="container">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        maxWidth: "100vw", 
+        maxHeight: "100vh", 
+        overflow: "hidden",
+      }}
+    >
+      <div className="container-1" style={{ marginRight: "-60px" }}>
+        <div className="container-2">
           <div className="scene1part1-container">
             <h className="title-part1">{titles[textIndex]}</h>
-                <p className="scene1part1-text">{texts[textIndex]}</p>
+            <p className="scene1part1-text">{texts[textIndex]}
+            </p>
           </div>
           <button onClick={handleContinueClick} className="button_continue" type="submit">
             Continuar
           </button>
         </div>
-      <Canvas
-            shadows = {true}
-            camera={{position: [2,1,7]}}
-      >
-        <mesh ref={boxRef} position={[-30,5,-5]} castShadow>
-            <boxGeometry args={[10,10,10]} />
-            <meshStandardMaterial color="#54C1EF"  />
-        </mesh>
-      </Canvas>
-    </>
+      </div>
+      <div style={{ position: "relative", marginRight: "15rem", marginTop:"15rem" }}>
+        <Canvas
+          shadows={true}
+          camera={{ position: [2, 1, 7] }}
+          ref={canvasRef}
+          style={{ width: "50vw", height: "50vh" }}
+        >
+          <OrbitControls makeDefault />
+          <Snowman
+            position-x={-3}
+            position-y={-2}
+            position-z={1}
+            rotation-y={-Math.PI * -0.03}
+            scale={2.7}
+          />
+        </Canvas>
+      </div>
+    </div>
   );
 };
 
