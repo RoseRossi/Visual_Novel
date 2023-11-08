@@ -69,58 +69,49 @@ const Parts = () => {
     );
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        maxWidth: "100vw", 
-        maxHeight: "100vh", 
-        overflow: "hidden",
-        background: `url('./assets/images/bgPrologue.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="container-1" style={{ marginRight: "-60px" }}>
-        <div className="container-2">
-          <div className="scene1part1-container">
-            <h className="title-part1">{titles[textIndex]}</h>
-            <p className="scene1part1-text">{texts[textIndex]}
-            </p>
+    <div className="page">
+      <div 
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          maxWidth: "100vw", 
+          maxHeight: "100vh", 
+          overflow: "hidden",
+        }}
+      >
+        <div className="container-1" style={{ marginRight: "-60px" }}>
+          <div className="container-2">
+            <div className="scene1part1-container">
+              <h className="title-part1">{titles[textIndex]}</h>
+              <p className="scene1part1-text">{texts[textIndex]}
+              </p>
+            </div>
+            <button onClick={handleContinueClick} className="button_continue" type="submit">
+              Continuar
+            </button>
           </div>
-          <button onClick={handleContinueClick} className="button_continue" type="submit">
-            Continuar
-          </button>
         </div>
-      </div>
-      <div style={{ position: "relative", marginRight: "15rem", marginTop:"15rem" }}>
-        <Canvas
-          shadows={true}
-          camera={{ position: [2, 1, 7] }}
-          ref={canvasRef}
-          style={{ width: "50vw", height: "50vh" }}
-        >
-          <ambientLight intensity={1} />
-          <OrbitControls makeDefault />
-          {models.map((model, index) => (
-            <group key={index}>
-              {index === modelIndex && (
-                <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                  {model.component}
-                </group>
-              )}
-            </group>
-          ))}
-          {/* {models[modelIndex]}
-          <Snowman
-            position-x={-3}
-            position-y={-2}
-            position-z={1}
-            rotation-y={-Math.PI * -0.03}
-            scale={2.7}
-          /> */}
-        </Canvas>
+        <div style={{ position: "relative", marginRight: "15rem", marginTop:"15rem" }}>
+          <Canvas
+            shadows={true}
+            camera={{ position: [2, 1, 7] }}
+            ref={canvasRef}
+            style={{ width: "50vw", height: "50vh" }}
+          >
+            <ambientLight intensity={1} />
+            <OrbitControls makeDefault />
+            {models.map((model, index) => (
+              <group key={index}>
+                {index === modelIndex && (
+                  <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
+                    {model.component}
+                  </group>
+                )}
+              </group>
+            ))}
+          </Canvas>
+        </div>
       </div>
     </div>
   );
