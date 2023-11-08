@@ -7,14 +7,26 @@ import "./parts.css";
 const Parts = () => {
   const boxRef = useRef();
   const texts = [
-    "El bastardo hizo un árbol de navidad… en agosto",
-    "¡Funciona!",
-    "Texto diferente en el tercer clic",
-    "Otro texto más",
-    // Agrega más textos según sea necesario
+    "El bastardo hizo un árbol de navidad…en agosto",
+    "Haha...",
+    "Oficial Martinez… ¿Ya sabemos quién es? [Un pequeño y robusto policía tomó su libreta y comenzó a darme los detalles del irreconocible caballero… un luchador, bastante fornido y medía el doble que una persona promedio… No era una presa fácil, sin embargo, ahí estaba… un torso troceado, con mordidas en zonas tan importantes y su rostro, o lo que quedaba de él… con una profunda expresión de terror…]",
+    "Detective, ¿cree que haya sido…?",
+    "[Sabía a quién se refería… asentí, sabía que se trataba del recolector de huesos, seguía el mismo patrón… un grotesco baño de sangre y vísceras mordisqueadas; una parte de la víctima engullida y vomitada; otra desaparecida y esa… expresión en sus rostros… tan fácil de reconstruir la agonía y el miedo tan primitivo que se preservaba inmortalizado en sus ojos]",
+    "Me da miedo pensar en lo que nos podría pasar a nosotros… a nuestras familias.",
+    "Martinez… Si el recolector de huesos quisiera comernos, ya nos habría comido…",
+    "Debería decir algo…",
+    "Estaré con los testigos, Detective. Iré a buscarlo si encuentro algo relevante",
   ];
   const titles = [
-    ""
+    "Thomas",
+    "Detective",
+    "Detective",
+    "Thomas",
+    "",
+    "Oficial Martinez",
+    "Thomas",
+    "Detective",
+    "Thomas",
   ]
 
   const [textIndex, setTextIndex] = useState(0);
