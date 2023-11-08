@@ -64,6 +64,7 @@
   
   .options_scene1:hover{
     background-color: #0b171c; 
+    cursor: pointer;
   }
   .button_continue:hover {
     background-color: #666355; 

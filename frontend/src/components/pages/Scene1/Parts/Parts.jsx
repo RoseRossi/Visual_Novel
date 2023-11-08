@@ -5,6 +5,9 @@ import "./parts.css";
 import { Feather } from "./Feather";
 import { Notebook } from "./Notebook";
 import { Clock } from "three";
+import { Thomas } from "./Thomas";
+import { Police } from "./Police";
+import { Detective } from "./Detective"
 
 const FeatherAnimation = () => {
   const featherRef = useRef();
@@ -47,6 +50,26 @@ const Parts = () => {
 
   const models = [
     {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9.2, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9.2, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
+    {
       component: (
         <group>
           <Notebook position={[0, 0, 0]} scale={0.8} rotation={[-Math.PI/4, Math.PI, 0]} />
@@ -56,10 +79,25 @@ const Parts = () => {
       position: {x: -4, y: -2, z: 1},
     },
     {
-      component: <Feather />,
-      position: { x: -3, y: 0, z: 1 },
-      scale: 0.5,
-    }
+      component: <Police />,
+      position: { x: -1, y: -11.5, z: 5 },
+      scale: 3.7,
+    },
+    {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9.2, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
   ];
 
   const [modelIndex, setModelIndex] = useState(0);
