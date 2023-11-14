@@ -2,13 +2,14 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
 export function Notebook(props) {
+  const notebookRef = useRef(); // Crear una referencia
+
   const { nodes, materials } = useGLTF("/assets/models/notebook.glb");
+
   return (
-    <group {...props} dispose={null}>
-      <group
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
-        <group >
+    <group ref={notebookRef} position={[-9, 0, 0]} {...props} dispose={null}>
+      <group rotation={[-Math.PI / 1, 0, 0]}>
+        <group>
           <mesh
             castShadow
             receiveShadow
