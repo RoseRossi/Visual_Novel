@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSound from 'use-sound';
 import "./home.css";
-import { fectIsUserRegistered } from "../../api/fetchs.jsx";
+import { fectIsUserRegistered , fetchSendEmail } from "../../api/fetchs.jsx";
 
 const Home = ({ ...props }) => {
     const [email, setEmail] = useState("");
@@ -36,6 +36,13 @@ const Home = ({ ...props }) => {
             });
 
             if (response.isLogged) {
+                const responseEmail = await fetchSendEmail({
+                    email: email
+                });
+   
+                if (responseEmail.isSend) {
+                   alert("Se ha enviado un correo a su cuenta, por favor verifique su bandeja de entrada");
+                }
                 navigate('/Prologue');
                 setIsRegister(false);
                 return;
