@@ -91,7 +91,22 @@ const Parts3 = () => {
         "Detective",
     ]
     
-    const models = [
+    const models = [    
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
         {
             component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
@@ -99,20 +114,170 @@ const Parts3 = () => {
         },
         {
             component: <Bag />,
+            position: { x: -1, y: 0.5, z: 3.6 },
+            scale: 7,
+        },
+        {
+            component: <Bones />,
+            position: { x: -1, y: 0, z: 3 },
+            scale: 0.05,
+        },
+        {
+            component: <Monster />,
+            position: { x: 0.5, y: -15, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: 0.5, y: -15, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: 0.5, y: -15, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
             scale: 5,
         },
         {
-            component: <Bones />,
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
             scale: 5,
         },
         {
             component: <Monster />,
+            position: { x: 0.5, y: -15, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
             scale: 5,
         },
-        //aqui se ponen ordenados los 38, si, 38 modelos para que vayan apareciendo supongo? asi esta organizada la funcion de abajo y la voy a usar
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -0.5, y: -2, z: 1.5 },
+            scale: 3,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -0.5, y: -2, z: 1.5 },
+            scale: 3,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -0.5, y: -2, z: 1.5 },
+            scale: 3,
+        },
+        {
+            component: <Monster />,
+            position: { x: -0.5, y: -2, z: 1.5 },
+            scale: 3,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+
     ];
     
     const [modelIndex, setModelIndex] = useState(0);

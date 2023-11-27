@@ -5,7 +5,7 @@ export function Monster(props) {
   const { nodes, materials } = useGLTF("/assets/models/monster.glb");
   return (
     <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+      <group rotation={[-Math.PI / 2, 0, 3]}>
         <group
           rotation={[Math.PI / 2, 0, -Math.PI]}
           scale={[-0.01, 0.01, 0.01]}
