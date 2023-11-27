@@ -8,6 +8,8 @@ import { Clock } from "three";
 import { Thomas } from "./Thomas";
 import { Police } from "./Police";
 import { Detective } from "./Detective"
+import axe from 'axe-core';
+
 
 const FeatherAnimation = () => {
   const featherRef = useRef();
@@ -25,6 +27,21 @@ const FeatherAnimation = () => {
 };
 
 const Parts = () => {
+  useEffect(() => {
+    // Llamada a Axe Core para realizar pruebas de accesibilidad
+    axe
+      .run()
+      .then(results => {
+        if (results.violations.length) {
+          throw new Error('Accessibility issues found');
+          console.table(results.violations);
+        }
+      })
+      .catch(err => {
+        console.error('Something bad happened:', err.message);
+      });
+  }, []); // Se ejecuta una vez, cuando el componente se monta
+  
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",
     "Haha...",
@@ -104,6 +121,10 @@ const Parts = () => {
   const [textIndex, setTextIndex] = useState(0);
   const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
   const handleContinueClick = () => {
+    if (textIndex === texts.length - 1) {
+      window.location.href = 'http://localhost:3000/Scene2-parts';
+      return;
+    }
     if (textIndex === 0) {
       setShowAdditionalButtons(true);
     }
@@ -124,18 +145,6 @@ const Parts = () => {
     resizeCanvas();
   }, []);
 
-  const Part2 = () => {
-    return (
-      <>
-        <div className="container">
-          <div className="scene1part1-container">
-            <h className="title-part1">Mila</h>
-            <p className="scene1part1-text">Funciona?</p>
-          </div>
-        </div>
-      </>
-    );
-  };
 
   return (
     <div className="scene1-bg">
