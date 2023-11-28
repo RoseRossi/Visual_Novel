@@ -21,6 +21,8 @@ const Parts2 = () => {
     }*/
   };
 
+  //random comment 
+  
   const handleBackToInitialPosition = () => {
     cameraRef.current.position.set(15, -3, -70);
     setSelectedOption(null);
