@@ -10,14 +10,14 @@ const Parts2 = () => {
   return (
     <Canvas
       shadows
-      camera={{ position: [15, 3, 10] }} // Modifica la posición inicial de la cámara
+      camera={{ position: [15, -3, -70]}} // Modifica la posición inicial de la cámara
       style={{ width: "100vw", height: "100vh" }}
       gl={{ antialias: true }}
     >
       <ambientLight intensity={0.5} />
       <directionalLight position={[0, 10, 0]} intensity={1.5} />
       <OrbitControls />
-      <BackScene roughness={100} metalness={100} specular={100}/>
+      <BackScene  roughness={100} metalness={100} specular={100}/>
       <LightsScene2></LightsScene2>
     </Canvas>
   );
