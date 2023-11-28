@@ -1,0 +1,57 @@
+.container-Scene2{
+    display: flex;
+    margin-top: 15rem;
+    margin-left: 15rem;
+    width: 60%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-Scene2{
+    background-color: #102128bd;
+    padding: 30px;
+    border: 1px solid #102128;
+    border-radius: 20px;
+    height: fit-content;
+    width: 700px;
+}
+
+.titulo-Scene2{
+    text-align: left;
+    color: #D1CEAE;
+    font-size: 40px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 600;
+    font-style:normal;
+    text-shadow: 2px 2px 2px black;
+}	
+
+.options_scene1{
+    height: 43px;
+    width: 700px;
+    background-color: #102128;
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+    text-align: center;
+    border-radius: 25px;
+    margin-bottom: 5px;
+  }
+  
+
+.text-Scene2{
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+}
+
