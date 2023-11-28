@@ -4,7 +4,7 @@ import {
     Routes, 
     Route 
 } from "react-router-dom";
-
+//commit aleatorio
 // Import Pages
 import Home from "./components/pages/Home";
 import Register from './components/pages/Register/Register';
