@@ -22,12 +22,12 @@ jobs:
         docker push cristiank/webnovel_backend:latest
 
     - name: Configurar Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@main
+      uses: google-github-actions/setup-gcloud@v1
       with:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        # project_id: ${{ secrets.GCP_PROJECT_ID }}
         install_components: 'gke-gcloud-auth-plugin'
-        export_default_credentials: true
+        # export_default_credentials: true
 
     - name: Configurar kubectl
       env:
