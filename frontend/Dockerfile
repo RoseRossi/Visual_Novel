@@ -2,11 +2,11 @@
 
 FROM node:19-alpine3.16 AS react-builder
 WORKDIR /frontend
-COPY ./package.json ./
-COPY ./package-lock.json ./
+COPY frontend/package.json ./
+COPY frontend/package-lock.json ./
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
-COPY ./ ./
+COPY frontend/ ./
 RUN npm run build
 
 # --- Apache ---

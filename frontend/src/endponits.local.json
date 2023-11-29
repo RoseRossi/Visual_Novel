@@ -1,0 +1,5 @@
+{
+    "registerUser": "http://localhost:3700/backend/registerUser/",
+    "isUserRegistered": "http://localhost:3700/backend/isUserRegistered/",
+    "sendEmail": "http://localhost:3700/backend/sendEmail/"
+}
