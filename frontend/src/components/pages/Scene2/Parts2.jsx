@@ -26,7 +26,7 @@ const Parts2 = () => {
   
   useEffect(() => {
     console.log('Inside useEffect:', optionTitles, optionTexts);
-    renderContent(); // Intenta forzar la ejecución de renderContent
+    {selectedOption && renderContent()}; // Intenta forzar la ejecución de renderContent
   }, [optionTitles, optionTexts]);
   
 
@@ -48,86 +48,63 @@ const Parts2 = () => {
     }*/
   };
 
-  const handleShowDialog = (optionId) => {
-    console.log('handleShowDialog called with optionId:', optionId);
+  const handleClick = (optionId) => {
+    console.log('handleClick called with optionId:', optionId);
     console.log('Current optionTitles:', optionTitles);
     console.log('Current optionTexts:', optionTexts);
   
-    switch (optionId) {
-      case OPTION_A:
-        setOptionTitles({
-          ...optionTitles,
-          [OPTION_A]: "Título para la opción A",
-        });
-        setOptionTexts({
-          ...optionTexts,
-          [OPTION_A]: "Texto para la opción A...",
-        });
-      break;
+    const options = {
+      [OPTION_A]: {
+        title: "Título para la opción A",
+        text: "Texto para la opción A...",
+      },
+      [OPTION_B]: {
+        title: "Detective",
+        text: "[Podía ver el equipo de Pierro trabajando con las muestras de la víctima que habían tomado con anterioridad... ¿Con quién hablo primero?]",
+      },
+      [OPTION_B1]: {
+        title: "Título para la opción B1",
+        text: "Texto para la opción B1...",
+      },
+      [OPTION_B2]: {
+        title: "Título para la opción B2",
+        text: "Texto para la opción B2...",
+      },
+      [OPTION_C]: {
+        title: "Título para la opción C",
+        text: "Texto para la opción C...",
+      },
+    };
   
-      case OPTION_B:
-        setOptionTitles({
-          ...optionTitles,
-          [OPTION_B]: "Detective",
-        });
-        setOptionTexts({
-          ...optionTexts,
-          [OPTION_B]: "[Podía ver el equipo de Pierro trabajando con las muestras de la víctima que habían tomado con anterioridad... ¿Con quién hablo primero?]",
-        });
-      break;
+    const selectedOptionData = options[optionId];
   
-      case OPTION_B1:
-        setOptionTitles({
-          ...optionTitles,
-          [OPTION_B1]: "Título para la opción B1",
-        });
-        setOptionTexts({
-          ...optionTexts,
-          [OPTION_B1]: "Texto para la opción B1...",
-        });
-      break;
-  
-      case OPTION_B2:
-        setOptionTitles({
-          ...optionTitles,
-          [OPTION_B2]: "Título para la opción B2",
-        });
-        setOptionTexts({
-          ...optionTexts,
-          [OPTION_B2]: "Texto para la opción B2...",
-        });
-      break;
-  
-      case OPTION_C:
-        setOptionTitles({
-          ...optionTitles,
-          [OPTION_C]: "Título para la opción C",
-        });
-        setOptionTexts({
-          ...optionTexts,
-          [OPTION_C]: "Texto para la opción C...",
-        });
-      break;
-  
-      default:
-      break;
+    if (selectedOptionData) {
+      setOptionTitles({
+        ...optionTitles,
+        [optionId]: selectedOptionData.title,
+      });
+      setOptionTexts({
+        ...optionTexts,
+        [optionId]: selectedOptionData.text,
+      });
     }
   };
-  
-  
-  
-  
-  
+ 
 
   // Renderiza el contenido según la opción
   const renderContent = () => {
+    const selectedOptionId = selectedOption?.toString();
+    if (!selectedOptionId) {
+      return null;
+    }
+    
     switch (selectedOption?.toString()) {
       case [10, -3, -60].toString():
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h3 className="titulo-Scene2">{optionTitles["optionA"]} </h3>
-              <p className="text-Scene2"> {optionTexts["optionA"]} </p>
+              <h className="titulo-Scene2">{optionTitles[OPTION_A]} </h>
+              <p className="text-Scene2"> {optionTexts[OPTION_A]} </p>
             </div>
           </div>
         );
@@ -136,8 +113,8 @@ const Parts2 = () => {
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h3 className="titulo-Scene2">{optionTitles["optionB"]} </h3>
-              <p className="text-Scene2">{optionTexts["optionB"]}</p>
+              <h className="titulo-Scene2">{optionTitles[OPTION_B]} </h>
+              <p className="text-Scene2">{optionTexts[OPTION_B]}</p>
             </div>
           </div>
         );
@@ -146,7 +123,7 @@ const Parts2 = () => {
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h3 className="titulo-Scene2"> Contenido para C </h3>
+              <h className="titulo-Scene2"> Contenido para C </h>
               <p className="text-Scene2"> Aquí va el contenido específico para la opción C. </p>
             </div>
           </div>
@@ -154,23 +131,26 @@ const Parts2 = () => {
 
       default:
         return null; 
+    
     }
   };
+  {selectedOption && renderContent()}
 
   return (
     <>
     {selectedOption == null &&(
+      
       <div className= "container-Scene2" >
         <div className="card-Scene2">
           <h3 className="titulo-Scene2"> Detective </h3>
           <p className="text-Scene2"> Hay mucho que hacer.. ¿Por dónde empiezo? </p>
           <div>
-            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60]); handleShowDialog("optionA")}}>
+            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60]); handleClick(OPTION_A)}}>
               A. La víctima
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55]); handleShowDialog("optionB")}}>
+            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55]); handleClick(OPTION_B)}}>
               B. El equipo de autopsia
             </button>
           </div>
@@ -184,6 +164,7 @@ const Parts2 = () => {
     )}
 
     {selectedOption && renderContent()}
+    {renderContent()}
 
       {/**A) la víctima */}
 
@@ -199,7 +180,7 @@ const Parts2 = () => {
           <directionalLight position={[0, 10, 0]} intensity={1.5} />
           <OrbitControls/>
           <Html position={[14.35, -2.5, -53.3]} center distanceFactor={4}>
-            <p className="click-me" onClick={() => handleShowDialog("optionB1")}>Click</p>
+            <p className="click-me" onClick={() => handleClick("optionB1")}>Click</p>
           </Html>
           <Pierro position-x={14.25} position-y={-2.79} position-z={-53.5} scale={0.4} rotation-y={Math.PI}/>
           <Lab position-x={13.5} position-y={-3} position-z={-53.2} scale={0.06} rotation-y={Math.PI}/>
