@@ -3,6 +3,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 export function Pierro(props) {
   const group = useRef();
+  const PierroRef = useRef("/assets/models/characters/pierro.glb");
   const { nodes, materials, animations } = useGLTF("/assets/models/characters/pierro.glb");
   const { actions } = useAnimations(animations, group);
   return (
