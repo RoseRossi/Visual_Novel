@@ -15,11 +15,11 @@ jobs:
 
     - name: Construir y subir imágenes al Docker Hub
       run: |
-        docker build -t <TU_USUARIO_EN_DOCKERHUB>/webnovel_frontend:latest -f frontend/Dockerfile/frontend .
-        docker build -t <TU_USUARIO_EN_DOCKERHUB>/webnovel_backend:latest -f backend/Dockerfile/backend .
+        docker build -t cristiank/webnovel_frontend:latest -f frontend/Dockerfile/frontend .
+        docker build -t cristiank/webnovel_backend:latest -f backend/Dockerfile/backend .
         echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-        docker push <TU_USUARIO_EN_DOCKERHUB>/webnovel_frontend:latest
-        docker push <TU_USUARIO_EN_DOCKERHUB>/webnovel_backend:latest
+        docker push cristiank/webnovel_frontend:latest
+        docker push cristiank/webnovel_backend:latest
 
     - name: Configurar Google Cloud SDK
       uses: google-github-actions/setup-gcloud@main
