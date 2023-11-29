@@ -335,7 +335,7 @@ const Parts3 = () => {
     }, []);
         
     return (
-        <div className={`scene3-bg dynamic-background ${backgroundIndex === 1 ? 'scene3-bg red' : ''}`}>
+        <div className={`scene1-bg dynamic-background ${backgroundIndex === 1 ? 'scene3-bg-black' : ''} ${backgroundIndex === 2 ? 'scene3-bg-wh' : ''} ${backgroundIndex === 3 ? 'scene3-bg-red' : ''}`}>
             <div 
                 style={{
                     display: "flex",
