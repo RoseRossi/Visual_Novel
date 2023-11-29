@@ -1,12 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-<<<<<<<<< Temporary merge branch 1
 import { useThree } from '@react-three/fiber';
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-=========
 import { Canvas} from "@react-three/fiber";
 import { OrbitControls, Sparkles } from "@react-three/drei";
->>>>>>>>> Temporary merge branch 2
 import { BackScene } from "./BackScene";
 import { Pierro } from "./Pierro";
 import { Lab } from "./Lab";
@@ -25,13 +20,6 @@ const Parts2 = () => {
   const canvasARef = useRef();
   const cameraRef = useRef();
   const [selectedOption, setSelectedOption] = useState(null);
-<<<<<<<<< Temporary merge branch 1
-  // Identificadores únicos para cada opción
-  const OPTION_A = "optionA";
-  const OPTION_B = "optionB";
-  const OPTION_B1 = "optionB1";
-  const OPTION_B2 = "optionB2";
-  const OPTION_C = "optionC";
   const [optionTitles, setOptionTitles] = useState();
   const [optionTexts, setOptionTexts] = useState();
   const audioRef = useRef(null);
@@ -40,14 +28,12 @@ const Parts2 = () => {
   const [playB] = useSound("../assets/sounds/scene2B.mp3");
   const [playC] = useSound("../assets/sounds/scene2C.mp3");
   
-=========
   const firstTxtC = "[Exploras los alrededores en busca de detalles. Encuentras un camino de gotas de sangre que termina por desvanecerse en el camino y un anillo de oro con un símbolo extraño, está ensangrentado...]"
   const [currentTextC, setCurrentTextC] = useState(firstTxtC);
 
   const [playSound, setPlaySound] = useState(false);
   const firstTxtA = "[El cadáver… Está marcado en varias zonas que los forenses estuvieron tocando. El hedor de la sangre es demasiado fuerte… y las moscas comienzan a pulular cerca…]"
   const [currentText, setCurrentText] = useState(firstTxtA);
->>>>>>>>> Temporary merge branch 2
 
   const handleCameraPosition = (position) => {
     cameraRef.current.position.set(position[0], position[1], position[2]);
@@ -62,7 +48,6 @@ const Parts2 = () => {
     setCurrentText(firstTxtA)
   };
 
-<<<<<<<<< Temporary merge branch 1
   const handleShowDialog = (optionId) => {
     // Aquí puedes realizar acciones específicas al mostrar el diálogo
     // como cambiar el título y el texto según el identificador de la opción.
@@ -129,8 +114,6 @@ const Parts2 = () => {
   };
  
 
-=========
->>>>>>>>> Temporary merge branch 2
   // Renderiza el contenido según la opción
   const renderContent = () => {
 
@@ -223,7 +206,6 @@ const Parts2 = () => {
                 />
                 <LightsScene2></LightsScene2>
               </Canvas>
->>>>>>>>> Temporary merge branch 2
             </div>
           </div>
         );
@@ -308,7 +290,7 @@ const Parts2 = () => {
           setPlaySound(false);
       }
   }, [playSound]);
-  
+
   return (
     <>
     {selectedOption == null &&(
