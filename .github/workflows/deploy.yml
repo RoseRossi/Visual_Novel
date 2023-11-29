@@ -1,4 +1,4 @@
-name: Deploy to GKE
+name: Despliegue en GKE
 
 on:
   push:
@@ -6,22 +6,30 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout del código fuente
       uses: actions/checkout@v2
 
-    - name: Set up Google Cloud SDK
+    - name: Construir y subir imágenes al Docker Hub
+      run: |
+        docker build -t <TU_USUARIO_EN_DOCKERHUB>/webnovel_frontend:latest -f frontend/Dockerfile/frontend .
+        docker build -t <TU_USUARIO_EN_DOCKERHUB>/webnovel_backend:latest -f backend/Dockerfile/backend .
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        docker push <TU_USUARIO_EN_DOCKERHUB>/webnovel_frontend:latest
+        docker push <TU_USUARIO_EN_DOCKERHUB>/webnovel_backend:latest
+
+    - name: Configurar Google Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-    - name: Configure kubectl
+    - name: Configurar kubectl
       run: |
         gcloud container clusters get-credentials ${{ secrets.GCP_CLUSTER_NAME }} --zone ${{ secrets.GCP_CLUSTER_ZONE }}
 
-    - name: Deploy to GKE
-      run: kubectl apply -f ~/deployment.yaml
+    - name: Desplegar en GKE
+      run: kubectl apply -f ~/webnovel/deployment.yaml
