@@ -34,13 +34,12 @@ const Parts = () => {
       .then(results => {
         if (results.violations.length) {
           throw new Error('Accessibility issues found');
-          console.table(results.violations);
         }
       })
       .catch(err => {
         console.error('Something bad happened:', err.message);
       });
-  }, []); // Se ejecuta una vez, cuando el componente se monta
+  }, []);
   
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",

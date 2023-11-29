@@ -4,16 +4,12 @@ import {
     Routes, 
     Route 
 } from "react-router-dom";
-//commit aleatorio
-// Import Pages
 import Home from "./components/pages/Home";
 import Register from './components/pages/Register/Register';
 import Prologue from './components/pages/Scene1/Prologue/Prologue';
 import Parts from './components/pages/Scene1/Parts/Parts';
 import Parts2 from './components/pages/Scene2/Parts2';
-/**
- * Render Components and Pages comentario para probar el cambio de git 
- */
+
 const App = () => {
     return (
         <>
