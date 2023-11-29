@@ -1,5 +1,6 @@
 .scene3-bg-black {
-    background-color: black;
+    background-image: url('/public/images/wh.jpg');
+    
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -23,7 +24,7 @@
 }
 
 .scene3-bg {
-    background-image: url('/public/images/wh.jpg');
+    background-color: black;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -113,4 +114,15 @@
     border-radius: 20px;
     height: fit-content;
     width: 700px;
+}
+
+.dynamic-background {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
