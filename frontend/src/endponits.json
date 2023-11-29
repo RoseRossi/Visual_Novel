@@ -1,5 +1,5 @@
 {
     "registerUser": "http://34.160.13.13/backend/registerUser/",
     "isUserRegistered": "http://34.160.13.13/backend/isUserRegistered/",
-    "sendEmail": "http://34.160.13.13/backend/sendEmail"
+    "sendEmail": "http://34.160.13.13/backend/sendEmail/"
 }
