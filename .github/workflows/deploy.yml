@@ -29,6 +29,7 @@ jobs:
 
     - name: Configurar kubectl
       run: |
+        gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}
         gcloud container clusters get-credentials ${{ secrets.GCP_CLUSTER_NAME }} --zone ${{ secrets.GCP_CLUSTER_ZONE }}
 
     - name: Desplegar en GKE
