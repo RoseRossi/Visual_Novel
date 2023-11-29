@@ -204,7 +204,7 @@ const Parts2 = () => {
           <Pierro position-x={14.25} position-y={-2.79} position-z={-53.5} scale={0.4} rotation-y={Math.PI}/>
           <Lab position-x={13.5} position-y={-3} position-z={-53.2} scale={0.06} rotation-y={Math.PI}/>
           <Html position={[13, -2.6, -53.8]} center distanceFactor={4}>
-            <p className="click-me" onClick={() => alert("Hola! soy Isa, tengo 20 años y me gusta mucho dormir y leer :D")} >Click</p>
+            <p className="click-me" onClick={() => alert("Si funciona el Click")} >Click</p>
           </Html>
           <Youngman position-x={13} position-y={-3.9} position-z={-53.8} scale={0.7} rotation-y={Math.PI-0.6}/>
           <BackScene roughness={100} metalness={100} specular={100} />
