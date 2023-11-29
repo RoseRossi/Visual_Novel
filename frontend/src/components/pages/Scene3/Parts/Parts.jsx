@@ -291,44 +291,63 @@ const Parts3 = () => {
             scale: 5,
         },
         
-
-    ];
-    
-    
-
-    const [backgroundIndex, setBackgroundIndex] = useState(0);
-    const [backgrounds, setBackgrounds] = useState(["black", "url('/public/images/wh.jpg')", "url('/public/images/red.jpg')"]);
-    const [dialogCount, setDialogCount] = useState(0);
-
-    const changeBackground = (index) => {
-        setBackgroundIndex(index);
-    };
-
+    ]
+    const backgrounds = [
+        "black",
+        "black",
+        "url('/public/images/wh.jpg",
+        "url('/public/images/wh.jpg",
+        "url('/public/images/wh.jpg",
+        "url('/public/images/wh.jpg",
+        "url('/public/images/wh.jpg",
+        "url('/public/images/wh.jpg",
+        "url('/public/images/wh.jpg",
+        "black",
+        "black",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "url('/public/images/red.jpg')",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black"
+    ]
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
-    const [showAdditionalButtons, setShowAdditionalButtons] = useState(false);
+    const [backgroundIndex, setBackgroundIndex] = useState(0);
+    const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
 
     const handleContinueClick = () => {
-        setDialogCount(dialogCount + 1);
-    
-        if (textIndex === 0 || textIndex % 3 === 0) {
-            changeBackground(1);
-        } else if (textIndex % 2 === 0) {
-            changeBackground(2);
-        } else if (dialogCount === 39) {
-            setDialogCount(0);
-            changeBackground(1);
-        } else {
-            changeBackground(3);
+        if (textIndex === 0) {
+          setShowAdditionalButtons(true);
         }
-    
         const newIndex = (modelIndex + 1) % models.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    };
-    
-    const canvasRef = useRef();
+      };
 
+    const canvasRef = useRef();
     const resizeCanvas = () => {
         const canvas = canvasRef.current;
         if (canvas) {
@@ -340,53 +359,56 @@ const Parts3 = () => {
     useEffect(() => {
         resizeCanvas();
     }, []);
-        
+
     return (
-        <div className={`scene1-bg dynamic-background ${backgroundIndex === 1 ? 'scene3-bg-black' : ''} ${backgroundIndex === 2 ? 'scene3-bg-wh' : ''} ${backgroundIndex === 3 ? 'scene3-bg-red' : ''}`}>
-            <div 
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    maxWidth: "100vw", 
-                    maxHeight: "100vh", 
-                    overflow: "hidden",
-                }}
-            >
-                <div className="container-1" style={{ marginRight: "-60px" }}>
-                    <div className="container-2">
-                        <div className="scene1part1-container">
-                            <h className="title-part1">{titles[textIndex]}</h>
-                            <p className="scene1part1-text">{texts[textIndex]}</p>
+        <div>
+            {texts.map((text, index) => (
+                <div key={index} className={`scene3-bg ${backgrounds[index] ? 'scene3-bg' : ''}`}>
+                    <div 
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        maxWidth: "100vw", 
+                        maxHeight: "100vh", 
+                        overflow: "hidden",
+                    }}
+                    >
+                        <div className="container-1" style={{ marginRight: "-60px" }}>
+                            <div className="container-2">
+                                <div className="scene1part1-container">
+                                    <h className="title-part1">{titles[textIndex]}</h>
+                                    <p className="scene1part1-text">{texts[textIndex]}</p>
+                                </div>
+                                <button onClick={handleContinueClick} className="button_continue" type="submit">
+                                    Continuar
+                                </button>
+                            </div>
                         </div>
-                        <button onClick={handleContinueClick} className="button_continue" type="submit">
-                            Continuar
-                        </button>
+                        <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
+                            <Canvas
+                            shadows={true}
+                            camera={{ position: [2, 1, 7] }}
+                            ref={canvasRef}
+                            style={{ width: "50vw", height: "50vh" }}
+                            >
+                                <ambientLight intensity={1} />
+                                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+                                {models.map((model, index) => (
+                                    <group key={index}>
+                                        {index === modelIndex && (
+                                        <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
+                                            {model.component}
+                                        </group>
+                                        )}
+                                    </group>
+                                    ))}
+                            </Canvas>
+                        </div>
                     </div>
                 </div>
-                <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
-                    <Canvas
-                        shadows={true}
-                        camera={{ position: [2, 1, 7] }}
-                        ref={canvasRef}
-                        style={{ width: "50vw", height: "50vh" }}
-                    >
-                        <ambientLight intensity={1} />
-                        <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-                        {models.map((model, index) => (
-                            <group key={index}>
-                                {index === modelIndex && (
-                                    <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                                        {model.component}
-                                    </group>
-                                )}
-                            </group>
-                        ))}
-                    </Canvas>
-                </div>
+            ))}
             </div>
-        </div>
-    );
+        );      
 };
-
 export default Parts3;
