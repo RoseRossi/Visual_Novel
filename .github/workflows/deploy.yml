@@ -22,7 +22,7 @@ jobs:
         docker push <TU_USUARIO_EN_DOCKERHUB>/webnovel_backend:latest
 
     - name: Configurar Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@master
+      uses: google-github-actions/setup-gcloud@main
       with:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         project_id: ${{ secrets.GCP_PROJECT_ID }}
