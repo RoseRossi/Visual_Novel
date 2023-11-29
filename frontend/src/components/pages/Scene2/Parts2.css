@@ -55,6 +55,49 @@
     font-style: italic;
 }
 
+/**Para opcion A */
+.containerA-Scene2{
+    display: flex;
+    margin-top: 15rem;
+    margin-left: 15rem;
+    width: 60%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    top: -250px; 
+    left: -200px;
+}
+
+.cardA-Scene2{
+    background-color: #102128bd;
+    padding: 30px;
+    border: 1px solid #102128;
+    border-radius: 20px;
+    height: fit-content;
+    width: 700px;
+}
+.textA-Scene2{
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+}
+
+.canvasA{
+    width: 70vw;
+    height: 50vh;
+    position: absolute;
+    z-index: 3;
+    margin-right: 15rem;
+    margin-top: 17rem;
+    left: 20%;       
+}
+
 .back-button{
     position: absolute;
     height: 60px;
@@ -76,7 +119,7 @@
     background-color: #666355; 
     cursor: pointer;
   }
-  
+
 .back-button:hover{
     background-color: #666355; 
     cursor: pointer;
