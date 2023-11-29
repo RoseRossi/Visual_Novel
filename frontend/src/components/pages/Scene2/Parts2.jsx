@@ -56,7 +56,7 @@ const Parts2 = () => {
           </div>
         );
 
-      case [8, -3, -60].toString():
+      case [8, -2, -55].toString():
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
@@ -89,7 +89,7 @@ const Parts2 = () => {
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1C" onClick={() => handleCameraPosition([8, -3, -60])}>
+            <button className="options_scene1" id="S1C" onClick={() => handleCameraPosition([8, -2, -55])}>
               C. Los alrededores
             </button>
           </div>
