@@ -20,30 +20,25 @@
     width: 700px;
 }
 
-.titulo-Scene2{
+.titulo-Scene2 {
     text-align: left;
     color: #D1CEAE;
     font-size: 40px;
     font-family: "Gentium Book Basic-Bold, Helvetica";
     font-weight: 600;
-    font-style:normal;
+    font-style: normal;
     text-shadow: 2px 2px 2px black;
-}	
-
-.options_scene1{
-    height: 43px;
-    width: 700px;
-    background-color: #102128;
-    text-align:justify;
+}
+  
+.text-Scene2 {
+    text-align: justify;
     color: #D1CEAE;
     font-size: 18px;
     font-family: "Gentium Book Basic-Bold, Helvetica";
     font-weight: 545;
     font-style: italic;
-    text-align: center;
-    border-radius: 25px;
-    margin-bottom: 5px;
-  }
+}
+  
   
 
 .text-Scene2{
@@ -75,7 +70,7 @@
 .button_continue:hover {
     background-color: #666355; 
     cursor: pointer;
-  }
+}
   
 .back-button:hover{
     background-color: #666355; 
@@ -84,4 +79,4 @@
 
 .hidden {
     display: none;
-  }
+}

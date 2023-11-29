@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useThree } from '@react-three/fiber';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -7,7 +7,7 @@ import { Pierro } from "./Pierro";
 import { Lab } from "./Lab";
 import { Youngman } from "./Youngman";
 import LightsScene2 from "./LightsScene2";
-import { Center, Float, Html, Text, Text3D } from "@react-three/drei"
+import { Html } from "@react-three/drei"
 import "./Parts2.css";
 
 const Parts2 = () => {
@@ -21,9 +21,13 @@ const Parts2 = () => {
   const OPTION_B1 = "optionB1";
   const OPTION_B2 = "optionB2";
   const OPTION_C = "optionC";
-  const [optionTitles, setOptionTitles] = useState();
-  const [optionTexts, setOptionTexts] = useState();
+  const [optionTitles, setOptionTitles] = useState({});
+  const [optionTexts, setOptionTexts] = useState({});
   
+  useEffect(() => {
+    console.log('Inside useEffect:', optionTitles, optionTexts);
+    renderContent(); // Intenta forzar la ejecución de renderContent
+  }, [optionTitles, optionTexts]);
   
 
   const handleCameraPosition = (position) => {
@@ -45,70 +49,75 @@ const Parts2 = () => {
   };
 
   const handleShowDialog = (optionId) => {
-    // Aquí puedes realizar acciones específicas al mostrar el diálogo
-    // como cambiar el título y el texto según el identificador de la opción.
+    console.log('handleShowDialog called with optionId:', optionId);
+    console.log('Current optionTitles:', optionTitles);
+    console.log('Current optionTexts:', optionTexts);
+  
     switch (optionId) {
       case OPTION_A:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
+        setOptionTitles({
+          ...optionTitles,
           [OPTION_A]: "Título para la opción A",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
+        });
+        setOptionTexts({
+          ...optionTexts,
           [OPTION_A]: "Texto para la opción A...",
-        }));
-        break;
+        });
+      break;
   
       case OPTION_B:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
-          [OPTION_B]: "Título para la opción B",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
-          [OPTION_B]: "Texto para la opción B...",
-        }));
-        break;
+        setOptionTitles({
+          ...optionTitles,
+          [OPTION_B]: "Detective",
+        });
+        setOptionTexts({
+          ...optionTexts,
+          [OPTION_B]: "[Podía ver el equipo de Pierro trabajando con las muestras de la víctima que habían tomado con anterioridad... ¿Con quién hablo primero?]",
+        });
+      break;
   
       case OPTION_B1:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
+        setOptionTitles({
+          ...optionTitles,
           [OPTION_B1]: "Título para la opción B1",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
+        });
+        setOptionTexts({
+          ...optionTexts,
           [OPTION_B1]: "Texto para la opción B1...",
-        }));
-        break;
+        });
+      break;
   
       case OPTION_B2:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
+        setOptionTitles({
+          ...optionTitles,
           [OPTION_B2]: "Título para la opción B2",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
+        });
+        setOptionTexts({
+          ...optionTexts,
           [OPTION_B2]: "Texto para la opción B2...",
-        }));
-        break;
+        });
+      break;
   
       case OPTION_C:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
+        setOptionTitles({
+          ...optionTitles,
           [OPTION_C]: "Título para la opción C",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
+        });
+        setOptionTexts({
+          ...optionTexts,
           [OPTION_C]: "Texto para la opción C...",
-        }));
-        break;
+        });
+      break;
   
       default:
-        // Manejar otros casos si es necesario
-        break;
+      break;
     }
   };
- 
+  
+  
+  
+  
+  
 
   // Renderiza el contenido según la opción
   const renderContent = () => {
@@ -117,8 +126,8 @@ const Parts2 = () => {
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h className="titulo-Scene2">{optionTitles[OPTION_A]} </h>
-              <p className="text-Scene2"> {optionTexts[OPTION_A]} </p>
+              <h3 className="titulo-Scene2">{optionTitles["optionA"]} </h3>
+              <p className="text-Scene2"> {optionTexts["optionA"]} </p>
             </div>
           </div>
         );
@@ -127,8 +136,8 @@ const Parts2 = () => {
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h className="titulo-Scene2">{optionTitles[OPTION_B]} </h>
-              <p className="text-Scene2">{optionTexts[OPTION_B]}</p>
+              <h3 className="titulo-Scene2">{optionTitles["optionB"]} </h3>
+              <p className="text-Scene2">{optionTexts["optionB"]}</p>
             </div>
           </div>
         );
@@ -137,7 +146,7 @@ const Parts2 = () => {
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h className="titulo-Scene2"> Contenido para C </h>
+              <h3 className="titulo-Scene2"> Contenido para C </h3>
               <p className="text-Scene2"> Aquí va el contenido específico para la opción C. </p>
             </div>
           </div>
@@ -153,20 +162,20 @@ const Parts2 = () => {
     {selectedOption == null &&(
       <div className= "container-Scene2" >
         <div className="card-Scene2">
-          <h className="titulo-Scene2"> Detective </h>
+          <h3 className="titulo-Scene2"> Detective </h3>
           <p className="text-Scene2"> Hay mucho que hacer.. ¿Por dónde empiezo? </p>
           <div>
-            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60]); handleShowDialog(OPTION_A)}}>
+            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60]); handleShowDialog("optionA")}}>
               A. La víctima
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55]); handleShowDialog(OPTION_B)}}>
+            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55]); handleShowDialog("optionB")}}>
               B. El equipo de autopsia
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -3, -60]); handleShowDialog(OPTION_C)}}>
+            <button className="options_scene1" id="S1C" onClick={() => handleCameraPosition([8, -3, -60])}>
               C. Los alrededores
             </button>
           </div>
@@ -190,12 +199,12 @@ const Parts2 = () => {
           <directionalLight position={[0, 10, 0]} intensity={1.5} />
           <OrbitControls/>
           <Html position={[14.35, -2.5, -53.3]} center distanceFactor={4}>
-            <p className="click-me" onClick={() => handleShowDialog(OPTION_B1)}>Click</p>
+            <p className="click-me" onClick={() => handleShowDialog("optionB1")}>Click</p>
           </Html>
           <Pierro position-x={14.25} position-y={-2.79} position-z={-53.5} scale={0.4} rotation-y={Math.PI}/>
           <Lab position-x={13.5} position-y={-3} position-z={-53.2} scale={0.06} rotation-y={Math.PI}/>
           <Html position={[13, -2.6, -53.8]} center distanceFactor={4}>
-            <p className="click-me" onClick={() => handleShowDialog(OPTION_B2)}>Click</p>
+            <p className="click-me" onClick={() => alert("Hola! soy Isa, tengo 20 años y me gusta mucho dormir y leer :D")} >Click</p>
           </Html>
           <Youngman position-x={13} position-y={-3.9} position-z={-53.8} scale={0.7} rotation-y={Math.PI-0.6}/>
           <BackScene roughness={100} metalness={100} specular={100} />
