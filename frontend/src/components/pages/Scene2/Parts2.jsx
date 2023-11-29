@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useThree } from '@react-three/fiber';
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Sparkles} from "@react-three/drei";
 import { BackScene } from "./BackScene";
 import { Pierro } from "./Pierro";
 import { Lab } from "./Lab";
+import { Ring } from "./Ring";
+import { Blood } from "./Blood";
 import { Youngman } from "./Youngman";
 import LightsScene2 from "./LightsScene2";
 import { Center, Float, Html, Text, Text3D } from "@react-three/drei"
@@ -23,6 +25,8 @@ const Parts2 = () => {
   const OPTION_C = "optionC";
   const [optionTitles, setOptionTitles] = useState();
   const [optionTexts, setOptionTexts] = useState();
+  const firstTxtC = "[Exploras los alrededores en busca de detalles. Encuentras un camino de gotas de sangre que termina por desvanecerse en el camino y un anillo de oro con un símbolo extraño, está ensangrentado...]"
+  const [currentText, setCurrentText] = useState(firstTxtC);
   
   
 
@@ -40,10 +44,7 @@ const Parts2 = () => {
   const handleBackToInitialPosition = () => {
     cameraRef.current.position.set(15, -3, -70);
     setSelectedOption(null);
-    /*if (cameraRef.current) {
-      cameraRef.current.position.set(15, -3, -70); 
-      setIsInInitialPosition(true);
-    }*/
+    setCurrentText(firstTxtC)
   };
 
   const handleShowDialog = (optionId) => {
@@ -114,6 +115,19 @@ const Parts2 = () => {
 
   // Renderiza el contenido según la opción
   const renderContent = () => {
+
+    const handleRingHover = (event) => {
+      event.nativeEvent.target.style.cursor = "pointer";
+    };
+  
+    const handleRingHoverOut = (event) => {
+      event.nativeEvent.target.style.cursor = "auto";
+    };
+
+    const handleObjAClick = (texto) => {
+      setCurrentText(texto);
+    };
+
     switch (selectedOption?.toString()) {
       case [10, -3, -60].toString():
         return (
@@ -139,10 +153,25 @@ const Parts2 = () => {
         return (
           <div className="container-Scene2">
             <div className="card-Scene2">
-              <h className="titulo-Scene2"> Contenido para C </h>
-              <p className="text-Scene2"> Aquí va el contenido específico para la opción C. </p>
+              <p className="textA-Scene2"> {currentText}  </p>
             </div>
+            <Canvas>
+            <Ring position-x={6} position-y={3} position-z={-53.8} scale={0.5} rotation-y={Math.PI-1.5}
+                  onPointerOver={handleRingHover}
+                  onPointerOut={handleRingHoverOut}
+                  onClick={() => {handleObjAClick("[Será mejor llevarlo contigo.] He terminado aquí. Veré cómo le va a Edward")}}/>
+            <Sparkles
+                  color="red" 
+                  count={10}
+                  size={2}
+                  speed={2}
+                  scale={4}  
+                  position={[0, -1, 0]}
+                />
+            <Blood />
+            </Canvas>
           </div>
+          
         );
 
       default:
@@ -168,7 +197,7 @@ const Parts2 = () => {
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -3, -60]); handleShowDialog(OPTION_C)}}>
+            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -2, -55]); handleShowDialog(OPTION_C)}}>
               C. Los alrededores
             </button>
           </div>
@@ -202,6 +231,7 @@ const Parts2 = () => {
           <Youngman position-x={13} position-y={-3.9} position-z={-53.8} scale={0.7} rotation-y={Math.PI-0.6}/>
           <BackScene roughness={100} metalness={100} specular={100} />
           <LightsScene2></LightsScene2>
+          
         </Canvas>
       </div>
 
