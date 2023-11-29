@@ -36,6 +36,24 @@ export const fectIsUserRegistered = ({
 };
 
 /**
+ *  Send email to user
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+export const fetchSendEmail = ({
+    email
+}) =>
+{
+    return fetchPostGeneral({
+        dataSend: {
+            email: email
+        },
+        urlEndPoint: json.sendEmail
+    })
+}
+
+/**
  *  General Estruture HTTP REQUEST POST
  * 
  * @param {*} param0 
