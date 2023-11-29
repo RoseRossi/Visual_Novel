@@ -5,7 +5,7 @@ import {
     Route 
 } from "react-router-dom";
 
-// Import Pages
+// Import Pages.
 import Home from "./components/pages/Home";
 import Register from './components/pages/Register/Register';
 import Prologue from './components/pages/Scene1/Prologue/Prologue';
