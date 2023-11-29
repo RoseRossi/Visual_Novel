@@ -20,7 +20,6 @@ const Parts3 = () => {
         "Detective… Llega justo a tiempo.",
         "[Un golpe seco y todo se fue a negro]",
         "[...]",
-
         "[...]",
         "[Dolor… Un agudo dolor en mi abdomen, desde dentro. Me arrastró a la consciencia de nuevo]",
         "[MIERDA, MIERDA MIERDA]",
@@ -33,7 +32,6 @@ const Parts3 = () => {
         "[Pude sentir como todo se sentía lejano… conocía este sentimiento… cuando cometes tantas estupideces en este trabajo, te acostumbras a estar a punto de morir…]",
         "[No quiero morir…]",
         "[No… quiero…]",
-
         "[Susurros en un lenguaje que no conocía, pero con lo que he visto, no me sorprendería si se tratase de magia…]",
         "[Mi cuerpo comenzó a sentirse caliente y los susurros se hicieron más fuertes, hasta volverse voces… voces tan fuertes que dolía escucharlas]",
         "[No podía ver… pero sabía que algo estaba frente a mí, no era el recolector… era algo más, algo que helaba la poca sangre que me quedaba]",
@@ -63,7 +61,6 @@ const Parts3 = () => {
         "",
         "Recolector de huesos",
         "",
-
         "",
         "",
         "",
@@ -76,22 +73,21 @@ const Parts3 = () => {
         "",
         "",
         "",
-
         "",
         "",
         "",
-        "???",
-        "",
-        "Detective",
-        "",
-        "???",
-        "",
-        "Detective",
         "",
         "???",
         "Detective",
-        "???",
         "",
+        "",
+        "???",
+        "Detective",
+        "",
+        "",
+        "???",
+        "Detective",
+        "???",
         "",
         "",
         "",
@@ -165,6 +161,11 @@ const Parts3 = () => {
             scale: 5,
         },
         {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
             component: <Monster />,
             position: { x: 0.5, y: -15, z: 5 },
             scale: 5,
@@ -260,6 +261,11 @@ const Parts3 = () => {
             scale: 3,
         },
         {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
             component: <Monster />,
             position: { x: -0.5, y: -2, z: 1.5 },
             scale: 3,
@@ -284,6 +290,7 @@ const Parts3 = () => {
             position: { x: 0.5, y: -9.2, z: 5 },
             scale: 5,
         },
+        
 
     ];
     
