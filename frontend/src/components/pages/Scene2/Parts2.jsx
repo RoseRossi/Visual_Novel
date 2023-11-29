@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useThree } from '@react-three/fiber';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sparkles} from "@react-three/drei";
@@ -11,6 +11,7 @@ import { Youngman } from "./Youngman";
 import LightsScene2 from "./LightsScene2";
 import { Center, Float, Html, Text, Text3D } from "@react-three/drei"
 import "./Parts2.css";
+import useSound from 'use-sound';
 
 const Parts2 = () => {
   const canvasRef = useRef();
@@ -27,7 +28,13 @@ const Parts2 = () => {
   const [optionTexts, setOptionTexts] = useState();
   const firstTxtC = "[Exploras los alrededores en busca de detalles. Encuentras un camino de gotas de sangre que termina por desvanecerse en el camino y un anillo de oro con un símbolo extraño, está ensangrentado...]"
   const [currentText, setCurrentText] = useState(firstTxtC);
+  const audioRef = useRef(null);
+  const [play] = useSound("../assets/sounds/scene2.mp3");
+  const [playA] = useSound("../assets/sounds/scene2A.mp3");
+  const [playB] = useSound("../assets/sounds/scene2B.mp3");
+  const [playC] = useSound("../assets/sounds/scene2C.mp3");
   
+  const [playSound, setPlaySound] = useState(false);
   
 
   const handleCameraPosition = (position) => {
@@ -135,6 +142,9 @@ const Parts2 = () => {
             <div className="card-Scene2">
               <h className="titulo-Scene2">{optionTitles[OPTION_A]} </h>
               <p className="text-Scene2"> {optionTexts[OPTION_A]} </p>
+                <audio ref={audioRef} loop>
+                    <source src="../assets/sounds/scene2A.mp3" type="audio/mpeg" />
+                </audio>
             </div>
           </div>
         );
@@ -145,13 +155,19 @@ const Parts2 = () => {
             <div className="card-Scene2">
               <h className="titulo-Scene2">{optionTitles[OPTION_B]} </h>
               <p className="text-Scene2">{optionTexts[OPTION_B]}</p>
+              <audio ref={audioRef} loop>
+                    <source src="../assets/sounds/scene2B.mp3" type="audio/mpeg" />
+                </audio>
             </div>
           </div>
         );
-
+//para lo del audio controls 
       case [8, -2, -55].toString():
         return (
           <div className="container-Scene2">
+            <audio ref={audioRef} loop >
+                    <source src="../assets/sounds/scene2C.mp3" type="audio/mpeg" />
+                </audio>
             <div className="card-Scene2">
               <p className="textA-Scene2"> {currentText}  </p>
             </div>
@@ -179,10 +195,39 @@ const Parts2 = () => {
     }
   };
 
+
+  const playAudio = () => {
+    if (audioRef.current) {
+        audioRef.current.volume = 0.1;
+        audioRef.current.play();
+      }
+  }
+
+  useEffect(() => {
+      document.addEventListener("click", playAudio);
+      return () => {
+          document.removeEventListener("click", playAudio);
+      };
+  }, []);
+
+  useEffect(() => {
+      if (playSound) {
+          play();
+          playA();
+          playB();
+          playC();
+          setPlaySound(false);
+      }
+  }, [playSound]);
+
+
   return (
     <>
     {selectedOption == null &&(
       <div className= "container-Scene2" >
+          <audio ref={audioRef} loop>
+                    <source src="../assets/sounds/scene2.mp3" type="audio/mpeg" />
+                </audio>
         <div className="card-Scene2">
           <h className="titulo-Scene2"> Detective </h>
           <p className="text-Scene2"> Hay mucho que hacer.. ¿Por dónde empiezo? </p>
