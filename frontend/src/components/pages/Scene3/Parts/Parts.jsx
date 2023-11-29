@@ -9,9 +9,8 @@ import { Detective3 } from "./Detective3";
 import useSound from 'use-sound';
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Parts3 = () => {
-    const texts = [
+    const texts = [ //39 objetos
         "[Ha pasado un día desde que encontraron la escena del crimen… Edward está encargándose del papeleo y todos no notaran cuando vaya a investigar. El mapa es de la zona industrial, y hay marcas de lápiz borrado descuidadamente alrededor de una de las bodegas más pequeñas]",
         "[Me acerco a la zona marcada en el mapa… Tengo un mal presentimiento]",
         "[Qué lugar tan… desagradable…]",
@@ -19,7 +18,9 @@ const Parts3 = () => {
         "[aunque está cubierto, el olor sólo me deja una idea de qué puede ser…]",
         "[...Una pila de huesos a medio roer, con carne podrida y larvas… Con un terrible hedor… que me hace retroceder]",
         "Detective… Llega justo a tiempo.",
+        "[Un golpe seco y todo se fue a negro]",
         "[...]",
+
         "[...]",
         "[Dolor… Un agudo dolor en mi abdomen, desde dentro. Me arrastró a la consciencia de nuevo]",
         "[MIERDA, MIERDA MIERDA]",
@@ -32,6 +33,7 @@ const Parts3 = () => {
         "[Pude sentir como todo se sentía lejano… conocía este sentimiento… cuando cometes tantas estupideces en este trabajo, te acostumbras a estar a punto de morir…]",
         "[No quiero morir…]",
         "[No… quiero…]",
+
         "[Susurros en un lenguaje que no conocía, pero con lo que he visto, no me sorprendería si se tratase de magia…]",
         "[Mi cuerpo comenzó a sentirse caliente y los susurros se hicieron más fuertes, hasta volverse voces… voces tan fuertes que dolía escucharlas]",
         "[No podía ver… pero sabía que algo estaba frente a mí, no era el recolector… era algo más, algo que helaba la poca sangre que me quedaba]",
@@ -44,6 +46,7 @@ const Parts3 = () => {
         "¿Qué favor?",
         "[Pude volver a hablar… es una mala señal en estas circunstancias]",
         "No se preocupe, es algo que igual ya está haciendo…",
+        "¿Qué?",
         "Morir",
         "[Sentí un abrasador dolor que me destrozaba desde adentro, se sentía como fuego pero casi frío...]",
         "[Creo haber gritado con todas mis fuerzas un “Sí”, pero no puedo recordarlo]",
@@ -52,46 +55,50 @@ const Parts3 = () => {
 
     ];
     const titles = [
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
         "",
         "",
         "",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "Detective",
-        "",
-        "Detective",
-        "Detective",
-        "Detective",
-        "",
-        "Detective",
-        "Detective",
-        "Detective",
         "",
         "",
+        "",
+        "Recolector de huesos",
+        "",
+
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Recolector de huesos",
+        "",
+        "",
+        "",
+        "",
+        "",
+
+        "",
+        "",
+        "",
+        "???",
+        "",
         "Detective",
+        "",
+        "???",
+        "",
         "Detective",
+        "",
+        "???",
         "Detective",
-        "Detective",
+        "???",
+        "",
+        "",
+        "",
+        "",
+
     ]
     
-    const models = [    
+    const models = [
         {
             component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
@@ -280,19 +287,41 @@ const Parts3 = () => {
 
     ];
     
+    
+
+    const [backgroundIndex, setBackgroundIndex] = useState(0);
+    const [backgrounds, setBackgrounds] = useState(["black", "url('/public/images/wh.jpg')", "url('/public/images/red.jpg')"]);
+    const [dialogCount, setDialogCount] = useState(0);
+
+    const changeBackground = (index) => {
+        setBackgroundIndex(index);
+    };
+
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
-    const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
+    const [showAdditionalButtons, setShowAdditionalButtons] = useState(false);
+
     const handleContinueClick = () => {
-        if (textIndex === 0) {
-            setShowAdditionalButtons(true);
+        setDialogCount(dialogCount + 1);
+    
+        if (textIndex === 0 || textIndex % 3 === 0) {
+            changeBackground(1);
+        } else if (textIndex % 2 === 0) {
+            changeBackground(2);
+        } else if (dialogCount === 39) {
+            setDialogCount(0);
+            changeBackground(1);
+        } else {
+            changeBackground(3);
         }
+    
         const newIndex = (modelIndex + 1) % models.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
     };
     
     const canvasRef = useRef();
+
     const resizeCanvas = () => {
         const canvas = canvasRef.current;
         if (canvas) {
@@ -300,60 +329,57 @@ const Parts3 = () => {
             canvas.style.height = "50vh";
         }
     };
+
     useEffect(() => {
         resizeCanvas();
-        }, []);
-    
- // Desde aqui se empieza a modificar en el parts.css de scene3 los estilos, para que los -bg sean los que queremos y cambien en el orden que queremos   
- //Elimine las partes de show adittional bottons porque no tenemos opciones de dialogo multiple en esta escena
+    }, []);
+        
     return (
-        <div className="scene1-bg">
+        <div className={`scene3-bg dynamic-background ${backgroundIndex === 2 ? 'scene3-bg' : ''} ${backgroundIndex === 1 ? 'scene3-bg-black' : ''} ${backgroundIndex === 3 ? 'scene3-bg-red' : ''}`}>
             <div 
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                maxWidth: "100vw", 
-                maxHeight: "100vh", 
-                overflow: "hidden",
-            }}
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    maxWidth: "100vw", 
+                    maxHeight: "100vh", 
+                    overflow: "hidden",
+                }}
             >
-            <div className="container-1" style={{ marginRight: "-60px" }}>
-                <div className="container-2">
-                    <div className="scene1part1-container">
-                        <h className="title-part1">{titles[textIndex]}</h>
-                        <p className="scene1part1-text">{texts[textIndex]}
-                        </p>
-        </div>
-            <button onClick={handleContinueClick} className="button_continue" type="submit">
-                Continuar
-            </button>
-        </div>
-        </div>
-            <div style={{ position: "relative", marginRight: "15rem", marginTop:"10rem" }}>
-                <Canvas
-                    shadows={true}
-                    camera={{ position: [2, 1, 7] }}
-                    ref={canvasRef}
-                    style={{ width: "50vw", height: "50vh" }}
-                >
-                <ambientLight intensity={1} />
-                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-                {models.map((model, index) => (
-                    <group key={index}>
-                        {index === modelIndex && (
-                        <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                        {model.component}
-                    </group>
-                )}
-                </group>
-                ))}
-                </Canvas>
+                <div className="container-1" style={{ marginRight: "-60px" }}>
+                    <div className="container-2">
+                        <div className="scene1part1-container">
+                            <h className="title-part1">{titles[textIndex]}</h>
+                            <p className="scene1part1-text">{texts[textIndex]}</p>
+                        </div>
+                        <button onClick={handleContinueClick} className="button_continue" type="submit">
+                            Continuar
+                        </button>
+                    </div>
+                </div>
+                <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
+                    <Canvas
+                        shadows={true}
+                        camera={{ position: [2, 1, 7] }}
+                        ref={canvasRef}
+                        style={{ width: "50vw", height: "50vh" }}
+                    >
+                        <ambientLight intensity={1} />
+                        <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+                        {models.map((model, index) => (
+                            <group key={index}>
+                                {index === modelIndex && (
+                                    <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
+                                        {model.component}
+                                    </group>
+                                )}
+                            </group>
+                        ))}
+                    </Canvas>
+                </div>
             </div>
         </div>
-    </div>
-);
-}
+    );
+};
 
 export default Parts3;
-
