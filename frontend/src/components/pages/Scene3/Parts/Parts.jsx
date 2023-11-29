@@ -295,56 +295,27 @@ const Parts3 = () => {
     const backgrounds = [
         "black",
         "black",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "black",
-        "black",
         "url('/public/images/red.jpg')",
         "url('/public/images/red.jpg')",
         "url('/public/images/red.jpg')",
         "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black"
     ]
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
     const [backgroundIndex, setBackgroundIndex] = useState(0);
     const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
 
+
+
     const handleContinueClick = () => {
         if (textIndex === 0) {
           setShowAdditionalButtons(true);
         }
         const newIndex = (modelIndex + 1) % models.length;
+        const newBackgroundIndex = (backgroundIndex + 1) % backgrounds.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setBackgroundIndex(newBackgroundIndex);
       };
 
     const canvasRef = useRef();

@@ -1,6 +1,5 @@
-.scene3-bg-black {
-    background-image: url('/public/images/wh.jpg');
-    
+.scene3-bg{
+    background-image: url('/public/images/wh.jpg'), url('/public/images/red.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -11,7 +10,7 @@
     left: 0;
 }
 
-.scene3-bg-red {
+.scene3-bg{
     background-color: darkred;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -114,15 +113,4 @@
     border-radius: 20px;
     height: fit-content;
     width: 700px;
-}
-
-.dynamic-background {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
 }

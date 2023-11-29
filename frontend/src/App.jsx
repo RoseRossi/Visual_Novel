@@ -5,15 +5,13 @@ import {
     Route 
 } from "react-router-dom";
 
-// Import Pages.
+// Import Pages
 import Home from "./components/pages/Home";
 import Register from './components/pages/Register/Register';
 import Prologue from './components/pages/Scene1/Prologue/Prologue';
 import Parts from './components/pages/Scene1/Parts/Parts';
 import Parts3 from './components/pages/Scene3/Parts/Parts';
-/**
- * Render Components and Pages comentario para probar el cambio de git 
- */
+
 
 
 const App = () => {
