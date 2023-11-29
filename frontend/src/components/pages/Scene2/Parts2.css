@@ -76,29 +76,12 @@
     background-color: #666355; 
     cursor: pointer;
   }
+  
+.back-button:hover{
+    background-color: #666355; 
+    cursor: pointer;
+}
 
 .hidden {
     display: none;
   }
-
-  .click-me{
-    color: #FFDA38;
-  }
-  
-.dialog-box{
-    background-color: #102128bd;
-    padding: 30px;
-    border: 1px solid #102128;
-    border-radius: 20px;
-    height: fit-content;
-    width: 700px;
-}
-
-.text-dialog-box{
-    text-align:justify;
-    color: #D1CEAE;
-    font-size: 18px;
-    font-family: "Gentium Book Basic-Bold, Helvetica";
-    font-weight: 545;
-    font-style: italic;
-}
