@@ -1,0 +1,128 @@
+.scene3-bg-black {
+    background-image: url('/public/images/wh.jpg');
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.scene3-bg-red {
+    background-color: darkred;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.scene3-bg {
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.container-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10rem;
+    margin-left: 25rem;
+}
+
+.title-part1 {
+    text-align: left;
+    color: #D1CEAE;
+    font-size: 40px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 600;
+    font-style:normal;
+    text-shadow: 2px 2px 2px black;
+}
+
+
+.button_continue {
+    height: 60px;
+    width: 190px;
+    margin: -60px 10px 0; 
+    background-color: #353535;
+    color: #FFDA38;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 1px solid #2e2d2d;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 400;
+    font-style: italic;
+    text-shadow: 2px 2px 2px black;
+}
+
+
+.options_scene1{
+    height: 43px;
+    width: 700px;
+    background-color: #102128;
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+    text-align: center;
+    border-radius: 25px;
+    margin-bottom: 5px;
+}
+
+.options_scene1:hover{
+    background-color: #0b171c; 
+    cursor: pointer;
+}
+
+.button_continue:hover {
+    background-color: #666355; 
+    cursor: pointer;
+}
+
+.scene1part1-text {
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+}
+
+
+.scene1part1-container{
+    margin: 35px 100px;
+    background-color: #102128bd;
+    padding: 30px;
+    border: 1px solid #102128;
+    border-radius: 20px;
+    height: fit-content;
+    width: 700px;
+}
+
+.dynamic-background {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
