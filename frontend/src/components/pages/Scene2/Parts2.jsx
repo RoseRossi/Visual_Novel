@@ -20,8 +20,6 @@ const Parts2 = () => {
   const canvasARef = useRef();
   const cameraRef = useRef();
   const [selectedOption, setSelectedOption] = useState(null);
-  const [optionTitles, setOptionTitles] = useState();
-  const [optionTexts, setOptionTexts] = useState();
   const audioRef = useRef(null);
   const [play] = useSound("../assets/sounds/scene2.mp3");
   const [playA] = useSound("../assets/sounds/scene2A.mp3");
@@ -34,6 +32,14 @@ const Parts2 = () => {
   const [playSound, setPlaySound] = useState(false);
   const firstTxtA = "[El cadáver… Está marcado en varias zonas que los forenses estuvieron tocando. El hedor de la sangre es demasiado fuerte… y las moscas comienzan a pulular cerca…]"
   const [currentText, setCurrentText] = useState(firstTxtA);
+  //Para B
+  const firstTitleB = "Detective";
+  const firstTxtB = "[Podía ver como el equipo de Pierro trabajaba con sus equipo las muestras de la victima que habían tomado con anterioridad... ¿Con quién hablo primero?]";
+  const [currentTitleB, setCurrentTitleB] = useState(firstTitleB);
+  const [currentTextB, setCurrentTextB] = useState(firstTxtB);
+  const [showContinueButton1, setShowContinueButton1] = useState(false);
+  const [showContinueButton2, setShowContinueButton2] = useState(false);
+  const [continueCounter, setContinueCounter] = useState(0);
 
   const handleCameraPosition = (position) => {
     cameraRef.current.position.set(position[0], position[1], position[2]);
@@ -48,70 +54,90 @@ const Parts2 = () => {
     setCurrentText(firstTxtA)
   };
 
-  const handleShowDialog = (optionId) => {
-    // Aquí puedes realizar acciones específicas al mostrar el diálogo
-    // como cambiar el título y el texto según el identificador de la opción.
-    switch (optionId) {
-      case OPTION_A:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
-          [OPTION_A]: "Título para la opción A",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
-          [OPTION_A]: "Texto para la opción A...",
-        }));
+  //Para Opcion B
+  const handleObjB1Click = (titulo, texto) => {
+    setCurrentTitleB(titulo);
+    setCurrentTextB(texto);
+    setShowContinueButton1(true);
+  };
+
+  const handleObjB2Click = (titulo, texto) => {
+    setCurrentTitleB(titulo);
+    setCurrentTextB(texto);
+    setShowContinueButton2(true);
+  };
+
+  const handleContinueButton1Click = () => {
+    setContinueCounter((prevCounter) => prevCounter + 1);
+    switch (continueCounter) {
+      case 1:
+        setCurrentTitleB("Pierro");
+        setCurrentTextB("No puedes esperar ser el último en llegar y que no hayamos hecho nuestro trabajo, todos tenemos vidas, detective.");
+        setShowContinueButton1(true);
         break;
-  
-      case OPTION_B:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
-          [OPTION_B]: "Título para la opción B",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
-          [OPTION_B]: "Texto para la opción B...",
-        }));
+      case 2:
+        setCurrentTitleB("Detective");
+        setCurrentTextB("¿Encontraron algo en particular?");
         break;
-  
-      case OPTION_B1:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
-          [OPTION_B1]: "Título para la opción B1",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
-          [OPTION_B1]: "Texto para la opción B1...",
-        }));
+      case 3:
+        setCurrentTitleB("Pierro");
+        setCurrentTextB("La víctima tenía una llave en su cuello, pero parece una llave de joyero, es más parecida a un accesorio personal. Un diente en el hombro de la víctima y poco más, si quieres más detalles tendrás que esperar al informe forense o verlo por tu cuenta.");
         break;
-  
-      case OPTION_B2:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
-          [OPTION_B2]: "Título para la opción B2",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
-          [OPTION_B2]: "Texto para la opción B2...",
-        }));
+      case 4:
+        setCurrentTitleB(firstTitleB);
+        setCurrentTextB(firstTxtB);
+        setShowContinueButton1(false);
+        setContinueCounter(0); 
         break;
-  
-      case OPTION_C:
-        setOptionTitles((prevTitles) => ({
-          ...prevTitles,
-          [OPTION_C]: "Título para la opción C",
-        }));
-        setOptionTexts((prevTexts) => ({
-          ...prevTexts,
-          [OPTION_C]: "Texto para la opción C...",
-        }));
-        break;
-  
       default:
-        // Manejar otros casos si es necesario
         break;
     }
   };
+
+  const handleContinueButton2Click = () => {
+    setContinueCounter((prevCounter) => prevCounter + 1);
+    switch (continueCounter) {
+      case 1:
+        setCurrentTitleB("Detective");
+        setCurrentTextB("Un placer, ¿Encontraron algo en particular?");
+        setShowContinueButton2(true);
+        break;
+      case 2:
+        setCurrentTitleB("Henry");
+        setCurrentTextB("Pues… Nada que no le haya dicho el jefe Pierro, detective… Aunque encontraron este mapa entre los arbustos tras el árbol. No sabemos porqué nos lo entregaron a nosotros, pero supongo que le sería más útil a la policía.");
+        break;
+      case 3:
+        setCurrentTitleB("Detective");
+        setCurrentTextB("Excelente, Henry. Te lo agradezco.");
+        break;
+      case 4:
+        setCurrentTitleB(firstTitleB);
+        setCurrentTextB(firstTxtB);
+        setShowContinueButton2(false);
+        setContinueCounter(0); 
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handlePierroHover = (event) => {
+    event.nativeEvent.target.style.cursor = "pointer";
+  };
+
+  const handlePierroHoverOut = (event) => {
+    event.nativeEvent.target.style.cursor = "auto";
+  };
+
+  const handleJovenHover = (event) => {
+    event.nativeEvent.target.style.cursor = "pointer";
+  };
+
+  const handleJovenHoverOut = (event) => {
+    event.nativeEvent.target.style.cursor = "auto";
+  };
+
+
  
 
   // Renderiza el contenido según la opción
@@ -216,9 +242,9 @@ const Parts2 = () => {
             <audio ref={audioRef} loop>
                     <source src="../assets/sounds/scene2B.mp3" type="audio/mpeg" />
                 </audio>
-            <div className="card-Scene2">
-              <h className="titulo-Scene2">{optionTitles[OPTION_B]} </h>
-              <p className="text-Scene2">{optionTexts[OPTION_B]}</p>
+                <div className="cardB-Scene2">
+              <h className="tituloB-Scene2">{currentTitleB}</h>
+              <p className="textB-Scene2">{currentTextB}</p>
             </div>
               {showContinueButton1 &&  (
                 <button className="continue-button" onClick={handleContinueButton1Click}>
@@ -303,17 +329,17 @@ const Parts2 = () => {
           <h3 className="titulo-Scene2"> Detective </h3>
           <p className="text-Scene2"> Hay mucho que hacer.. ¿Por dónde empiezo? </p>
           <div>
-            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60]); handleShowDialog(OPTION_A)}}>
+            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60])}}>
               A. La víctima
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55]); handleShowDialog(OPTION_B)}}>
+            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55])}}>
               B. El equipo de autopsia
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -3, -60]); handleShowDialog(OPTION_C)}}>
+            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -3, -60])}}>
               C. Los alrededores
             </button>
           </div>
