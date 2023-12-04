@@ -348,7 +348,7 @@ const Parts3 = () => {
                         <div className="container-1" style={{ marginRight: "-60px" }}>
                             <div className="container-2">
                                 <div className="scene1part1-container">
-                                    <h className="title-part1">{titles[textIndex]}</h>
+                                    <h1 className="title-part1">{titles[textIndex]}</h1>
                                     <p className="scene1part1-text">{texts[textIndex]}</p>
                                 </div>
                                 <button onClick={handleContinueClick} className="button_continue" type="submit">

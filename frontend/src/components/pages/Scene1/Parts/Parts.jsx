@@ -8,7 +8,6 @@ import { Clock } from "three";
 import { Thomas } from "./Thomas";
 import { Police } from "./Police";
 import { Detective } from "./Detective"
-import axe from 'axe-core';
 
 
 const FeatherAnimation = () => {
@@ -27,20 +26,7 @@ const FeatherAnimation = () => {
 };
 
 const Parts = () => {
-  useEffect(() => {
-    // Llamada a Axe Core para realizar pruebas de accesibilidad
-    axe
-      .run()
-      .then(results => {
-        if (results.violations.length) {
-          throw new Error('Accessibility issues found');
-        }
-      })
-      .catch(err => {
-        console.error('Something bad happened:', err.message);
-      });
-  }, []);
-  
+
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",
     "Haha...",
@@ -160,7 +146,7 @@ const Parts = () => {
         <div className="container-1" style={{ marginRight: "-60px" }}>
           <div className="container-2">
             <div className="scene1part1-container">
-              <h className="title-part1">{titles[textIndex]}</h>
+              <h1 className="title-part1">{titles[textIndex]}</h1>
               <p className="scene1part1-text">{texts[textIndex]}
               </p>
               {showAdditionalButtons && textIndex === 1 &&(
@@ -209,7 +195,12 @@ const Parts = () => {
             style={{ width: "50vw", height: "50vh" }}
           >
             <ambientLight intensity={1} />
-            <OrbitControls makeDefault />
+            <OrbitControls 
+               enableZoom={false}
+               maxPolarAngle={Math.PI / 2}
+               maxAzimuthAngle={Math.PI / 3} 
+               minAzimuthAngle={-Math.PI / 12}
+            />
             {models.map((model, index) => (
               <group key={index}>
                 {index === modelIndex && (
