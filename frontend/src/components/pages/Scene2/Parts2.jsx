@@ -293,7 +293,6 @@ const Parts2 = () => {
 
       default:
         return null; 
-    
     }
   };
 
@@ -343,7 +342,7 @@ const Parts2 = () => {
             </button>
           </div>
           <div>
-            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -3, -60])}}>
+            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -2, -55]);}}>
               C. Los alrededores
             </button>
           </div>
