@@ -9,6 +9,7 @@ import { Ring } from "./Ring";
 import { Blood } from "./Blood";
 import { Youngman } from "./Youngman";
 import LightsScene2 from "./LightsScene2";
+import { Center, Float, Html, Text, Text3D } from "@react-three/drei"
 import "./Parts2.css";
 import {Evidence} from "./Evidence"
 import { Body } from "./Body";
@@ -25,11 +26,11 @@ const Parts2 = () => {
   const [playA] = useSound("../assets/sounds/scene2A.mp3");
   const [playB] = useSound("../assets/sounds/scene2B.mp3");
   const [playC] = useSound("../assets/sounds/scene2C.mp3");
-  
+  const [playSound, setPlaySound] = useState(false);
+  //Para C
   const firstTxtC = "[Exploras los alrededores en busca de detalles. Encuentras un camino de gotas de sangre que termina por desvanecerse en el camino y un anillo de oro con un símbolo extraño, está ensangrentado...]"
   const [currentTextC, setCurrentTextC] = useState(firstTxtC);
-
-  const [playSound, setPlaySound] = useState(false);
+  //Para A
   const firstTxtA = "[El cadáver… Está marcado en varias zonas que los forenses estuvieron tocando. El hedor de la sangre es demasiado fuerte… y las moscas comienzan a pulular cerca…]"
   const [currentText, setCurrentText] = useState(firstTxtA);
   //Para B
@@ -52,6 +53,9 @@ const Parts2 = () => {
     cameraRef.current.position.set(15, -3, -70);
     setSelectedOption(null);
     setCurrentText(firstTxtA)
+    setCurrentText(firstTitleB)
+    setCurrentText(firstTitleB)
+    setCurrentText(firstTxtC)
   };
 
   //Para Opcion B
