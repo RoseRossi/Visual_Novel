@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, OrbitControls } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Html, OrbitControls, PointLight } from "@react-three/drei";
+import { useEffect, useRef, useState } from "react";
 import "./parts.css";
 import { Bag } from "./Bag";
 import { Bones } from "./Bones";
 import { Monster } from "./Monster";
 import { Detective3 } from "./Detective3";
-import useSound from 'use-sound';
+import useSound from "use-sound";
 import { Link, useNavigate } from "react-router-dom";
 
 const Parts3 = () => {
@@ -292,19 +292,10 @@ const Parts3 = () => {
         },
         
     ]
-    const backgrounds = [
-        "black",
-        "black",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-    ]
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
-    const [backgroundIndex, setBackgroundIndex] = useState(0);
     const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
-
+    const [showRedLight, setShowRedLight] = useState(false);
 
 
     const handleContinueClick = () => {
@@ -312,10 +303,8 @@ const Parts3 = () => {
           setShowAdditionalButtons(true);
         }
         const newIndex = (modelIndex + 1) % models.length;
-        const newBackgroundIndex = (backgroundIndex + 1) % backgrounds.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        setBackgroundIndex(newBackgroundIndex);
       };
 
     const canvasRef = useRef();
@@ -334,7 +323,7 @@ const Parts3 = () => {
     return (
         <div>
             {texts.map((text, index) => (
-                <div key={index} className={`scene3-bg ${backgrounds[index] ? 'scene3-bg' : ''}`}>
+                <div key={index} className={`scene3-bg`}>
                     <div 
                     style={{
                         display: "flex",
@@ -365,6 +354,16 @@ const Parts3 = () => {
                             >
                                 <ambientLight intensity={1} />
                                 <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+                                {showRedLight && (
+                                <PointLight
+                                    color="red"
+                                    position={[0, 2, 0]}
+                                    distance={10}
+                                    intensity={1}
+                                    decay={2}
+                                    castShadow
+                                />
+                                )}
                                 {models.map((model, index) => (
                                     <group key={index}>
                                         {index === modelIndex && (
@@ -375,6 +374,11 @@ const Parts3 = () => {
                                     </group>
                                     ))}
                             </Canvas>
+                            {useFrame(({ clock }) => {
+                                const elapsedTime = clock.getElapsedTime();
+                                const showLight = Math.sin(elapsedTime) > 0; // Alternar la visibilidad de la luz basada en el tiempo
+                                setShowRedLight(showLight);
+                                })}
                         </div>
                     </div>
                 </div>
