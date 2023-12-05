@@ -1,6 +1,7 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Html, OrbitControls, PointLight } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import { Html, OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 import "./parts.css";
 import { Bag } from "./Bag";
 import { Bones } from "./Bones";
@@ -301,6 +302,7 @@ const Parts3 = () => {
     const handleContinueClick = () => {
         if (textIndex === 0) {
           setShowAdditionalButtons(true);
+          setShowRedLight(true);
         }
         const newIndex = (modelIndex + 1) % models.length;
         setModelIndex(newIndex);
@@ -317,8 +319,25 @@ const Parts3 = () => {
     };
 
     useEffect(() => {
-        resizeCanvas();
-    }, []);
+        const resizeCanvas = () => {
+          const canvas = canvasRef.current;
+          if (canvas) {
+            canvas.style.width = "50vw";
+            canvas.style.height = "50vh";
+          }
+        };
+    
+        window.addEventListener("resize", resizeCanvas);
+        return () => {
+          window.removeEventListener("resize", resizeCanvas);
+        };
+      }, []);
+
+      useFrame(({ clock }) => {
+        const elapsedTime = clock.getElapsedTime();
+        const showLight = Math.sin(elapsedTime) > 0;
+        setShowRedLight(showLight);
+      });
 
     return (
         <div>
@@ -374,11 +393,6 @@ const Parts3 = () => {
                                     </group>
                                     ))}
                             </Canvas>
-                            {useFrame(({ clock }) => {
-                                const elapsedTime = clock.getElapsedTime();
-                                const showLight = Math.sin(elapsedTime) > 0; // Alternar la visibilidad de la luz basada en el tiempo
-                                setShowRedLight(showLight);
-                                })}
                         </div>
                     </div>
                 </div>
