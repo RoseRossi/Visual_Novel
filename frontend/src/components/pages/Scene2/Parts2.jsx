@@ -21,6 +21,7 @@ const Parts2 = () => {
   const canvasARef = useRef();
   const cameraRef = useRef();
   const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOptionP, setSelectedOptionP] = useState(null);
   const audioRef = useRef(null);
   const [play] = useSound("../assets/sounds/scene2.mp3");
   const [playA] = useSound("../assets/sounds/scene2A.mp3");
@@ -38,8 +39,7 @@ const Parts2 = () => {
   const firstTxtB = "[Podía ver como el equipo de Pierro trabajaba con sus equipo las muestras de la victima que habían tomado con anterioridad... ¿Con quién hablo primero?]";
   const [currentTitleB, setCurrentTitleB] = useState(firstTitleB);
   const [currentTextB, setCurrentTextB] = useState(firstTxtB);
-  const [showContinueButton1, setShowContinueButton1] = useState(false);
-  const [showContinueButton2, setShowContinueButton2] = useState(false);
+  const [showContinueButton, setShowContinueButton] = useState(false);
   const [continueCounter, setContinueCounter] = useState(0);
 
   const handleCameraPosition = (position) => {
@@ -58,94 +58,72 @@ const Parts2 = () => {
     setCurrentText(firstTxtC)
   };
 
-  //Para Opcion B
-  const handleObjB1Click = (titulo, texto) => {
+  //new cosa para B
+  const handleModelClick = (titulo, texto, isPierro) => {
     setCurrentTitleB(titulo);
     setCurrentTextB(texto);
-    setShowContinueButton1(true);
+    setShowContinueButton(true);
+    setContinueCounter(0); // Reiniciar contador
+    setSelectedOptionP(isPierro ? "Pierro" : "Youngman");
   };
 
-  const handleObjB2Click = (titulo, texto) => {
-    setCurrentTitleB(titulo);
-    setCurrentTextB(texto);
-    setShowContinueButton2(true);
-  };
-
-  const handleContinueButton1Click = () => {
+  const handleContinueButtonClick = () => {
     setContinueCounter((prevCounter) => prevCounter + 1);
     switch (continueCounter) {
       case 1:
-        setCurrentTitleB("Pierro");
-        setCurrentTextB("No puedes esperar ser el último en llegar y que no hayamos hecho nuestro trabajo, todos tenemos vidas, detective.");
-        setShowContinueButton1(true);
+        if (selectedOptionP === "Pierro") {
+          setCurrentTitleB("Pierro");
+          setCurrentTextB("No puedes esperar ser el último en llegar y que no hayamos hecho nuestro trabajo, todos tenemos vidas, detective.");
+        } else if (selectedOptionP === "Youngman") {
+          setCurrentTitleB("Detective");
+          setCurrentTextB("Un placer, ¿Encontraron algo en particular?");
+        }
         break;
       case 2:
-        setCurrentTitleB("Detective");
-        setCurrentTextB("¿Encontraron algo en particular?");
+        if (selectedOptionP === "Pierro") {
+          setCurrentTitleB("Detective");
+          setCurrentTextB("¿Encontraron algo en particular?");
+        } else if (selectedOptionP === "Youngman") {
+          setCurrentTitleB("Henry");
+          setCurrentTextB("Pues… Nada que no le haya dicho el jefe Pierro, detective… Aunque encontraron este mapa entre los arbustos tras el árbol. No sabemos porqué nos lo entregaron a nosotros, pero supongo que le sería más útil a la policía.");
+        }
         break;
       case 3:
-        setCurrentTitleB("Pierro");
-        setCurrentTextB("La víctima tenía una llave en su cuello, pero parece una llave de joyero, es más parecida a un accesorio personal. Un diente en el hombro de la víctima y poco más, si quieres más detalles tendrás que esperar al informe forense o verlo por tu cuenta.");
+        if (selectedOptionP === "Pierro") {
+          setCurrentTitleB("Pierro");
+          setCurrentTextB("La víctima tenía una llave en su cuello, pero parece una llave de joyero, es más parecida a un accesorio personal. Un diente en el hombro de la víctima y poco más, si quieres más detalles tendrás que esperar al informe forense o verlo por tu cuenta.");
+        } else if (selectedOptionP === "Youngman") {
+          setCurrentTitleB("Detective");
+          setCurrentTextB("Excelente, Henry. Te lo agradezco.");
+        }
         break;
       case 4:
         setCurrentTitleB(firstTitleB);
         setCurrentTextB(firstTxtB);
-        setShowContinueButton1(false);
-        setContinueCounter(0); 
-        break;
-      default:
+        setShowContinueButton(false);
         break;
     }
   };
 
-  const handleContinueButton2Click = () => {
-    setContinueCounter((prevCounter) => prevCounter + 1);
-    switch (continueCounter) {
-      case 1:
-        setCurrentTitleB("Detective");
-        setCurrentTextB("Un placer, ¿Encontraron algo en particular?");
-        setShowContinueButton2(true);
-        break;
-      case 2:
-        setCurrentTitleB("Henry");
-        setCurrentTextB("Pues… Nada que no le haya dicho el jefe Pierro, detective… Aunque encontraron este mapa entre los arbustos tras el árbol. No sabemos porqué nos lo entregaron a nosotros, pero supongo que le sería más útil a la policía.");
-        break;
-      case 3:
-        setCurrentTitleB("Detective");
-        setCurrentTextB("Excelente, Henry. Te lo agradezco.");
-        break;
-      case 4:
-        setCurrentTitleB(firstTitleB);
-        setCurrentTextB(firstTxtB);
-        setShowContinueButton2(false);
-        setContinueCounter(0); 
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handlePierroHover = (event) => {
-    event.nativeEvent.target.style.cursor = "pointer";
-  };
-
-  const handlePierroHoverOut = (event) => {
-    event.nativeEvent.target.style.cursor = "auto";
-  };
-
-  const handleJovenHover = (event) => {
-    event.nativeEvent.target.style.cursor = "pointer";
-  };
-
-  const handleJovenHoverOut = (event) => {
-    event.nativeEvent.target.style.cursor = "auto";
-  };
-
-
- 
 
   // Renderiza el contenido según la opción
   const renderContent = () => {
+
+    const handlePierroHover = (event) => {
+      event.nativeEvent.target.style.cursor = "pointer";
+    };
+  
+    const handlePierroHoverOut = (event) => {
+      event.nativeEvent.target.style.cursor = "auto";
+    };
+  
+    const handleJovenHover = (event) => {
+      event.nativeEvent.target.style.cursor = "pointer";
+    };
+  
+    const handleJovenHoverOut = (event) => {
+      event.nativeEvent.target.style.cursor = "auto";
+    };
 
     const handleRagHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
@@ -242,25 +220,47 @@ const Parts2 = () => {
 
       case [14, -3, -55].toString():
         return (
+          <>
+          
           <div className="container-Scene2">
             <audio ref={audioRef} loop>
                     <source src="../assets/sounds/scene2B.mp3" type="audio/mpeg" />
                 </audio>
                 <div className="cardB-Scene2">
-              <h className="tituloB-Scene2">{currentTitleB}</h>
-              <p className="textB-Scene2">{currentTextB}</p>
-            </div>
-              {showContinueButton1 &&  (
-                <button className="continue-button" onClick={handleContinueButton1Click}>
-                  Continuar
-                </button>
-              )}
-              {showContinueButton2 &&  (
-                <button className="continue-button" onClick={handleContinueButton2Click}>
-                  Continuar
-                </button>
-              )}
+                  <h className="tituloB-Scene2">{currentTitleB}</h>
+                  <p className="textB-Scene2">{currentTextB}</p>
+                </div>
+                <div className="canvasB" ref={canvasARef}>
+                  <Canvas>
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[0, 10, 0]} intensity={1.5} />
+                    <OrbitControls enableRotate={false} enableZoom={false} enablePan={false}/>
+                    
+                    <Pierro 
+                      position={[-7, 5, -6.5]}
+                      rotation-y={0.8}
+                      scale={4} 
+                      onClick={() => {handleModelClick("Detective","Creí que había sido claro con que no debían tocar la escena hasta que llegase, Pierro.", "Pierro")}}
+                      onPointerOver={handlePierroHover}
+                      onPointerOut={handlePierroHoverOut}
+                    />
+                    <Lab position={[0,0, 0]} scale={0.2} />
+                    <Youngman 
+                      position={[2,-3.5, -1]}
+                      scale={3.5} 
+                      onClick={() => {handleModelClick("Joven","Mucho gusto, detective. Mi nombre es Henry.", "Youngman")}}
+                      onPointerOver={handleJovenHover}
+                      onPointerOut={handleJovenHoverOut}
+                    />
+                  </Canvas> 
+                </div>
+                {showContinueButton && (
+                  <button className="continue-button" onClick={handleContinueButtonClick}>
+                    Continuar
+                  </button>
+                )}
           </div>
+        </>
         );
 //para lo del audio controls 
       case [8, -2, -55].toString():
@@ -364,23 +364,6 @@ const Parts2 = () => {
           <ambientLight intensity={0.5} />
           <directionalLight position={[0, 10, 0]} intensity={1.5} />
           <OrbitControls/>
-          <Pierro 
-            position={[14.25, -2.79, -53.5]}
-            scale={0.4} 
-            rotation-y={Math.PI}
-            onClick={() => {handleObjB1Click("Detective","Creí que había sido claro con que no debían tocar la escena hasta que llegase, Pierro.")}}
-            onPointerOver={handlePierroHover}
-            onPointerOut={handlePierroHoverOut}
-          />
-          <Lab position-x={13.5} position-y={-3} position-z={-53.2} scale={0.06} rotation-y={Math.PI}/>
-          <Youngman 
-            position={[13, -3.9,-53.8]}
-            scale={0.7} 
-            rotation-y={Math.PI-0.6}
-            onClick={() => {handleObjB2Click("Joven","Mucho gusto, detective. Mi nombre es Henry.")}}
-            onPointerOver={handleJovenHover}
-            onPointerOut={handleJovenHoverOut}
-          />
           <BackScene roughness={100} metalness={100} specular={100} />
           <LightsScene2></LightsScene2>
           

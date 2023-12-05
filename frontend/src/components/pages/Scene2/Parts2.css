@@ -82,6 +82,15 @@
     left: 20%;       
 }
 
+.canvasB{
+    width: 90vw;
+    height: 70vh;
+    position: absolute;
+    z-index: 1;
+    margin-left: 5rem;
+    margin-top: -10rem;      
+}
+
 /**Para opción B*/
 
 .containerB-Scene2{
@@ -94,7 +103,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 1;
+    z-index: 3;
 }
 
 .cardB-Scene2{
@@ -104,6 +113,9 @@
     border-radius: 20px;
     height: fit-content;
     width: 700px;
+    position: absolute;
+    margin-top: 5rem;
+    z-index: 2;
 }
 
 .tituloB-Scene2 {
@@ -158,7 +170,7 @@
 .continue-button{
     height: 50px;
     width: 180px;
-    margin: -30px 10px 0; 
+    margin: 260px 10px 0; 
     background-color: #353535;
     color: #FFDA38;
     text-align: center;
@@ -169,6 +181,7 @@
     font-weight: 400;
     font-style: italic;
     text-shadow: 2px 2px 2px black;
+    z-index: 2;
 }
 
 .continue-button:hover {
