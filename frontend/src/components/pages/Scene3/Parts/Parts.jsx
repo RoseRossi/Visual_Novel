@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Html, OrbitControls } from "@react-three/drei";
-import * as THREE from "three";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Html, OrbitControls} from "@react-three/drei"; // Asegúrate de tener diez versión 7.19.0 o posterior de @react-three/drei
 import "./parts.css";
 import { Bag } from "./Bag";
 import { Bones } from "./Bones";
@@ -296,13 +295,11 @@ const Parts3 = () => {
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
     const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
-    const [showRedLight, setShowRedLight] = useState(false);
 
 
     const handleContinueClick = () => {
         if (textIndex === 0) {
           setShowAdditionalButtons(true);
-          setShowRedLight(true);
         }
         const newIndex = (modelIndex + 1) % models.length;
         setModelIndex(newIndex);
@@ -333,13 +330,7 @@ const Parts3 = () => {
         };
       }, []);
 
-      useFrame(({ clock }) => {
-        const elapsedTime = clock.getElapsedTime();
-        const showLight = Math.sin(elapsedTime) > 0;
-        setShowRedLight(showLight);
-      });
-
-    return (
+      return (
         <div>
             {texts.map((text, index) => (
                 <div key={index} className={`scene3-bg`}>
@@ -356,48 +347,39 @@ const Parts3 = () => {
                         <div className="container-1" style={{ marginRight: "-60px" }}>
                             <div className="container-2">
                                 <div className="scene1part1-container">
-                                    <h className="title-part1">{titles[textIndex]}</h>
+                                    <h1 className="title-part1">{titles[textIndex]}</h1>
                                     <p className="scene1part1-text">{texts[textIndex]}</p>
                                 </div>
-                                <button onClick={handleContinueClick} className="button_continue" type="submit">
-                                    Continuar
+                            <button onClick={handleContinueClick} className="button_continue" type="submit">
+                                Continuar
                                 </button>
-                            </div>
-                        </div>
-                        <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
-                            <Canvas
-                            shadows={true}
-                            camera={{ position: [2, 1, 7] }}
-                            ref={canvasRef}
-                            style={{ width: "50vw", height: "50vh" }}
-                            >
-                                <ambientLight intensity={1} />
-                                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-                                {showRedLight && (
-                                <PointLight
-                                    color="red"
-                                    position={[0, 2, 0]}
-                                    distance={10}
-                                    intensity={1}
-                                    decay={2}
-                                    castShadow
-                                />
-                                )}
-                                {models.map((model, index) => (
-                                    <group key={index}>
-                                        {index === modelIndex && (
-                                        <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                                            {model.component}
-                                        </group>
-                                        )}
-                                    </group>
-                                    ))}
-                            </Canvas>
                         </div>
                     </div>
+                    <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
+                        <Canvas
+                        shadows={true}
+                        camera={{ position: [2, 1, 7] }}
+                        ref={canvasRef}
+                        style={{ width: "50vw", height: "50vh" }}
+                        >
+                            <ambientLight intensity={1} />
+                            <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+
+                            {models.map((model, index) => (
+                            <group key={index}>
+                                {index === modelIndex && (
+                                <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
+                                    {model.component}
+                                    </group>
+                                    )}
+                                </group>
+                                ))}
+                        </Canvas>
+                    </div>
                 </div>
-            ))}
             </div>
-        );      
+        ))}
+    </div>
+);
 };
 export default Parts3;
