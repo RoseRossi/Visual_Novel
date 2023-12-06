@@ -8,6 +8,7 @@ import { Monster } from "./Monster";
 import { Detective3 } from "./Detective3";
 import useSound from "use-sound";
 import { Link, useNavigate } from "react-router-dom";
+import { AmbientLight, DirectionalLight } from 'three';
 
 const Parts3 = () => {
     const texts = [ //39 objetos
@@ -296,6 +297,22 @@ const Parts3 = () => {
     const [textIndex, setTextIndex] = useState(0);
     const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
 
+    const blackLightColor = '#000000';
+    const redLightColor = '#ff0000';
+
+    const calculateLightColor = () => {
+        if (textIndex === 10) return redLightColor;
+        if (textIndex === 12) return redLightColor;
+        if (textIndex === 20) return blackLightColor;
+        return '#ffffff'; // Luz blanca predeterminada para otros casos
+      };
+
+    const calculateBackgroundColor = () => {
+        if (textIndex === 10) return blackLightColor;
+        if (textIndex === 12) return redLightColor;
+        if (textIndex === 20) return blackLightColor;
+        return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
+      };
 
     const handleContinueClick = () => {
         if (textIndex === 0) {
@@ -316,25 +333,13 @@ const Parts3 = () => {
     };
 
     useEffect(() => {
-        const resizeCanvas = () => {
-          const canvas = canvasRef.current;
-          if (canvas) {
-            canvas.style.width = "50vw";
-            canvas.style.height = "50vh";
-          }
-        };
-    
-        window.addEventListener("resize", resizeCanvas);
-        return () => {
-          window.removeEventListener("resize", resizeCanvas);
-        };
       }, []);
 
       return (
         <div>
-            {texts.map((text, index) => (
-                <div key={index} className={`scene3-bg`}>
-                    <div 
+          {texts.map((text, index) => (
+            <div key={index} className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>
+                    <div
                     style={{
                         display: "flex",
                         alignItems: "center",
@@ -360,20 +365,19 @@ const Parts3 = () => {
                         shadows={true}
                         camera={{ position: [2, 1, 7] }}
                         ref={canvasRef}
-                        style={{ width: "50vw", height: "50vh" }}
+                        style={{ width: '50vw', height: '50vh' }}
                         >
-                            <ambientLight intensity={1} />
-                            <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-
                             {models.map((model, index) => (
                             <group key={index}>
                                 {index === modelIndex && (
                                 <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
                                     {model.component}
-                                    </group>
-                                    )}
                                 </group>
-                                ))}
+                                )}
+                            </group>
+                            ))}
+                            <ambientLight intensity={0.5} color={calculateLightColor()} />
+                            <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
                         </Canvas>
                     </div>
                 </div>
