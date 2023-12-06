@@ -4,6 +4,7 @@ import { Html, OrbitControls} from "@react-three/drei"; // Asegúrate de tener d
 import "./parts.css";
 import useSound from "use-sound";
 import { Link, useNavigate } from "react-router-dom";
+import { AmbientLight, DirectionalLight } from 'three';
 
 const Bag = React.lazy(() => import("./Bag"));
 const Bones = React.lazy(() => import("./Bones"));
@@ -168,14 +169,29 @@ const Parts3 = () => {
         }
     }, [playSound, textIndex]);
 
+    const blackLightColor = '#000000';
+    const redLightColor = '#ff0000';
 
+    const calculateLightColor = () => {
+        if (textIndex === 10) return redLightColor;
+        if (textIndex === 12) return redLightColor;
+        if (textIndex === 20) return blackLightColor;
+        return '#ffffff'; // Luz blanca predeterminada para otros casos
+      };
+
+    const calculateBackgroundColor = () => {
+        if (textIndex === 10) return blackLightColor;
+        if (textIndex === 12) return redLightColor;
+        if (textIndex === 20) return blackLightColor;
+        return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
+      };
 
     const handleContinueClick = () => {
         const newIndex = (textIndex + 1) % texts.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        setPlaySound(true);
-    };
+        setBackgroundIndex(newBackgroundIndex);
+      };
 
     const canvasRef = useRef();
     const resizeCanvas = () => {
@@ -187,24 +203,12 @@ const Parts3 = () => {
     };
 
     useEffect(() => {
-        const resizeCanvas = () => {
-        const canvas = canvasRef.current;
-        if (canvas) {
-            canvas.style.width = "50vw";
-            canvas.style.height = "50vh";
-        }
-    };
-    
-        window.addEventListener("resize", resizeCanvas);
-        return () => {
-            window.removeEventListener("resize", resizeCanvas);
-        };
-        }, []);
+      }, []);
 
         return (
             <div>
                 {texts.map((text, index) => (
-                    <Suspense key={index} fallback={<div>Loading...</div>}>
+                    <Suspense key={index} fallback={<div>Loading...</div>}className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>
                         <div className={`scene3-bg`}>
                             <div
                                 style={{
@@ -234,8 +238,6 @@ const Parts3 = () => {
                                         ref={canvasRef}
                                         style={{ width: "50vw", height: "50vh" }}
                                     >
-                                        <ambientLight intensity={1} />
-                                        <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
 
                                         {models.map((model, modelIndex) => (
                                             <group key={modelIndex}>
@@ -246,6 +248,8 @@ const Parts3 = () => {
                                                 )}
                                             </group>
                                         ))}
+                                        <ambientLight intensity={0.5} color={calculateLightColor()} />
+                                        <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
     
                                     </Canvas>
                                     <audio ref={audioRef} loop>
