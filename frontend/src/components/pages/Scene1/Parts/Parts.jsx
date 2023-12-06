@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./parts.css";
@@ -25,6 +26,7 @@ const FeatherAnimation = () => {
 };
 
 const Parts = () => {
+
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",
     "Haha...",
@@ -103,7 +105,12 @@ const Parts = () => {
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
+  const navigate = useNavigate();
   const handleContinueClick = () => {
+    if (textIndex === texts.length - 1) {
+      navigate('/Scene2-parts');
+      return;
+    }
     if (textIndex === 0) {
       setShowAdditionalButtons(true);
     }
@@ -124,18 +131,6 @@ const Parts = () => {
     resizeCanvas();
   }, []);
 
-  const Part2 = () => {
-    return (
-      <>
-        <div className="container">
-          <div className="scene1part1-container">
-            <h className="title-part1">Mila</h>
-            <p className="scene1part1-text">Funciona?</p>
-          </div>
-        </div>
-      </>
-    );
-  };
 
   return (
     <div className="scene1-bg">
@@ -152,7 +147,7 @@ const Parts = () => {
         <div className="container-1" style={{ marginRight: "-60px" }}>
           <div className="container-2">
             <div className="scene1part1-container">
-              <h className="title-part1">{titles[textIndex]}</h>
+              <h1 className="title-part1">{titles[textIndex]}</h1>
               <p className="scene1part1-text">{texts[textIndex]}
               </p>
               {showAdditionalButtons && textIndex === 1 &&(
@@ -201,7 +196,12 @@ const Parts = () => {
             style={{ width: "50vw", height: "50vh" }}
           >
             <ambientLight intensity={1} />
-            <OrbitControls makeDefault />
+            <OrbitControls 
+               enableZoom={false}
+               maxPolarAngle={Math.PI / 2}
+               maxAzimuthAngle={Math.PI / 3} 
+               minAzimuthAngle={-Math.PI / 12}
+            />
             {models.map((model, index) => (
               <group key={index}>
                 {index === modelIndex && (
