@@ -30,4 +30,5 @@ export function Monster(props) {
   );
 }
 
+export default Monster;
 useGLTF.preload("/assets/models/monster.glb");

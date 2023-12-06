@@ -15,4 +15,5 @@ export function Bag(props) {
     );
 }
 
+export default Bag;
 useGLTF.preload("/assets/models/bag.glb");

@@ -1,31 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls} from "@react-three/drei"; // Asegúrate de tener diez versión 7.19.0 o posterior de @react-three/drei
 import "./parts.css";
-import { Bag } from "./Bag";
-import { Bones } from "./Bones";
-import { Monster } from "./Monster";
-import { Detective3 } from "./Detective3";
-import useSound from 'use-sound';
+import useSound from "use-sound";
 import { Link, useNavigate } from "react-router-dom";
+
+const Bag = React.lazy(() => import("./Bag"));
+const Bones = React.lazy(() => import("./Bones"));
+const Monster = React.lazy(() => import("./Monster"));
+const Detective3 = React.lazy(() => import("./Detective3"));
+
 
 const Parts3 = () => {
     const texts = [ //39 objetos
-        "[Ha pasado un día desde que encontraron la escena del crimen… Edward está encargándose del papeleo y todos no notaran cuando vaya a investigar. El mapa es de la zona industrial, y hay marcas de lápiz borrado descuidadamente alrededor de una de las bodegas más pequeñas]",
+        /* 0 index*/"[Ha pasado un día desde que encontraron la escena del crimen… Edward está encargándose del papeleo y todos no notaran cuando vaya a investigar. El mapa es de la zona industrial, y hay marcas de lápiz borrado descuidadamente alrededor de una de las bodegas más pequeñas]",
         "[Me acerco a la zona marcada en el mapa… Tengo un mal presentimiento]",
         "[Qué lugar tan… desagradable…]",
         "[No dejo de sentir que alguien me observa]",
-        "[aunque está cubierto, el olor sólo me deja una idea de qué puede ser…]",
-        "[...Una pila de huesos a medio roer, con carne podrida y larvas… Con un terrible hedor… que me hace retroceder]",
-        "Detective… Llega justo a tiempo.",
-        "[Un golpe seco y todo se fue a negro]",
-        "[...]",
+        /* 4 index "bag"*/"[aunque está cubierto, el olor sólo me deja una idea de qué puede ser…]",
+        /* 5 index "bones"*/"[...Una pila de huesos a medio roer, con carne podrida y larvas… Con un terrible hedor… que me hace retroceder]",
+        /* 6 index "no model"*/"Detective… Llega justo a tiempo.",
+        /* 7 index*/"[Un golpe seco y todo se fue a negro]",
+        /* 8 index "no model"*/"[...]",
         "[...]",
         "[Dolor… Un agudo dolor en mi abdomen, desde dentro. Me arrastró a la consciencia de nuevo]",
         "[MIERDA, MIERDA MIERDA]",
         "[Un hombre, comía de mí… desesperado, como un animal]",
         "[Podía sentir cómo arrancaba carne de mi cuerpo ahora irreconocible, que engullía… como si nada saciará su hambre… con cada parte de mí, sentía tanto dolor que necesitaba quedar inconsciente… no noté cómo nuestro alrededor se iluminaba de un rojo carmesí]",
-        "Hazme un favor y muere de una vez. No puedo trabajar con tan poca carne…",
+        /* 14 index "monster"*/"Hazme un favor y muere de una vez. No puedo trabajar con tan poca carne…",
         "[Su voz era casi como escuchar sierras… si eso siquiera era posible]",
         "[No podía concentrarme, no podía hacer nada… iba a morir en manos de una bestia…]",
         "[No quiero morir… aún tengo mucho que hacer… empezando por este animal…]",
@@ -35,17 +37,17 @@ const Parts3 = () => {
         "[Susurros en un lenguaje que no conocía, pero con lo que he visto, no me sorprendería si se tratase de magia…]",
         "[Mi cuerpo comenzó a sentirse caliente y los susurros se hicieron más fuertes, hasta volverse voces… voces tan fuertes que dolía escucharlas]",
         "[No podía ver… pero sabía que algo estaba frente a mí, no era el recolector… era algo más, algo que helaba la poca sangre que me quedaba]",
-        "Al parecer, mi impaciente devorador olvidó que seguía con vida, detective…",
+        /* 24 index "monster"*/"Al parecer, mi impaciente devorador olvidó que seguía con vida, detective…",
         "[Era una voz aún más horrible, intentaba ser amable y tener modales… pero se escuchaba gargantuesca y desagradable]",
         "¿Qui… quien eres",
         "[Apenas si pude escupir eso, no sentía mi cuerpo… no existía, ahora sólo estaba aquí con lo que sea que fuese eso]",
-        "Le ofrezco un trato, detective… usted no quiere morir y yo… necesito un favor",
+        /* 28 index "monster"*/"Le ofrezco un trato, detective… usted no quiere morir y yo… necesito un favor",
         "[¿Un trato?]",
         "¿Qué favor?",
         "[Pude volver a hablar… es una mala señal en estas circunstancias]",
-        "No se preocupe, es algo que igual ya está haciendo…",
+        /* 32 index "monster"*/"No se preocupe, es algo que igual ya está haciendo…",
         "¿Qué?",
-        "Morir",
+        /* 34 index "monster"*/"Morir",
         "[Sentí un abrasador dolor que me destrozaba desde adentro, se sentía como fuego pero casi frío...]",
         "[Creo haber gritado con todas mis fuerzas un “Sí”, pero no puedo recordarlo]",
         "[Todo es… borroso… no siento nada]",
@@ -101,21 +103,6 @@ const Parts3 = () => {
             scale: 5,
         },
         {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
             component: <Bag />,
             position: { x: -1, y: 0.5, z: 3.6 },
             scale: 7,
@@ -127,196 +114,68 @@ const Parts3 = () => {
         },
         {
             component: <Monster />,
-            position: { x: 0.5, y: -15, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
-            position: { x: 0.5, y: -15, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
-            position: { x: 0.5, y: -15, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
-            position: { x: 0.5, y: -15, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
             position: { x: -0.5, y: -2, z: 1.5 },
             scale: 3,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
-            position: { x: -0.5, y: -2, z: 1.5 },
-            scale: 3,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
-            position: { x: -0.5, y: -2, z: 1.5 },
-            scale: 3,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Monster />,
-            position: { x: -0.5, y: -2, z: 1.5 },
-            scale: 3,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        {
-            component: <Detective3 />,
-            position: { x: 0.5, y: -9.2, z: 5 },
-            scale: 5,
-        },
-        
+        },       
     ]
-    const backgrounds = [
-        "black",
-        "black",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-    ]
+
+    const renderModel = (textIndex) => {
+        if (textIndex === 4) {
+            return <Bag />;
+        } else if (textIndex === 5) {
+            return <Bones />;
+        } else if (textIndex === 6 || textIndex === 8) {
+          // No mostrar ningún modelo
+            return null;
+        } else if (textIndex === 14 || textIndex === 24 || textIndex === 28 || textIndex === 32 || textIndex === 34) {
+            return <Monster />;
+        } else {
+            return <Detective3 />;
+        }
+    };
+
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
-    const [backgroundIndex, setBackgroundIndex] = useState(0);
-    const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
+
+    const audioRef = useRef(null);
+    const [playA] = useSound("../assets/sounds/bonk.mp3");
+    const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.3, loop: true });
+    const [playC] = useSound("../assets/sounds/chew.mp3", { volume: 0.1, loop: true });
+    const [playSound, setPlaySound] = useState(false);
+
+    const playAudio = () => {
+        if (audioRef.current) {
+            audioRef.current.volume = 0.1;
+            audioRef.current.play();
+        }
+    }
+    
+    useEffect(() => {
+        document.addEventListener("click", playAudio);
+        return () => {
+            document.removeEventListener("click", playAudio);
+        };
+    }, []);
+    
+    useEffect(() => {
+        if (playSound) {
+            if (textIndex === 7) {
+                playA();
+            } else if (textIndex === 8) {
+                playB();
+            }
+            setPlaySound(false);
+        }
+    }, [playSound, textIndex]);
 
 
 
     const handleContinueClick = () => {
-        if (textIndex === 0) {
-          setShowAdditionalButtons(true);
-        }
-        const newIndex = (modelIndex + 1) % models.length;
-        const newBackgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+        const newIndex = (textIndex + 1) % texts.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        setBackgroundIndex(newBackgroundIndex);
-      };
+        setPlaySound(true);
+    };
 
     const canvasRef = useRef();
     const resizeCanvas = () => {
@@ -328,58 +187,76 @@ const Parts3 = () => {
     };
 
     useEffect(() => {
-        resizeCanvas();
-    }, []);
+        const resizeCanvas = () => {
+        const canvas = canvasRef.current;
+        if (canvas) {
+            canvas.style.width = "50vw";
+            canvas.style.height = "50vh";
+        }
+    };
+    
+        window.addEventListener("resize", resizeCanvas);
+        return () => {
+            window.removeEventListener("resize", resizeCanvas);
+        };
+        }, []);
 
-    return (
-        <div>
-            {texts.map((text, index) => (
-                <div key={index} className={`scene3-bg ${backgrounds[index] ? 'scene3-bg' : ''}`}>
-                    <div 
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        maxWidth: "100vw", 
-                        maxHeight: "100vh", 
-                        overflow: "hidden",
-                    }}
-                    >
-                        <div className="container-1" style={{ marginRight: "-60px" }}>
-                            <div className="container-2">
-                                <div className="scene1part1-container">
-                                    <h1 className="title-part1">{titles[textIndex]}</h1>
-                                    <p className="scene1part1-text">{texts[textIndex]}</p>
+        return (
+            <div>
+                {texts.map((text, index) => (
+                    <Suspense key={index} fallback={<div>Loading...</div>}>
+                        <div className={`scene3-bg`}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    maxWidth: "100vw",
+                                    maxHeight: "100vh",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                <div className="container-1" style={{ marginRight: "-60px" }}>
+                                    <div className="container-2">
+                                        <div className="scene1part1-container">
+                                            <h1 className="title-part1">{titles[textIndex]}</h1>
+                                            <p className="scene1part1-text">{texts[textIndex]}</p>
+                                        </div>
+                                        <button onClick={handleContinueClick} className="button_continue" type="submit">
+                                            Continuar
+                                        </button>
+                                    </div>
                                 </div>
-                                <button onClick={handleContinueClick} className="button_continue" type="submit">
-                                    Continuar
-                                </button>
+                                <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
+                                    <Canvas
+                                        shadows={true}
+                                        camera={{ position: [2, 1, 7] }}
+                                        ref={canvasRef}
+                                        style={{ width: "50vw", height: "50vh" }}
+                                    >
+                                        <ambientLight intensity={1} />
+                                        <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+
+                                        {models.map((model, modelIndex) => (
+                                            <group key={modelIndex}>
+                                                {modelIndex === textIndex && (
+                                                    <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
+                                                        {renderModel(modelIndex)}
+                                                    </group>
+                                                )}
+                                            </group>
+                                        ))}
+    
+                                    </Canvas>
+                                    <audio ref={audioRef} loop>
+                                    </audio>
+                                </div>
                             </div>
                         </div>
-                        <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
-                            <Canvas
-                            shadows={true}
-                            camera={{ position: [2, 1, 7] }}
-                            ref={canvasRef}
-                            style={{ width: "50vw", height: "50vh" }}
-                            >
-                                <ambientLight intensity={1} />
-                                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-                                {models.map((model, index) => (
-                                    <group key={index}>
-                                        {index === modelIndex && (
-                                        <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                                            {model.component}
-                                        </group>
-                                        )}
-                                    </group>
-                                    ))}
-                            </Canvas>
-                        </div>
-                    </div>
-                </div>
-            ))}
+                    </Suspense>
+                ))}
             </div>
-        );      
-};
+        );
+    };
+
 export default Parts3;

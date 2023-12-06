@@ -17,4 +17,5 @@ export function Bones(props) {
   );
 }
 
+export default Bones;
 useGLTF.preload("/assets/models/bones.glb");
