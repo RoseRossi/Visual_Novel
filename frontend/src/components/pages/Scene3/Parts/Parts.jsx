@@ -295,56 +295,31 @@ const Parts3 = () => {
     const backgrounds = [
         "black",
         "black",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "url('/public/images/wh.jpg",
-        "black",
-        "black",
         "url('/public/images/red.jpg')",
         "url('/public/images/red.jpg')",
         "url('/public/images/red.jpg')",
         "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "url('/public/images/red.jpg')",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black",
-        "black"
     ]
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
     const [backgroundIndex, setBackgroundIndex] = useState(0);
     const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
 
+
+
     const handleContinueClick = () => {
+        if (textIndex === texts.length - 1) {
+            navigate('/Scene4-parts1');
+            return;
+          }
         if (textIndex === 0) {
           setShowAdditionalButtons(true);
         }
         const newIndex = (modelIndex + 1) % models.length;
+        const newBackgroundIndex = (backgroundIndex + 1) % backgrounds.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setBackgroundIndex(newBackgroundIndex);
       };
 
     const canvasRef = useRef();
@@ -377,7 +352,7 @@ const Parts3 = () => {
                         <div className="container-1" style={{ marginRight: "-60px" }}>
                             <div className="container-2">
                                 <div className="scene1part1-container">
-                                    <h className="title-part1">{titles[textIndex]}</h>
+                                    <h1 className="title-part1">{titles[textIndex]}</h1>
                                     <p className="scene1part1-text">{texts[textIndex]}</p>
                                 </div>
                                 <button onClick={handleContinueClick} className="button_continue" type="submit">
