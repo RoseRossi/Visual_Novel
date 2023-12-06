@@ -52,8 +52,8 @@ const CodeEmail = ({
             email: dataProgressUser.email
         });
         const continueScene = (data.data)[0].scene;
-        
-        if (continueScene >= (scene_.length -1)) {
+
+        if (continueScene <= (scene_.length -1)) {
             navigate(scene_[continueScene]);
         }
         else {
