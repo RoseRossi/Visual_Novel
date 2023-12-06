@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useThree } from '@react-three/fiber';
 import { Canvas} from "@react-three/fiber";
 import { OrbitControls, Sparkles } from "@react-three/drei";
@@ -20,6 +21,7 @@ const Parts2 = () => {
   const canvasRef = useRef();
   const canvasARef = useRef();
   const cameraRef = useRef();
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOptionP, setSelectedOptionP] = useState(null);
   const audioRef = useRef(null);
@@ -47,7 +49,6 @@ const Parts2 = () => {
     setSelectedOption(position);
   };
 
-  //random comment 
   
   const handleBackToInitialPosition = () => {
     cameraRef.current.position.set(15, -3, -70);
@@ -344,6 +345,9 @@ const Parts2 = () => {
           <div>
             <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -2, -55]);}}>
               C. Los alrededores
+            </button>
+            <button className="options_scene1" id="S1D" onClick={() => {navigate('/Scene3-parts'); return;}}>
+              Mejor me voy...
             </button>
           </div>
         </div>

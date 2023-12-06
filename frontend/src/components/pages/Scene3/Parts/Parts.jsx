@@ -308,6 +308,10 @@ const Parts3 = () => {
 
 
     const handleContinueClick = () => {
+        if (textIndex === texts.length - 1) {
+            navigate('/Scene4-parts1');
+            return;
+          }
         if (textIndex === 0) {
           setShowAdditionalButtons(true);
         }
