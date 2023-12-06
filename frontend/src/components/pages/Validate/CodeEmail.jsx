@@ -22,6 +22,14 @@ const CodeEmail = ({
     const [ dataProgressUser, setDataProgressUser ] = React.useState({
         email: ""
     });
+    const scene_ = [
+        '/Prologue',
+        '/Scene1-parts',
+        '/Scene2-parts',
+        '/Scene3-parts',
+        '/Scene4-parts1',
+       '/Scene4-parts2'
+    ]
 
     // Handlers.
 
@@ -43,8 +51,14 @@ const CodeEmail = ({
         const data = await fetchPostProgressUser({
             email: dataProgressUser.email
         });
-      
-        navigate('/Prologue');
+        const continueScene = (data.data)[0].scene;
+        
+        if (continueScene >= (scene_.length -1)) {
+            navigate(scene_[continueScene]);
+        }
+        else {
+            navigate(scene_[0]);
+        }
     }
 
     // Effects.
