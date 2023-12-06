@@ -54,6 +54,47 @@ export const fetchSendEmail = ({
 }
 
 /**
+ *  Send email to user
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+export const fetchPostProgressUser = ({
+    email
+}) =>
+{
+    return fetchPostGeneral({
+        dataSend: {
+            email: email
+        },
+        urlEndPoint: json.getDataProgressUser
+    })
+}
+
+/**
+ *  Send email to user
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+export const fetchPutDataProgressUser = ({
+    email,
+    scene,
+    total
+}) =>
+{
+    return fetchPutGeneral({
+        dataSend: {
+            email: email,
+            scene: scene,
+            total: total
+        },
+        urlEndPoint: json.updateProgressUser
+    })
+}
+
+
+/**
  *  General Estruture HTTP REQUEST POST
  * 
  * @param {*} param0 
@@ -78,3 +119,28 @@ const fetchPostGeneral = async ({
         console.log(error);
     }
 }
+
+/**
+ * General Structure HTTP REQUEST PUT
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+const fetchPutGeneral = async ({
+    dataSend,
+    urlEndPoint
+}) => {
+    try {
+        const response = await fetch(urlEndPoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataSend),
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};

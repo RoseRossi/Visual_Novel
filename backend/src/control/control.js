@@ -2,7 +2,9 @@ const {
     isUserRegisteredBody,
     registerPersonalDataBody,
     postSendEmailBody,
-    postRegisterDialogue
+    postRegisterDialogue,
+    searchProgressData,
+    putProgressUserData
 } = require('./utils');
 
 /**
@@ -107,9 +109,62 @@ const postDialogueNew = async (req, res) =>
     }
 }
 
+/**
+ * Find the progress of the user
+ * 
+ * @author Cristian Machado <cristian.machado@correounivalle.edu.co>
+ * @param {*} req 
+ * @param {*} res 
+ */
+const postProgressUserData = async (req, res) =>
+{
+    try {
+        res.json({ 
+            message: 'get data progress',
+            status: true,
+            data: await searchProgressData(req)
+        });
+    } catch (error) {
+        res.status(400).json({ 
+            message: 'Error to get data progress',
+            status: false,
+            data: []
+        });
+        console.log('Fallo algo al verificar en la logica de searchProgressData' + error);
+    }
+}
+
+/**
+ * Update the progress of the user
+ * 
+ * @author Cristian Machado <cristian.machado@correounivalle.edu.co>
+ * @param {*} req 
+ * @param {*} res 
+ */
+const putProgressData = async (req, res) =>
+{
+    try {
+        res.json({ 
+            message: 'put progress',
+            status: true,
+            data: await putProgressUserData(req)
+        });
+    } catch (error) {
+        res.status(400).json({ 
+            message: 'Error to put data progress',
+            status: false,
+            data: []
+        });
+        console.log('Fallo algo al verificar en la logica de putProgressUserData' + error);
+    }
+
+}
+
 module.exports = {
     isUserRegistered,
     registerPersonalData,
     postSendEmail,
-    postDialogueNew
+    postDialogueNew,
+    postProgressUserData,
+    putProgressData
 };

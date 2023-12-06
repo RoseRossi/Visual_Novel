@@ -1,6 +1,7 @@
 const Account = require('../schemas/account/accountSchema');
 const PersonalData = require('../schemas/account/personalData');
 const DialogueSchema = require('../schemas/dialogue/dialogueSchema');
+const ProgressUser = require('../schemas/progress/recoveryUserSchema');
 const { getAccount } = require('../repository/repository');
 const { enviarCorreo } = require('../email/email');
 
@@ -38,9 +39,15 @@ const registerPersonalDataBody = async (body) =>
         email,
         password
     });
+    const newProgress = new ProgressUser({
+        email,
+        scene: 0,
+        total: 0
+    });
 
     await newPersonal.save();
     await newAccount.save();
+    await newProgress.save();
     return true;
 }
 
@@ -106,9 +113,42 @@ const validateALlDialogue = (req) =>
     }
 }
 
+const searchProgressData = async (req) =>
+{
+    const {
+        email
+    } = req.body;
+
+    return await ProgressUser.find({
+        email: email
+    });
+}
+
+const putProgressUserData = async (req) => {
+
+    const {
+        email,
+        scene,
+        total
+    } = req.body;
+    
+    const update = await ProgressUser.findOneAndUpdate({
+        email: email
+    }, {
+        scene: scene,
+        total: total
+    }, {
+        new: true
+    });
+
+    return update;
+}
+
 module.exports = {
     isUserRegisteredBody,
     registerPersonalDataBody,
     postSendEmailBody,
-    postRegisterDialogue
+    postRegisterDialogue,
+    searchProgressData,
+    putProgressUserData
 }

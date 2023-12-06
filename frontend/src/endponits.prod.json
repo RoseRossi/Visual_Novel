@@ -1,0 +1,7 @@
+{
+    "registerUser": "http://34.160.13.13/backend/registerUser/",
+    "isUserRegistered": "http://34.160.13.13/backend/isUserRegistered/",
+    "sendEmail": "http://34.160.13.13/backend/sendEmail/",
+    "getDataProgressUser": "http://34.160.13.13/backend/progressUserData/",
+    "updateProgressUser": "http://34.160.13.13/backend/updateProgress/"
+}
