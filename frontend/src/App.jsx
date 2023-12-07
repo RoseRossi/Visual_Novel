@@ -10,7 +10,9 @@ import Parts from './components/pages/Scene1/Parts/Parts';
 import Parts2 from './components/pages/Scene2/Parts2';
 import Parts3 from './components/pages/Scene3/Parts/Parts';
 
-
+/**
+ *  App
+ */
 const App = () => {
     return (
         <>

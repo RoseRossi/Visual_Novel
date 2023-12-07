@@ -3,14 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import useSound from 'use-sound';
 import "./home.css";
 import { fectIsUserRegistered , fetchSendEmail } from "../../api/fetchs.jsx";
+import CodeEmail from "./Validate/CodeEmail.jsx";
 
 const Home = ({ ...props }) => {
     const [email, setEmail] = useState("");
     const [contraseña, setContraseña] = useState("");
     const audioRef = useRef(null);
-    const navigate = useNavigate();
     const [play] = useSound("../assets/sounds/bot.mp3");
     const [isRegister, setIsRegister] = useState(false);
+    const [isSendEmail, setIsSendEmail] = useState(false);
+    const [codeValue, setCodeValue] = useState("000000");
 
     const [playSound, setPlaySound] = useState(false);
 
@@ -39,11 +41,12 @@ const Home = ({ ...props }) => {
                 const responseEmail = await fetchSendEmail({
                     email: email
                 });
-   
+               
                 if (responseEmail.isSend) {
-                   alert("Se ha enviado un correo a su cuenta, por favor verifique su bandeja de entrada");
+                    setIsSendEmail(true);
+                    setCodeValue(responseEmail.code);
                 }
-                navigate('/Prologue');
+                //navigate('/Prologue');
                 setIsRegister(false);
                 return;
             }
@@ -82,37 +85,53 @@ const Home = ({ ...props }) => {
                 <audio ref={audioRef} loop>
                     <source src="../assets/sounds/inicio.mp3" type="audio/mpeg" />
                 </audio>
+                {   !isSendEmail ?
+                    <form className="formlogin" onSubmit={handleSubmit}>
+                        <label className="textos">Email</label>
+                        <input
+                            className="almacen"
+                            name="email"
+                            type="text"
+                            placeholder=""
+                            value={email}
+                            onChange={handleEmailChange}
+                        />
 
-                <form className="formlogin" onSubmit={handleSubmit}>
-                    <label className="textos">Email</label>
-                    <input
-                        className="almacen"
-                        name="email"
-                        type="text"
-                        placeholder=""
-                        value={email}
-                        onChange={handleEmailChange}
+                        <label className="textos">Contraseña</label>
+                        <input
+                            className="almacen"
+                            name="contraseña"
+                            type="password"
+                            placeholder=""
+                            value={contraseña}
+                            onChange={handleContraseñaChange}
+                        />
+                        <button  
+                                disabled={isRegister} 
+                                className="boton" 
+                                style={{ cursor: 'pointer' }} 
+                                type="submit"
+                        >
+                                Ingresar
+                        </button>
+                        <Link to="/Register" className="register">Registrarse</Link>
+                    </form>
+                    :
+                    <CodeEmail stateChange={
+                        {
+                            isSendEmail: isSendEmail,
+                            setIsSendEmail: setIsSendEmail
+                        }
+                    } 
+                    codeValue={codeValue}
+                    dataUser={
+                        {
+                            email: email,
+                            contraseña: contraseña
+                        }
+                    }
                     />
-
-                    <label className="textos">Contraseña</label>
-                    <input
-                        className="almacen"
-                        name="contraseña"
-                        type="password"
-                        placeholder=""
-                        value={contraseña}
-                        onChange={handleContraseñaChange}
-                    />
-                    <button  
-                            disabled={isRegister} 
-                            className="boton" 
-                            style={{ cursor: 'pointer' }} 
-                            type="submit"
-                    >
-                            Ingresar
-                    </button>
-                    <Link to="/Register" className="register">Registrarse</Link>
-                </form>
+                }
             </div>
         </>
     );
