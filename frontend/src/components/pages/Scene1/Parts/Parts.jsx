@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./parts.css";
@@ -8,7 +9,6 @@ import { Clock } from "three";
 import { Thomas } from "./Thomas";
 import { Police } from "./Police";
 import { Detective } from "./Detective"
-
 
 const FeatherAnimation = () => {
   const featherRef = useRef();
@@ -105,9 +105,10 @@ const Parts = () => {
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
+  const navigate = useNavigate();
   const handleContinueClick = () => {
     if (textIndex === texts.length - 1) {
-      window.location.href = 'http://localhost:3000/Scene2-parts';
+      navigate('/Scene2-parts');
       return;
     }
     if (textIndex === 0) {
