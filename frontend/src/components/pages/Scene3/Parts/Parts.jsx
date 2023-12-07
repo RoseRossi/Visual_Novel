@@ -187,15 +187,7 @@ const Parts3 = () => {
       };
 
     const handleContinueClick = () => {
-        // if (textIndex === texts.length - 1) {
-        //     navigate('/Scene4-parts1');
-        //     return;
-        //   }
-        // if (textIndex === 0) {
-        //   setShowAdditionalButtons(true);
-        // }
-        const newIndex = (modelIndex + 1) % models.length;
-        const newBackgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+        const newIndex = (textIndex + 1) % texts.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
         setBackgroundIndex(newBackgroundIndex);
