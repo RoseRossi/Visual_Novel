@@ -9,10 +9,8 @@ import Prologue from './components/pages/Scene1/Prologue/Prologue';
 import Parts from './components/pages/Scene1/Parts/Parts';
 import Parts2 from './components/pages/Scene2/Parts2';
 import Parts3 from './components/pages/Scene3/Parts/Parts';
+import Parts4p2 from "./components/pages/Scene4/Part2/Part42";
 
-/**
- *  App
- */
 const App = () => {
     return (
         <>
