@@ -553,4 +553,5 @@ export function Detective3(props) {
   );
 }
 
+export default Detective3;
 useGLTF.preload("/assets/models/characters/detective.glb");
