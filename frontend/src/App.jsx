@@ -12,6 +12,8 @@ import Parts3 from './components/pages/Scene3/Parts/Parts';
 
 /**
  *  App
+ * <Route path="/Scene4-parts1" element={<Parts4p1/>} /> {/*exploración
+ * <Route path="/Scene4-parts2" element={<Parts4p2/>} /> {/*comisaria
  */
 const App = () => {
     return (
@@ -24,8 +26,8 @@ const App = () => {
                     <Route path="/Scene1-parts" element={<Parts/>} />
                     <Route path="/Scene2-parts" element={<Parts2/>} />
                     <Route path="/Scene3-parts" element={<Parts3/>} />
-                    <Route path="/Scene4-parts1" element={<Parts4p1/>} /> {/*exploración*/}
-                    <Route path="/Scene4-parts2" element={<Parts4p2/>} /> {/*comisaria*/}
+                    
+                    
                     <Route
                         path="*"
                         element={
