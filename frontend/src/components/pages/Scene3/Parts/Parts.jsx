@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, OrbitControls} from "@react-three/drei"; // Asegúrate de tener diez versión 7.19.0 o posterior de @react-three/drei
+import { Html, OrbitControls} from "@react-three/drei";
 import "./parts.css";
 import useSound from "use-sound";
 import { Link, useNavigate } from "react-router-dom";
@@ -40,7 +40,7 @@ const Parts3 = () => {
         "[No podía ver… pero sabía que algo estaba frente a mí, no era el recolector… era algo más, algo que helaba la poca sangre que me quedaba]",
         /* 24 index "monster"*/"Al parecer, mi impaciente devorador olvidó que seguía con vida, detective…",
         "[Era una voz aún más horrible, intentaba ser amable y tener modales… pero se escuchaba gargantuesca y desagradable]",
-        "¿Qui… quien eres",
+        "¿Qui… quién eres",
         "[Apenas si pude escupir eso, no sentía mi cuerpo… no existía, ahora sólo estaba aquí con lo que sea que fuese eso]",
         /* 28 index "monster"*/"Le ofrezco un trato, detective… usted no quiere morir y yo… necesito un favor",
         "[¿Un trato?]",
@@ -138,6 +138,8 @@ const Parts3 = () => {
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
 
+    const navigate = useNavigate();
+
     const audioRef = useRef(null);
     const [playA] = useSound("../assets/sounds/bonk.mp3");
     const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.3, loop: true });
@@ -177,45 +179,40 @@ const Parts3 = () => {
         if (textIndex === 12) return redLightColor;
         if (textIndex === 20) return blackLightColor;
         return '#ffffff'; // Luz blanca predeterminada para otros casos
-      };
+    };
 
     const calculateBackgroundColor = () => {
         if (textIndex === 10) return blackLightColor;
         if (textIndex === 12) return redLightColor;
         if (textIndex === 20) return blackLightColor;
         return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
-      };
+    };
 
     const handleContinueClick = () => {
-        /*if (textIndex === texts.length - 1) {
-            navigate('/Scene4-parts1');
+        if (textIndex === texts.length - 1) {
+            navigate('/Scene4-parts2');
             return;
-          }*/
-        /*if (textIndex === 0) {
-          setShowAdditionalButtons(true);
-        }*/
+          }
         const newIndex = (textIndex + 1) % texts.length;
-        //const newBackgroundIndex = (backgroundIndex + 1) % backgrounds.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        //setBackgroundIndex(newBackgroundIndex);
       };
 
     const canvasRef = useRef();
-    const resizeCanvas = () => {
+    /*const resizeCanvas = () => {
         const canvas = canvasRef.current;
         if (canvas) {
             canvas.style.width = "50vw"; 
             canvas.style.height = "50vh";
         }
-    };
+    };*/
 
 
         return (
-            <div>
-                {texts.map((text, index) => (
-                    <Suspense key={index} fallback={<div>Loading...</div>}className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>
-                        <div className={`scene3-bg`}>
+            <div className="scene3-bg">
+                {/*{texts.map((text, index) => (*/}
+                    {/*<Suspense key={index} fallback={<div>Loading...</div>}className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>*/}
+                        {/*<div className={`scene3-bg`}>*/}
                             <div
                                 style={{
                                     display: "flex",
@@ -262,9 +259,9 @@ const Parts3 = () => {
                                     </audio>
                                 </div>
                             </div>
-                        </div>
-                    </Suspense>
-                ))}
+                        {/*</div>*/}
+                    {/*</Suspense>*/}
+                {/*}))}*/}
             </div>
         );
     };
