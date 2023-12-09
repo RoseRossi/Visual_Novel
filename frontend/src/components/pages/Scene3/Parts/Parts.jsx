@@ -7,8 +7,6 @@ import { Bones } from "./Bones";
 import { Monster } from "./Monster";
 import { Detective3 } from "./Detective3";
 import useSound from "use-sound";
-import { Link, useNavigate } from "react-router-dom";
-import { AmbientLight, DirectionalLight } from 'three';
 
 const Parts3 = () => {
     const texts = [ //39 objetos
@@ -301,17 +299,10 @@ const Parts3 = () => {
     const redLightColor = '#ff0000';
 
     const calculateLightColor = () => {
-        if (textIndex === 10) return redLightColor;
-        if (textIndex === 12) return redLightColor;
-        if (textIndex === 20) return blackLightColor;
+        if (textIndex >= 10 && textIndex <= 15 ) return redLightColor;
+        if (textIndex >= 16 && textIndex <= 32) return blackLightColor;
+        if (textIndex >= 35) return blackLightColor;
         return '#ffffff'; // Luz blanca predeterminada para otros casos
-      };
-
-    const calculateBackgroundColor = () => {
-        if (textIndex === 10) return blackLightColor;
-        if (textIndex === 12) return redLightColor;
-        if (textIndex === 20) return blackLightColor;
-        return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
       };
 
     const handleContinueClick = () => {
@@ -340,54 +331,60 @@ const Parts3 = () => {
       }, []);
 
       return (
-        <div>
-          {texts.map((text, index) => (
-            <div key={index} className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>
-                    <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        maxWidth: "100vw", 
-                        maxHeight: "100vh", 
-                        overflow: "hidden",
-                    }}
-                    >
-                        <div className="container-1" style={{ marginRight: "-60px" }}>
-                            <div className="container-2">
-                                <div className="scene1part1-container">
-                                    <h1 className="title-part1">{titles[textIndex]}</h1>
-                                    <p className="scene1part1-text">{texts[textIndex]}</p>
-                                </div>
-                            <button onClick={handleContinueClick} className="button_continue" type="submit">
-                                Continuar
-                                </button>
-                        </div>
-                    </div>
-                    <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
-                        <Canvas
-                        shadows={true}
-                        camera={{ position: [2, 1, 7] }}
-                        ref={canvasRef}
-                        style={{ width: '50vw', height: '50vh' }}
+        <Suspense key={index} fallback={<div>Loading...</div>}>
+        <div className="scene3-bg">
+            {/*{texts.map((text, index) => (*/}
+                {/*<Suspense key={index} fallback={<div>Loading...</div>}className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>*/}
+                    {/*<div className={`scene3-bg`}>*/}
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                maxWidth: "100vw",
+                                maxHeight: "100vh",
+                                overflow: "hidden",
+                            }}
                         >
-                            {models.map((model, index) => (
-                            <group key={index}>
-                                {index === modelIndex && (
-                                <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                                    {model.component}
-                                </group>
-                                )}
-                            </group>
-                            ))}
-                            <ambientLight intensity={0.5} color={calculateLightColor()} />
-                            <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
-                        </Canvas>
-                    </div>
-                </div>
-            </div>
-        ))}
-    </div>
-);
+                            <div className="container-1" style={{ marginRight: "-60px" }}>
+                                <div className="container-2">
+                                    <div className="scene1part1-container">
+                                        <h1 className="title-part1">{titles[textIndex]}</h1>
+                                        <p className="scene1part1-text">{texts[textIndex]}</p>
+                                    </div>
+                                    <button onClick={handleContinueClick} className="button_continue" type="submit">
+                                        Continuar
+                                    </button>
+                                </div>
+                            </div>
+                            <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
+                                <Canvas
+                                    shadows={true}
+                                    camera={{ position: [2, 1, 7] }}
+                                    ref={canvasRef}
+                                    style={{ width: "50vw", height: "50vh" }}
+                                >
+                                    
+                                    {models.map((model, modelIndex) => (
+                                        <group key={modelIndex}>
+                                            {modelIndex === textIndex && (
+                                                <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale} >
+                                                    {/*renderModel(modelIndex)*/}
+                                                    {model.component}
+                                                </group>
+                                            )}
+                                        </group>
+                                    ))}
+                                    <ambientLight intensity={1.5} color={calculateLightColor()} />
+                                    <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
+
+                                </Canvas>
+                                <audio ref={audioRef} loop>
+                                </audio>
+                            </div>
+                        </div>
+        </div>
+        </Suspense>
+    );
 };
 export default Parts3;
