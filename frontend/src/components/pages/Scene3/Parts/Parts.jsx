@@ -102,25 +102,201 @@ const Parts3 = () => {
             component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
             scale: 5,
+        },//index=null
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },//index=0
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
         },
         {
             component: <Bag />,
-            position: { x: -1, y: 0.5, z: 3.6 },
+            position: { x: -1, y: -3, z: 3.6 },
             scale: 7,
-        },
+            rotation: { x: 10, y: 0, z: 0 },
+        }, //index=3
         {
             component: <Bones />,
             position: { x: -1, y: 0, z: 3 },
             scale: 0.05,
+        },//index=4
+        {
+            component: <Bones />,
+            position: { x: -1, y: 15, z: 3 },
+            scale: 0.05,
+        },//index=5
+        {
+            component: <Bones />,
+            position: { x: -1, y: 15, z: 3 },
+            scale: 0.05,
+        },
+        {
+            component: <Bones />,
+            position: { x: -1, y: 15, z: 3 },
+            scale: 0.05,
+        },
+        {
+            component: <Bones />,
+            position: { x: -1, y: 15, z: 3 },
+            scale: 0.05,
+        },
+        {
+            component: <Bones />,
+            position: { x: -1, y: 15, z: 3 },
+            scale: 0.05,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },//index=10
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Bones />,
+            position: { x: -1, y: 15, z: 3 },
+            scale: 0.05,
+        },    //index=13   
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
         },
         {
             component: <Monster />,
-            position: { x: -0.5, y: -2, z: 1.5 },
-            scale: 3,
-        },       
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=23
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=27
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=31
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=33
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
     ]
 
-    const renderModel = (textIndex) => {
+    /*const renderModel = (modelIndex) => {
         if (textIndex === 4) {
             return <Bag />;
         } else if (textIndex === 5) {
@@ -133,7 +309,7 @@ const Parts3 = () => {
         } else {
             return <Detective3 />;
         }
-    };
+    };*/
 
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
@@ -189,6 +365,8 @@ const Parts3 = () => {
     };
 
     const handleContinueClick = () => {
+        console.log("textIndex actual",textIndex);
+        console.log("modelIndex actual",modelIndex);
         if (textIndex === texts.length - 1) {
             navigate('/Scene4-parts2');
             return;
@@ -197,6 +375,8 @@ const Parts3 = () => {
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
       };
+
+    const index=1;
 
     const canvasRef = useRef();
     /*const resizeCanvas = () => {
@@ -209,6 +389,7 @@ const Parts3 = () => {
 
 
         return (
+            <Suspense key={index} fallback={<div>Loading...</div>}>
             <div className="scene3-bg">
                 {/*{texts.map((text, index) => (*/}
                     {/*<Suspense key={index} fallback={<div>Loading...</div>}className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>*/}
@@ -241,12 +422,13 @@ const Parts3 = () => {
                                         ref={canvasRef}
                                         style={{ width: "50vw", height: "50vh" }}
                                     >
-
+                                        
                                         {models.map((model, modelIndex) => (
                                             <group key={modelIndex}>
                                                 {modelIndex === textIndex && (
-                                                    <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
-                                                        {renderModel(modelIndex)}
+                                                    <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale} >
+                                                        {/*renderModel(modelIndex)*/}
+                                                        {model.component}
                                                     </group>
                                                 )}
                                             </group>
@@ -263,6 +445,7 @@ const Parts3 = () => {
                     {/*</Suspense>*/}
                 {/*}))}*/}
             </div>
+            </Suspense>
         );
     };
 
