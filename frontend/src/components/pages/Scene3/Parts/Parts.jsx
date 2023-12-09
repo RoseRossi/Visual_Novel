@@ -122,10 +122,11 @@ const Parts3 = () => {
             component: <Bag />,
             position: { x: -1, y: -3, z: 3.6 },
             scale: 7,
+            rotation: { x: 10, y: 0, z: 0 },
         }, //index=3
         {
             component: <Bones />,
-            position: { x: -1, y: 0, z: 3 }, //x: -1, y: 0, z: 3
+            position: { x: -1, y: 0, z: 3 },
             scale: 0.05,
         },//index=4
         {
@@ -152,7 +153,7 @@ const Parts3 = () => {
             component: <Bones />,
             position: { x: -1, y: 15, z: 3 },
             scale: 0.05,
-        },//index=9
+        },
         {
             component: <Detective3 />,
             position: { x: 0.5, y: -9.2, z: 5 },
@@ -223,6 +224,76 @@ const Parts3 = () => {
             position: { x: -1, y: -4, z: 3 },
             scale: 5,
         },    //index=23
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=27
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=31
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Monster />,
+            position: { x: -1, y: -4, z: 3 },
+            scale: 5,
+        },    //index=33
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
+        {
+            component: <Detective3 />,
+            position: { x: 0.5, y: -9.2, z: 5 },
+            scale: 5,
+        },
     ]
 
     /*const renderModel = (modelIndex) => {
@@ -247,7 +318,7 @@ const Parts3 = () => {
 
     const audioRef = useRef(null);
     const [playA] = useSound("../assets/sounds/bonk.mp3");
-    const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.4, loop: true });
+    const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.3, loop: true });
     const [playC] = useSound("../assets/sounds/chew.mp3", { volume: 0.1, loop: true });
     const [playSound, setPlaySound] = useState(false);
 
@@ -349,7 +420,7 @@ const Parts3 = () => {
                                         shadows={true}
                                         camera={{ position: [2, 1, 7] }}
                                         ref={canvasRef}
-                                        style={{ width: "50vw", height: "50vh" }}//Canvas modificado, 50,50
+                                        style={{ width: "50vw", height: "50vh" }}
                                     >
                                         
                                         {models.map((model, modelIndex) => (
@@ -362,9 +433,8 @@ const Parts3 = () => {
                                                 )}
                                             </group>
                                         ))}
-                                        <ambientLight intensity={0.5} /*color={calculateLightColor()}*/ />
-                                        <directionalLight intensity={1} position={[5, 5, 5]} /*color={calculateLightColor()}*/ />
-                                        <OrbitControls makeDefault/>
+                                        <ambientLight intensity={0.5} color={calculateLightColor()} />
+                                        <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
     
                                     </Canvas>
                                     <audio ref={audioRef} loop>
@@ -379,5 +449,4 @@ const Parts3 = () => {
         );
     };
 
-    //<OrbitControls enableRotate={false} enableZoom={false} enablePan={false}/>
 export default Parts3;
