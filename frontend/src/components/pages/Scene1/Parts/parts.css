@@ -65,6 +65,10 @@
     background-color: #0b171c; 
     cursor: pointer;
   }
+  .options_scene1:active{
+    background-color: #285c74; 
+    cursor: pointer;
+}
   .button_continue:hover {
     background-color: #666355; 
     cursor: pointer;

@@ -14,7 +14,7 @@ const FeatherAnimation = () => {
   const featherRef = useRef();
   const clock = new Clock();
 
-  useFrame(({clock}) => {
+  useFrame(({ clock }) => {
     if (featherRef.current) {
       featherRef.current.position.x = Math.sin(clock.getElapsedTime()) * 1;
     }
@@ -74,11 +74,11 @@ const Parts = () => {
     {
       component: (
         <group>
-          <Notebook position={[0, 0, 0]} scale={0.8} rotation={[-Math.PI/4, Math.PI, 0]} />
+          <Notebook position={[0, 0, 0]} scale={0.8} rotation={[-Math.PI / 4, Math.PI, 0]} />
           <FeatherAnimation />
         </group>
       ),
-      position: {x: -4, y: -2, z: 1},
+      position: { x: -4, y: -2, z: 1 },
     },
     {
       component: <Police />,
@@ -104,8 +104,21 @@ const Parts = () => {
 
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
-  const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
+  const [showAdditionalButtons, setShowAdditionalButtons] = useState(false);
   const navigate = useNavigate();
+
+  const handleOptionClick = (id) => {
+    if (id === "S4A"){
+        console.log("sí op a");
+        handleContinueClick();
+        return;
+    }else{
+        console.log(id);
+        handleContinueClick();
+        return;
+    }
+  };
+
   const handleContinueClick = () => {
     if (textIndex === texts.length - 1) {
       navigate('/Scene2-parts');
@@ -123,7 +136,7 @@ const Parts = () => {
   const resizeCanvas = () => {
     const canvas = canvasRef.current;
     if (canvas) {
-      canvas.style.width = "50vw"; 
+      canvas.style.width = "50vw";
       canvas.style.height = "50vh";
     }
   };
@@ -134,13 +147,13 @@ const Parts = () => {
 
   return (
     <div className="scene1-bg">
-      <div 
+      <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          maxWidth: "100vw", 
-          maxHeight: "100vh", 
+          maxWidth: "100vw",
+          maxHeight: "100vh",
           overflow: "hidden",
         }}
       >
@@ -150,45 +163,47 @@ const Parts = () => {
               <h1 className="title-part1">{titles[textIndex]}</h1>
               <p className="scene1part1-text">{texts[textIndex]}
               </p>
-              {showAdditionalButtons && textIndex === 1 &&(
-            <div>
-              <div>
-              <button className="options_scene1" id="S1A">A. Thomas,  respeta a los muertos… esto es horrible</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S1B">B. Hahaha buena esa, Thomas. Hasta brilla y todo con la luz de las farolas</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S1C">C. *Darle un zape* no seas pagano…</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S1D">D. *No decir nada*</button>
-              </div>
+              {showAdditionalButtons && textIndex === 1 && (
+                <div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene1" id="S1A">A. Thomas,  respeta a los muertos… esto es horrible</button>
+                  </div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene1" id="S1B">B. Hahaha buena esa, Thomas. Hasta brilla y todo con la luz de las farolas</button>
+                  </div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene1" id="S1C">C. *Darle un zape* no seas pagano…</button>
+                  </div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S1D")} className="options_scene1" id="S1D">D. *No decir nada*</button>
+                  </div>
+                </div>
+              )}
+              {showAdditionalButtons && textIndex === 7 && (
+                <div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S2A")} className="options_scene1" id="S2A">A. No le haga caso, Martinez… sólo está bromeando </button>
+                  </div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S2B")} className="options_scene1" id="S2B">B. Es cierto, Martinez. realmente no tenemos ninguna posibilidad… sólo mírelo y mírese…</button>
+                  </div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S2C")} className="options_scene1" id="S2C">C. Pensar en lo inevitable no le hará ningún bien, Martinez</button>
+                  </div>
+                  <div>
+                    <button onClick={() =>handleOptionClick("S2D")} className="options_scene1" id="S2D">D. (No diré nada…)</button>
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-          {showAdditionalButtons && textIndex === 7 &&(
-            <div>
-              <div>
-              <button className="options_scene1" id="S2A">A. No le haga caso, Martinez… sólo está bromeando </button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S2B">B. Es cierto, Martinez. realmente no tenemos ninguna posibilidad… sólo mírelo y mírese…</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S2C">C. Pensar en lo inevitable no le hará ningún bien, Martinez</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S2D">D. (No diré nada…)</button>
-              </div>
-            </div>
-          )}
-            </div>
-            <button onClick={handleContinueClick} className="button_continue" type="submit">
-              Continuar
-            </button>
+            {textIndex !== 7 && textIndex !== 1 && (
+              <button onClick={handleContinueClick} className="button_continue" type="submit">
+                Continuar
+              </button>
+            )}
           </div>
         </div>
-        <div style={{ position: "relative", marginRight: "15rem", marginTop:"10rem" }}>
+        <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
           <Canvas
             shadows={true}
             camera={{ position: [2, 1, 7] }}
@@ -196,11 +211,11 @@ const Parts = () => {
             style={{ width: "50vw", height: "50vh" }}
           >
             <ambientLight intensity={1} />
-            <OrbitControls 
-               enableZoom={false}
-               maxPolarAngle={Math.PI / 2}
-               maxAzimuthAngle={Math.PI / 3} 
-               minAzimuthAngle={-Math.PI / 12}
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+              maxAzimuthAngle={Math.PI / 3}
+              minAzimuthAngle={-Math.PI / 12}
             />
             {models.map((model, index) => (
               <group key={index}>

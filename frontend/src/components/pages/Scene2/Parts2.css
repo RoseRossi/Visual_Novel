@@ -9,6 +9,7 @@
     align-items: center;
     position: absolute;
     z-index: 1;
+    top: -100px;
 }
 
 .card-Scene2{
@@ -160,6 +161,11 @@
     cursor: pointer;
 }
 
+.back-button:active{
+    background-color: rgb(192, 186, 161); 
+    cursor: pointer;
+}
+
 .hidden {
     display: none;
 }
@@ -188,4 +194,8 @@
 .continue-button:hover {
     background-color: #666355; 
     cursor: pointer;
-  }
+}
+.continue-button:active {
+    background-color: #84806e;
+    cursor: pointer;
+}
