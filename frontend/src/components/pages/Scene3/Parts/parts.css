@@ -61,13 +61,12 @@
     margin-bottom: 5px;
 }
 
-.options_scene1:hover{
-    background-color: #0b171c; 
-    cursor: pointer;
-}
-
 .button_continue:hover {
     background-color: #666355; 
+    cursor: pointer;
+}
+.button_continue:active {
+    background-color: #84806e;
     cursor: pointer;
 }
 

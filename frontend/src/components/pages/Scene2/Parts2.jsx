@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useThree } from '@react-three/fiber';
-import { Canvas} from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sparkles } from "@react-three/drei";
 import { BackScene } from "./BackScene";
 import { Pierro } from "./Pierro";
@@ -10,11 +9,10 @@ import { Ring } from "./Ring";
 import { Blood } from "./Blood";
 import { Youngman } from "./Youngman";
 import LightsScene2 from "./LightsScene2";
-import { Center, Float, Html, Text, Text3D } from "@react-three/drei"
 import "./Parts2.css";
-import {Evidence} from "./Evidence"
+import { Evidence } from "./Evidence"
 import { Body } from "./Body";
-import {Rag} from "./Rag"
+import { Rag } from "./Rag"
 import useSound from 'use-sound';
 
 const Parts2 = () => {
@@ -49,7 +47,7 @@ const Parts2 = () => {
     setSelectedOption(position);
   };
 
-  
+
   const handleBackToInitialPosition = () => {
     cameraRef.current.position.set(15, -3, -70);
     setSelectedOption(null);
@@ -113,15 +111,15 @@ const Parts2 = () => {
     const handlePierroHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
     };
-  
+
     const handlePierroHoverOut = (event) => {
       event.nativeEvent.target.style.cursor = "auto";
     };
-  
+
     const handleJovenHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
     };
-  
+
     const handleJovenHoverOut = (event) => {
       event.nativeEvent.target.style.cursor = "auto";
     };
@@ -129,23 +127,23 @@ const Parts2 = () => {
     const handleRagHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
     };
-  
+
     const handleRagHoverOut = (event) => {
       event.nativeEvent.target.style.cursor = "auto";
     };
-  
+
     const handleBodyHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
     };
-  
+
     const handleBodyHoverOut = (event) => {
       event.nativeEvent.target.style.cursor = "auto";
     };
-  
+
     const handleEvidenceHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
     };
-  
+
     const handleEvidenceHoverOut = (event) => {
       event.nativeEvent.target.style.cursor = "auto";
     };
@@ -157,7 +155,7 @@ const Parts2 = () => {
     const handleRingHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
     };
-  
+
     const handleRingHoverOut = (event) => {
       event.nativeEvent.target.style.cursor = "auto";
     };
@@ -171,8 +169,8 @@ const Parts2 = () => {
         return (
           <div className="containerAall">
             <audio ref={audioRef} loop>
-                    <source src="../assets/sounds/scene2A.mp3" type="audio/mpeg" />
-                </audio>
+              <source src="../assets/sounds/scene2A.mp3" type="audio/mpeg" />
+            </audio>
             <div className="containerA-Scene2">
               <div className="cardA-Scene2">
                 <p className="textA-Scene2"> {currentText}  </p>
@@ -182,35 +180,35 @@ const Parts2 = () => {
               <Canvas>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[0, 10, 0]} intensity={1.5} />
-                <OrbitControls enableRotate={false} enableZoom={false} enablePan={false}/>
+                <OrbitControls enableRotate={false} enableZoom={false} enablePan={false} />
                 <Evidence
                   scale={3}
                   position={[-8, 0, 0]}
                   rotation={[0, Math.PI / -9, Math.PI / -9]}
                   onPointerOver={handleEvidenceHover}
                   onPointerOut={handleEvidenceHoverOut}
-                  onClick={() => {handleObjAClick("Ahora entiendo por qué los cambios constantes de equipo, estas evidencias son un desastre")}}
+                  onClick={() => { handleObjAClick("Ahora entiendo por qué los cambios constantes de equipo, estas evidencias son un desastre") }}
                 />
                 <Body
                   scale={4}
                   rotation={[Math.PI / 9, Math.PI / 2, 0]}
                   onPointerOver={handleBodyHover}
                   onPointerOut={handleBodyHoverOut}
-                  onClick={() => {handleObjAClick("Cada vez es peor... ¿Algún día pondremos atrapar a este monstruo?")}}
+                  onClick={() => { handleObjAClick("Cada vez es peor... ¿Algún día pondremos atrapar a este monstruo?") }}
                 />
                 <Rag
                   scale={0.5}
                   position={[9, -1.5, 0]}
                   onPointerOver={handleRagHover}
                   onPointerOut={handleRagHoverOut}
-                  onClick={() => {handleObjAClick("Esto debería estar con las evidencias... Me pregunto qué otra cosa se les habrá pasado")}}
+                  onClick={() => { handleObjAClick("Esto debería estar con las evidencias... Me pregunto qué otra cosa se les habrá pasado") }}
                 />
                 <Sparkles
-                  color="black" 
+                  color="black"
                   count={10}
                   size={2}
                   speed={2}
-                  scale={4} 
+                  scale={4}
                   position={[0, 2, 0]}
                 />
                 <LightsScene2></LightsScene2>
@@ -222,155 +220,154 @@ const Parts2 = () => {
       case [14, -3, -55].toString():
         return (
           <>
-          
-          <div className="container-Scene2">
-            <audio ref={audioRef} loop>
-                    <source src="../assets/sounds/scene2B.mp3" type="audio/mpeg" />
-                </audio>
-                <div className="cardB-Scene2">
-                  <h className="tituloB-Scene2">{currentTitleB}</h>
-                  <p className="textB-Scene2">{currentTextB}</p>
-                </div>
-                <div className="canvasB" ref={canvasARef}>
-                  <Canvas>
-                    <ambientLight intensity={0.5} />
-                    <directionalLight position={[0, 10, 0]} intensity={1.5} />
-                    <OrbitControls enableRotate={false} enableZoom={false} enablePan={false}/>
-                    
-                    <Pierro 
-                      position={[-7, 5, -6.5]}
-                      rotation-y={0.8}
-                      scale={4} 
-                      onClick={() => {handleModelClick("Detective","Creí que había sido claro con que no debían tocar la escena hasta que llegase, Pierro.", "Pierro")}}
-                      onPointerOver={handlePierroHover}
-                      onPointerOut={handlePierroHoverOut}
-                    />
-                    <Lab position={[0,0, 0]} scale={0.2} />
-                    <Youngman 
-                      position={[2,-3.5, -1]}
-                      scale={3.5} 
-                      onClick={() => {handleModelClick("Joven","Mucho gusto, detective. Mi nombre es Henry.", "Youngman")}}
-                      onPointerOver={handleJovenHover}
-                      onPointerOut={handleJovenHoverOut}
-                    />
-                  </Canvas> 
-                </div>
-                {showContinueButton && (
-                  <button className="continue-button" onClick={handleContinueButtonClick}>
-                    Continuar
-                  </button>
-                )}
-          </div>
-        </>
+
+            <div className="container-Scene2">
+              <audio ref={audioRef} loop>
+                <source src="../assets/sounds/scene2B.mp3" type="audio/mpeg" />
+              </audio>
+              <div className="cardB-Scene2">
+                <h className="tituloB-Scene2">{currentTitleB}</h>
+                <p className="textB-Scene2">{currentTextB}</p>
+              </div>
+              <div className="canvasB" ref={canvasARef}>
+                <Canvas>
+                  <ambientLight intensity={0.5} />
+                  <directionalLight position={[0, 10, 0]} intensity={1.5} />
+                  <OrbitControls enableRotate={false} enableZoom={false} enablePan={false} />
+
+                  <Pierro
+                    position={[-7, 5, -6.5]}
+                    rotation-y={0.8}
+                    scale={4}
+                    onClick={() => { handleModelClick("Detective", "Creí que había sido claro con que no debían tocar la escena hasta que llegase, Pierro.", "Pierro") }}
+                    onPointerOver={handlePierroHover}
+                    onPointerOut={handlePierroHoverOut}
+                  />
+                  <Lab position={[0, 0, 0]} scale={0.2} />
+                  <Youngman
+                    position={[2, -3.5, -1]}
+                    scale={3.5}
+                    onClick={() => { handleModelClick("Joven", "Mucho gusto, detective. Mi nombre es Henry.", "Youngman") }}
+                    onPointerOver={handleJovenHover}
+                    onPointerOut={handleJovenHoverOut}
+                  />
+                </Canvas>
+              </div>
+              {showContinueButton && (
+                <button className="continue-button" onClick={handleContinueButtonClick}>
+                  Continuar
+                </button>
+              )}
+            </div>
+          </>
         );
-//para lo del audio controls 
+      //para lo del audio controls 
       case [8, -2, -55].toString():
         return (
           <div className="container-Scene2">
             <audio ref={audioRef} loop >
-                    <source src="../assets/sounds/scene2C.mp3" type="audio/mpeg" />
-                </audio>
+              <source src="../assets/sounds/scene2C.mp3" type="audio/mpeg" />
+            </audio>
             <div className="card-Scene2">
               <p className="textA-Scene2"> {currentTextC}  </p>
             </div>
             <Canvas>
-            <Ring position-x={6} position-y={3} position-z={-53.8} scale={0.5} rotation-y={Math.PI-1.5}
-                  onPointerOver={handleRingHover}
-                  onPointerOut={handleRingHoverOut}
-                  onClick={() => {handleObjCClick("[Será mejor llevarlo contigo.] He terminado aquí. Veré cómo le va a Edward")}}/>
-            <Sparkles
-                  color="red" 
-                  count={10}
-                  size={2}
-                  speed={2}
-                  scale={4}  
-                  position={[0, -1, 0]}
-                />
-            <Blood />
+              <Ring position-x={6} position-y={3} position-z={-53.8} scale={0.5} rotation-y={Math.PI - 1.5}
+                onPointerOver={handleRingHover}
+                onPointerOut={handleRingHoverOut}
+                onClick={() => { handleObjCClick("[Será mejor llevarlo contigo.] He terminado aquí. Veré cómo le va a Edward") }} />
+              <Sparkles
+                color="red"
+                count={10}
+                size={2}
+                speed={2}
+                scale={4}
+                position={[0, -1, 0]}
+              />
+              <Blood />
             </Canvas>
           </div>
-          
+
         );
 
       default:
-        return null; 
+        return null;
     }
   };
 
   const playAudio = () => {
     if (audioRef.current) {
-        audioRef.current.volume = 0.1;
-        audioRef.current.play();
-      }
+      audioRef.current.volume = 0.1;
+      audioRef.current.play();
+    }
   }
 
   useEffect(() => {
-      document.addEventListener("click", playAudio);
-      return () => {
-          document.removeEventListener("click", playAudio);
-      };
+    document.addEventListener("click", playAudio);
+    return () => {
+      document.removeEventListener("click", playAudio);
+    };
   }, []);
 
   useEffect(() => {
-      if (playSound) {
-          play();
-          playA();
-          playB();
-          playC();
-          setPlaySound(false);
-      }
+    if (playSound) {
+      play();
+      playA();
+      playB();
+      playC();
+      setPlaySound(false);
+    }
   }, [playSound]);
 
   return (
     <>
-    {selectedOption == null &&(
-      
-      <div className= "container-Scene2" >
+      {selectedOption == null && (
+        <div className="container-Scene2" >
           <audio ref={audioRef} loop>
-                    <source src="../assets/sounds/scene2.mp3" type="audio/mpeg" />
-                </audio>
-        <div className="card-Scene2">
-          <h3 className="titulo-Scene2"> Detective </h3>
-          <p className="text-Scene2"> Hay mucho que hacer.. ¿Por dónde empiezo? </p>
-          <div>
-            <button className="options_scene1" id="S1A" onClick={() => {handleCameraPosition([10, -3, -60])}}>
-              A. La víctima
-            </button>
-          </div>
-          <div>
-            <button className="options_scene1" id="S1B" onClick={() => {handleCameraPosition([14, -3, -55])}}>
-              B. El equipo de autopsia
-            </button>
-          </div>
-          <div>
-            <button className="options_scene1" id="S1C" onClick={() => {handleCameraPosition([8, -2, -55]);}}>
-              C. Los alrededores
-            </button>
-            <button className="options_scene1" id="S1D" onClick={() => {navigate('/Scene3-parts'); return;}}>
-              Mejor me voy...
-            </button>
+            <source src="../assets/sounds/scene2.mp3" type="audio/mpeg" />
+          </audio>
+          <div className="card-Scene2">
+            <h3 className="titulo-Scene2"> Detective </h3>
+            <p className="text-Scene2"> Hay mucho que hacer.. ¿Por dónde empiezo? </p>
+            <div>
+              <button className="options_scene1" id="S1A" onClick={() => { handleCameraPosition([10, -3, -60]) }}>
+                A. La víctima
+              </button>
+            </div>
+            <div>
+              <button className="options_scene1" id="S1B" onClick={() => { handleCameraPosition([14, -3, -55]) }}>
+                B. El equipo de autopsia
+              </button>
+            </div>
+            <div>
+              <button className="options_scene1" id="S1C" onClick={() => { handleCameraPosition([8, -2, -55]); }}>
+                C. Los alrededores
+              </button>
+              <button className="options_scene1" id="S1D" onClick={() => { navigate('/Scene3-parts'); return; }}>
+                Mejor me voy...
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
 
-    {selectedOption && renderContent()}
-    {renderContent()}
+      {selectedOption && renderContent()}
+      {renderContent()}
 
       <div ref={canvasRef}>
         <Canvas
           shadows
           camera={{ position: [15, -3, -70] }}
-          style={{ width: "100vw", height: "100vh"}}
+          style={{ width: "100vw", height: "100vh" }}
           gl={{ antialias: true }}
           onCreated={({ camera }) => (cameraRef.current = camera)}
         >
           <ambientLight intensity={0.5} />
           <directionalLight position={[0, 10, 0]} intensity={1.5} />
-          <OrbitControls/>
+          <OrbitControls />
           <BackScene roughness={100} metalness={100} specular={100} />
           <LightsScene2></LightsScene2>
-          
+
         </Canvas>
       </div>
 

@@ -41,49 +41,6 @@ const Parts4p2 = () => {
       component: <Thomas />,
       position: { x: 0.5, y: -7, z: 5 },
       scale: 5,
-    },
-    {
-      component: <Detective />,
-      position: { x: 0.5, y: -9.2, z: 5 },
-      scale: 5,
-    },
-    {
-      component: <Detective />,
-      position: { x: 0.5, y: -9.2, z: 5 },
-      scale: 5,
-    },
-    {
-      component: <Thomas />,
-      position: { x: 0.5, y: -7, z: 5 },
-      scale: 5,
-    },
-    {
-      component: (
-        <group>
-          <Notebook position={[0, 0, 0]} scale={0.8} rotation={[-Math.PI/4, Math.PI, 0]} />
-        </group>
-      ),
-      position: {x: -4, y: -2, z: 1},
-    },
-    {
-      component: <Police />,
-      position: { x: -1, y: -11.5, z: 5 },
-      scale: 3.7,
-    },
-    {
-      component: <Thomas />,
-      position: { x: 0.5, y: -7, z: 5 },
-      scale: 5,
-    },
-    {
-      component: <Detective />,
-      position: { x: 0.5, y: -9.2, z: 5 },
-      scale: 5,
-    },
-    {
-      component: <Thomas />,
-      position: { x: 0.5, y: -7, z: 5 },
-      scale: 5,
     },*/
   ];
 
@@ -105,8 +62,16 @@ const Parts4p2 = () => {
     setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
   };
 
-  const handleOptionClick = () => {
-    console.log("op")
+  const handleOptionClick = (id) => {
+    if (id === "S4A"){
+        console.log("sí op a");
+        navigate('/Scene2-parts');
+        return;
+    }else{
+        console.log(id);
+        navigate('/Scene2-parts');
+        return;
+    }
   };
 
   const canvasRef = useRef();
@@ -123,7 +88,7 @@ const Parts4p2 = () => {
 
 
   return (
-    <div className="scene1-bg">
+    <div className="scene42-bg">
       <div 
         style={{
           display: "flex",
@@ -143,17 +108,19 @@ const Parts4p2 = () => {
               {showAdditionalButtons && textIndex === 11 &&(
             <div>
               <div>
-              <button onClick={handleOptionClick} className="options_scene4p2" id="S4A">A. Escapar</button>
+              <button onClick={() =>handleOptionClick("S4A")} className="options_scene4p2" id="S4A">A. Escapar</button>
               </div>
               <div>
-              <button onClick={handleOptionClick} className="options_scene4p2" id="S4B">B. Quedarse</button>
+              <button onClick={() =>handleOptionClick("S4B")} className="options_scene4p2" id="S4B">B. Quedarse</button>
               </div>
             </div>
           )}
             </div>
-            <button onClick={handleContinueClick} className="button_continue" type="submit">
-              Continuar
-            </button>
+            {textIndex !== 11 && (
+                <button onClick={handleContinueClick} className="button_continue" type="submit">
+                Continuar
+                </button>
+            )}
           </div>
         </div>
         <div style={{ position: "relative", marginRight: "15rem", marginTop:"10rem" }}>
