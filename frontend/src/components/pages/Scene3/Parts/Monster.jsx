@@ -7,6 +7,7 @@ export function Monster(props) {
   const { actions } = useAnimations(animations, group);
   return (
     <group ref={group} {...props} dispose={null}>
+      <group rotation={[ 0, 0, 0]}>
       <group name="Sketchfab_Scene">
         <group
           name="Sketchfab_model"
@@ -49,6 +50,7 @@ export function Monster(props) {
             </group>
           </group>
         </group>
+      </group>
       </group>
     </group>
   );

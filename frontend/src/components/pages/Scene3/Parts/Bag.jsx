@@ -5,6 +5,7 @@ export function Bag(props) {
   const { nodes, materials } = useGLTF("/assets/models/bag.glb");
   return (
     <group {...props} dispose={null}>
+      <group rotation={[ 0, 0, 0]}>
       <mesh
         castShadow
         receiveShadow
@@ -12,6 +13,7 @@ export function Bag(props) {
         material={materials.material}
         scale={1.404}
       />
+    </group>
     </group>
   );
 }
