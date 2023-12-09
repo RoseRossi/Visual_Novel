@@ -13,6 +13,12 @@ const Parts4p2 = () => {
     "¡Thomas! [Lo tomé por los hombros. En su rostro había desconfianza y confusión]",
     "¿Lo conozco?",
     "Escucha, Thomas; no hay tiempo para esto. Tenemos que encontrar al recolector de huesos antes de que escape de la zona, si no lo ha hecho aún…",
+    "¿Cómo sabe del recolector de huesos?, eso es información clasificada. Espere ¿Eso es sangre?",
+    "[Señaló mi ropa, ésta no era mi ropa… y en efecto, estaba manchada de sangre… eso explicaba las miradas aterradas de camino a aquí]",
+    "Es probable que sea mi sangre. Escucha tengo pruebas, Thomas; y sé dónde se refugiaba ",
+    "Espere un momento, aquí.",
+    "[Me dirigió a su oficina y cerró la puerta con llave… pude ver como iba de lado a lado hablando con el comisario y con la cadete Martha…]",
+    "¿Qué hago ahora?",
   ]
   ;
   const titles = [
@@ -22,11 +28,16 @@ const Parts4p2 = () => {
     "Detective",
     "Thomas",
     "Detective",
-    
+    "Thomas",
+    "",
+    "Detective",
+    "Thomas",
+    "",
+    "Detective",
   ]
 
   const models = [
-    {
+    /*{
       component: <Thomas />,
       position: { x: 0.5, y: -7, z: 5 },
       scale: 5,
@@ -50,7 +61,6 @@ const Parts4p2 = () => {
       component: (
         <group>
           <Notebook position={[0, 0, 0]} scale={0.8} rotation={[-Math.PI/4, Math.PI, 0]} />
-          <FeatherAnimation />
         </group>
       ),
       position: {x: -4, y: -2, z: 1},
@@ -74,13 +84,14 @@ const Parts4p2 = () => {
       component: <Thomas />,
       position: { x: 0.5, y: -7, z: 5 },
       scale: 5,
-    },
+    },*/
   ];
 
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
   const navigate = useNavigate();
+
   const handleContinueClick = () => {
     if (textIndex === texts.length - 1) {
       navigate('/Scene2-parts');
@@ -92,6 +103,10 @@ const Parts4p2 = () => {
     const newIndex = (modelIndex + 1) % models.length;
     setModelIndex(newIndex);
     setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+  };
+
+  const handleOptionClick = () => {
+    console.log("op")
   };
 
   const canvasRef = useRef();
@@ -125,35 +140,13 @@ const Parts4p2 = () => {
               <h1 className="title-part1">{titles[textIndex]}</h1>
               <p className="scene1part1-text">{texts[textIndex]}
               </p>
-              {showAdditionalButtons && textIndex === 1 &&(
+              {showAdditionalButtons && textIndex === 11 &&(
             <div>
               <div>
-              <button className="options_scene1" id="S1A">A. Thomas,  respeta a los muertos… esto es horrible</button>
+              <button onClick={handleOptionClick} className="options_scene4p2" id="S4A">A. Escapar</button>
               </div>
               <div>
-              <button className="options_scene1" id="S1B">B. Hahaha buena esa, Thomas. Hasta brilla y todo con la luz de las farolas</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S1C">C. *Darle un zape* no seas pagano…</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S1D">D. *No decir nada*</button>
-              </div>
-            </div>
-          )}
-          {showAdditionalButtons && textIndex === 7 &&(
-            <div>
-              <div>
-              <button className="options_scene1" id="S2A">A. No le haga caso, Martinez… sólo está bromeando </button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S2B">B. Es cierto, Martinez. realmente no tenemos ninguna posibilidad… sólo mírelo y mírese…</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S2C">C. Pensar en lo inevitable no le hará ningún bien, Martinez</button>
-              </div>
-              <div>
-              <button className="options_scene1" id="S2D">D. (No diré nada…)</button>
+              <button onClick={handleOptionClick} className="options_scene4p2" id="S4B">B. Quedarse</button>
               </div>
             </div>
           )}

@@ -46,7 +46,7 @@
     }
   
   
-    .options_scene1{
+    .options_scene4p2{
       height: 43px;
       width: 700px;
       background-color: #102128;
@@ -61,14 +61,23 @@
       margin-bottom: 5px;
     }
     
-    .options_scene1:hover{
+    .options_scene4p2:hover{
       background-color: #0b171c; 
       cursor: pointer;
     }
+    .options_scene4p2:focus,
+    .options_scene4p2:active{
+        background-color: #152b35; 
+        cursor: pointer;
+      }
     .button_continue:hover {
       background-color: #666355; 
       cursor: pointer;
     }
+    .button_continue:active {
+        background-color: #84806e;
+        cursor: pointer;
+      }
     
     .scene1part1-text {
       text-align:justify;
