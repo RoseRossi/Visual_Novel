@@ -105,23 +105,35 @@ const Parts3 = () => {
         },
         {
             component: <Bag />,
-            position: { x: -1, y: 0.5, z: 3.6 },
+            position: { x: -1, y: 7, z: 4 }, //x: -1, y: 0.5, z: 3.6
             scale: 7,
         },
         {
             component: <Bones />,
-            position: { x: -1, y: 0, z: 3 },
+            position: { x: -1, y: 0, z: 3 }, //x: -1, y: 0, z: 3
             scale: 0.05,
         },
         {
             component: <Monster />,
-            position: { x: -0.5, y: -2, z: 1.5 },
+            position: { x: -1, y: 0, z: 3 }, //x: -0.5, y: -2, z: 1.5
             scale: 3,
         },       
     ]
 
-    const renderModel = (textIndex) => {
-        if (textIndex === 4) {
+    const renderModel = (modelIndex) => {
+        if (modelIndex === 2) {
+            return <Bag />;
+        } else if (modelIndex === 1) {
+            return <Bones />;
+        } else if (modelIndex === 3) {
+            return <Monster />;
+        } else if (modelIndex === 4 || modelIndex === 5|| modelIndex === 7){
+            return <Detective3 />;
+        } else {
+            return null;
+        }
+    };
+            /*if (textIndex === 4) {
             return <Bag />;
         } else if (textIndex === 5) {
             return <Bones />;
@@ -129,18 +141,14 @@ const Parts3 = () => {
           // No mostrar ningún modelo
             return null;
         } else if (textIndex === 14 || textIndex === 24 || textIndex === 28 || textIndex === 32 || textIndex === 34) {
-            return <Monster />;
-        } else {
-            return <Detective3 />;
-        }
-    };
+            return <Monster />;*/
 
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
 
     const audioRef = useRef(null);
     const [playA] = useSound("../assets/sounds/bonk.mp3");
-    const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.3, loop: true });
+    const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.4, loop: true });
     const [playC] = useSound("../assets/sounds/chew.mp3", { volume: 0.1, loop: true });
     const [playSound, setPlaySound] = useState(false);
 
@@ -169,7 +177,7 @@ const Parts3 = () => {
         }
     }, [playSound, textIndex]);
 
-    const blackLightColor = '#000000';
+    /*const blackLightColor = '#000000';
     const redLightColor = '#ff0000';
 
     const calculateLightColor = () => {
@@ -184,9 +192,11 @@ const Parts3 = () => {
         if (textIndex === 12) return redLightColor;
         if (textIndex === 20) return blackLightColor;
         return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
-      };
+      };*/
 
     const handleContinueClick = () => {
+        console.log('Valor actual de textIndex:', textIndex);
+        console.log('Valor actual de modelIndex:', modelIndex);
         /*if (textIndex === texts.length - 1) {
             navigate('/Scene4-parts1');
             return;
@@ -214,8 +224,8 @@ const Parts3 = () => {
         return (
             <div>
                 {texts.map((text, index) => (
-                    <Suspense key={index} fallback={<div>Loading...</div>}className={`scene3-bg`} style={{ backgroundColor: calculateBackgroundColor() }}>
-                        <div className={`scene3-bg`}>
+                    <Suspense key={index} fallback={<div>Loading...</div>}>
+                        <div className={"scene3-bg"}>
                             <div
                                 style={{
                                     display: "flex",
@@ -242,20 +252,21 @@ const Parts3 = () => {
                                         shadows={true}
                                         camera={{ position: [2, 1, 7] }}
                                         ref={canvasRef}
-                                        style={{ width: "50vw", height: "50vh" }}
+                                        style={{ width: "50vw", height: "50vh" }}//Canvas modificado, 50,50
                                     >
 
-                                        {models.map((model, modelIndex) => (
-                                            <group key={modelIndex}>
-                                                {modelIndex === textIndex && (
+                                        {models.map((model, index) => (
+                                            <group key={index}>
+                                                {index === modelIndex && (
                                                     <group position={[model.position.x, model.position.y, model.position.z]} scale={model.scale}>
                                                         {renderModel(modelIndex)}
                                                     </group>
                                                 )}
                                             </group>
                                         ))}
-                                        <ambientLight intensity={0.5} color={calculateLightColor()} />
-                                        <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
+                                        <ambientLight intensity={0.5} /*color={calculateLightColor()}*/ />
+                                        <directionalLight intensity={1} position={[5, 5, 5]} /*color={calculateLightColor()}*/ />
+                                        <OrbitControls makeDefault/>
     
                                     </Canvas>
                                     <audio ref={audioRef} loop>
@@ -269,4 +280,5 @@ const Parts3 = () => {
         );
     };
 
+    //<OrbitControls enableRotate={false} enableZoom={false} enablePan={false}/>
 export default Parts3;
