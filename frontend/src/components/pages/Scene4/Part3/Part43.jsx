@@ -38,8 +38,40 @@ const Parts4p3 = () => {
   //setShownOptions(new Set());
   const handleContinueClick = () => {
     if (textIndex === texts.length - 1) {
-      navigate('/Scene2-parts');
+      setTextIndex(0)
+      if (humanidad <= 3) {
+        setTexts([
+          " ... ",
+          "Hey, ¿Crees que puedes guiarnos hasta allá?.",
+          "Es muy temprano para hacer eso. Debemos solicitar un equipo",
+          "Ya te dije. Si este se le escapó es cuestión de tiempo antes de que venga acá o escape",
+          "[Siguieron discutiendo, pero al final el comisario aceptó. Avisó dónde irían y cogieron el equipo. Me dieron ropa y fuimos en la patrulla]",
+          "[Podía sentir cómo mi cuerpo se adormecía… y caí dormido]",
+        ]);
+        setTitles([
+          " ",
+          "Thomas",
+          "Comisario",
+          "Thomas",
+          "Detective",
+          "Detective",
+        ]);
+      } else {
+        setTexts([
+          "Creo que deberíamos esperar antes de ir… tengo un mal presentimiento.",
+          "Daré la orden de los refuerzos, podemos ir en la noche.",
+          "No me siento muy bien…",
+          "[Vomité… todo estaba rojo y perdí el conocimiento…]",
+        ]);
+        setTitles([
+          "Thomas",
+          "Smith",
+          "Detective",
+          "Detective",
+        ]);
+      }
       return;
+
     }
     if (textIndex === 0) {
       setShowAdditionalButtons(true);
@@ -177,9 +209,6 @@ const Parts4p3 = () => {
   };
   useEffect(() => {
     resizeCanvas();
-  }, []);
-  useEffect(() => {
-    
   }, []);
 
   return (
