@@ -69,7 +69,7 @@ const Parts4p2 = () => {
         return;
     }else{
         console.log(id);
-        navigate('/Scene2-parts');
+        navigate('/Scene4-parts3');
         return;
     }
   };
