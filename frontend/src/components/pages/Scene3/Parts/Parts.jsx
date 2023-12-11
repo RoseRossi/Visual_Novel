@@ -355,12 +355,6 @@ const Parts3 = () => {
         return '#ffffff'; // Luz blanca predeterminada para otros casos
     };
 
-    const calculateBackgroundColor = () => {
-        if (textIndex === 10) return blackLightColor;
-        if (textIndex === 12) return redLightColor;
-        if (textIndex === 20) return blackLightColor;
-        return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
-    };
 
     const handleContinueClick = () => {
         console.log("textIndex actual",textIndex);
