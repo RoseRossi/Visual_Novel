@@ -5,45 +5,25 @@ import "./parts5.css"
 
 
 
-const Parts5 = () => {
+const Parts5GE = () => {
     const texts = [
-        //bad ending (1)
-        "Tenemos un hombre blanco de 1.80… signos evidentes de tortura y destripamiento; cuerpo irreconocible, rostro… se puede percibir vagamente que es el detective Thomas Johns… quién desapareció hace dos días desde que el comisario Smith emitió la orden de expedición hacía las bodegas abandonadas en el puerto… El comisario continúa desaparecido…creo… que debería cambiar de trabajo…",
-
         //Good ending (2 - 6)
         "Anne, date prisa. Debo pasar por el cementerio antes de que vayamos al laboratorio…",
         "Ya voy detective, necesitaba recoger el nuevo equipo que Pierro nos pidió probar",
         "Trae las flores, yo cargo el coche",
         "[Cargamos los aparatos en el coche, y nos dirigimos al cementerio… ya había memorizado el camino entre tantas tumbas…]",
         "Buenas tardes, detective. Disculpe la demora…",
-
-        //Neutral ending (7 - 10)
-        "[Escapé de la comisaría y volví a las bodegas… debo reponerme y darle caza a este miserable… Aunque…me siento… muy cansado… y hambriento]",
-        "[Thomas olía muy bien… quizás pueda… ir por algo de comer…]",
-        "El detective pierde la fuerza dentro de su propio cuerpo y se vuelve esclavo de su hambre, no puede evitar sentir cómo algo se burla de él, mientras ahora sólo se cuestiona y tortura por haber podido hacer las cosas diferente…",
-        "[No he podido dormir en días… siento que me observan…]",
-
         //Index 11
         ""
 
     ];
     const titles = [
-        //Bad ending
-        "Oficial Martinez",
-
         //Good ending
         "Thomas",
         "Anne",
         "Thomas",
         "Thomas",
         "Thomas",
-
-        //Neutral ending
-        "Detective",
-        "Detective",
-        "",
-        "Thomas",
-        ""
     ]
     const models = [
     ]
@@ -61,7 +41,7 @@ const Parts5 = () => {
             navigate('/Scene');
             return;
           }
-          //Poner la variación del diálogo
+
         const newIndex = (textIndex + 1) % texts.length;
         setModelIndex(newIndex);
         setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
@@ -110,4 +90,4 @@ const Parts5 = () => {
         );
     };
 
-export default Parts5;
+export default Parts5GE;
