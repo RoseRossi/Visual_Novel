@@ -123,7 +123,7 @@ const Parts4p2 = () => {
 
 
   return (
-    <div className="scene1-bg">
+    <div className="scene41-bg">
       <div 
         style={{
           display: "flex",
