@@ -368,7 +368,7 @@ const Parts3 = () => {
         console.log("textIndex actual",textIndex);
         console.log("modelIndex actual",modelIndex);
         if (textIndex === texts.length - 1) {
-            navigate('/Scene4-parts2');
+            navigate('/Scene4-parts1');
             return;
           }
         const newIndex = (textIndex + 1) % texts.length;
