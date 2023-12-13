@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useThree } from '@react-three/fiber';
 import { Canvas} from "@react-three/fiber";
 import { OrbitControls, Sparkles } from "@react-three/drei";
-import { Center, Float, Html, Text, Text3D } from "@react-three/drei"
 import "./parts.css";
 import useSound from 'use-sound';
 import { Hand } from "./Hand";
@@ -62,6 +61,7 @@ import { Photo } from "./Photo";
       setShowAdditionalButtons(true);
       setClickedObject(objectName);
     };
+    
 
     const playAudio = () => {
         if (audioRef.current) {
@@ -85,7 +85,7 @@ import { Photo } from "./Photo";
     }, [playSound]);
   
     return (
-        <div className="scene42-bg">
+        <div className="scene41-bg">
             <div
                 style={{
                 display: "flex",
@@ -96,54 +96,54 @@ import { Photo } from "./Photo";
                 overflow: "hidden",
             }}
             >
-        <div className= "container-Scene2" >
+        <div className= "container-Scene41" >
             <audio ref={audioRef} loop>
                 <source src="../assets/sounds/scene2C.mp3" type="audio/mpeg" />
             </audio>
-            <div className="card-Scene2">
-                <p className="textA-Scene2"> {currentTextC} </p>
+            <div className="card-Scene41">
+                <p className="textA-Scene41"> {currentTextC} </p>
             </div>
             {showAdditionalButtons && clickedObject === "Hand" && (
                 <div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene14" id="S1A">A. *Recogerla*  Quizás… sea útil, de alguna manera...</button>
+                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene41" id="S1A">A. *Recogerla*  Quizás… sea útil, de alguna manera...</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene14" id="S1B">B. *Comerla* [Estaba hambriento. Y con cada mordida podía deleitarme con un sabor tan delicioso y refrescante... no me enorgullezco de esto...]</button>
+                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene41" id="S1B">B. *Comerla* [Estaba hambriento. Y con cada mordida podía deleitarme con un sabor tan delicioso y refrescante... no me enorgullezco de esto...]</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene14" id="S1C">C. *Dejarla* [No tengo nada para guardarla o tomarla sin dañar la evidencia. Cuando traiga al equipo la recogerán si sirve de algo]</button>
+                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene41" id="S1C">C. *Dejarla* [No tengo nada para guardarla o tomarla sin dañar la evidencia. Cuando traiga al equipo la recogerán si sirve de algo]</button>
                   </div>
                 </div>
               )}
               {showAdditionalButtons && clickedObject === "Fork" && (
                 <div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene14" id="S1A">A. *Recogerlo*  Esto no debería estar tirado aquí, aunque no es importante.</button>
+                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene41" id="S1A">A. *Recogerlo*  Esto no debería estar tirado aquí, aunque no es importante.</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene14" id="S1B">B. *Tirarlo* No necesito ser un cura para saber que esto está maldito.</button>
+                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene41" id="S1B">B. *Tirarlo* No necesito ser un cura para saber que esto está maldito.</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene14" id="S1C">C. *Ignorarlo* Mejor no estorbarle...</button>
+                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene41" id="S1C">C. *Ignorarlo* Mejor no estorbarle...</button>
                   </div>
                 </div>
               )}
               {showAdditionalButtons && clickedObject === "Photo" && (
                 <div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene14" id="S1A">A. *Recogerla*  [Creo que es... Thomas... pero no estoy seguro. El equipo podrá darle más uso]</button>
+                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene41" id="S1A">A. *Recogerla*  [Creo que es... Thomas... pero no estoy seguro. El equipo podrá darle más uso]</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene14" id="S1B">B. *Quemarla* [No necesito esto tirado por ahí...]</button>
+                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene41" id="S1B">B. *Quemarla* [No necesito esto tirado por ahí...]</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene14" id="S1C">C. *Dejarla* [No sirve para nada...]</button>
+                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene41" id="S1C">C. *Dejarla* [No sirve para nada...]</button>
                   </div>
                 </div>
               )}
             {(
-                  <button className="button_continue" onClick={handleContinueClick}>
+                  <button className="button_continue4" onClick={handleContinueClick}>
                     Ir a la Comisaria
                   </button>
                 )}

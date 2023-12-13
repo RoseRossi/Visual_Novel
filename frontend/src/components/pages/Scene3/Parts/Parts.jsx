@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, OrbitControls} from "@react-three/drei";
+import { useNavigate } from 'react-router-dom';
 import "./parts.css";
 import useSound from "use-sound";
 
