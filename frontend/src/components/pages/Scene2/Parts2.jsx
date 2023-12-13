@@ -19,7 +19,6 @@ const Parts2 = () => {
   const canvasRef = useRef();
   const canvasARef = useRef();
   const cameraRef = useRef();
-  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOptionP, setSelectedOptionP] = useState(null);
   const audioRef = useRef(null);
@@ -323,7 +322,9 @@ const Parts2 = () => {
     }
   }, [playSound]);
 
+  const navigate = useNavigate();
   return (
+    
     <>
       {selectedOption == null && (
         <div className="container-Scene2" >

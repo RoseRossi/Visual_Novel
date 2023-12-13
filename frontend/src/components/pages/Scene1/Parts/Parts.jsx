@@ -118,14 +118,20 @@ const Parts = () => {
   });
 
   const handleOptionClick = (id) => {
-    if (id === "S4A"){
-        console.log("sí op a");
-        handleContinueClick();
-        return;
-    }else{
-        console.log(id);
-        handleContinueClick();
-        return;
+      switch (id) {
+        case "S1A": //humanidad +10
+        case "S1B": //humanidad -10
+        case "S1C": //humanidad +5
+        case "S1D": //humanidad -5
+        case "S2A": //humanidad +10
+        case "S2B": //humanidad -10
+        case "S2C": //humanidad -5
+        case "S2D": //humanidad +5
+          console.log(id);
+          handleContinueClick();
+          break;
+        default:
+          handleContinueClick();
     }
   };
 
