@@ -10,6 +10,9 @@ import { Thomas } from "./Thomas";
 import { Police } from "./Police";
 import { Detective } from "./Detective"
 
+
+import { canNextScene } from "../../../../api/utils.jsx";
+
 const FeatherAnimation = () => {
   const featherRef = useRef();
   const clock = new Clock();
@@ -19,7 +22,7 @@ const FeatherAnimation = () => {
       featherRef.current.position.x = Math.sin(clock.getElapsedTime()) * 1;
     }
   });
-
+  
   return (
     <Feather ref={featherRef} position={[0, 2, -0.7]} scale={0.2} rotation={[-Math.PI / 2, Math.PI, 0]} />
   );
@@ -107,6 +110,13 @@ const Parts = () => {
   const [showAdditionalButtons, setShowAdditionalButtons] = useState(false);
   const navigate = useNavigate();
 
+  // Methods.
+  const [scene_, setScene_] = useState({
+    scene: 1,
+    total: 0,
+    prev: '/Prologue'
+  });
+
   const handleOptionClick = (id) => {
     if (id === "S4A"){
         console.log("sí op a");
@@ -119,11 +129,28 @@ const Parts = () => {
     }
   };
 
-  const handleContinueClick = () => {
-    if (textIndex === texts.length - 1) {
-      navigate('/Scene2-parts');
+  const handleContinueClick = async () => {
+    
+    // Verificate if exist user in localStorage.
+    if (localStorage.getItem("default") && 
+        textIndex === texts.length - 1) {
+
+      const data = JSON.parse(localStorage.getItem("default"));
+      const response = await fetchPutDataProgressUser({
+        email: data.email,
+        scene: 2,
+        total: data.total
+      });
+
+      if (response.status) {
+        navigate('/Scene2-parts');
+      } else {
+        alert("No se pudo actualizar el progreso, intente nuevamente");
+      }
+            
       return;
     }
+    
     if (textIndex === 0) {
       setShowAdditionalButtons(true);
     }
@@ -140,7 +167,10 @@ const Parts = () => {
       canvas.style.height = "50vh";
     }
   };
+
   useEffect(() => {
+    // Validate if can enter to this scene.
+    if (!canNextScene(scene_.scene)) {navigate(scene_.prev);}
     resizeCanvas();
   }, []);
 

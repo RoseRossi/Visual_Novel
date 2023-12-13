@@ -295,6 +295,10 @@ const Parts2 = () => {
     }
   };
 
+  const nextSceneUpdate = () => {
+
+  }
+
   const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.1;
