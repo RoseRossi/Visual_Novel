@@ -19,10 +19,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd ../../frontend
+        cd ../../frontend/
         npm ci
 
     - name: Run tests
       run: |
-        cd ../../frontend
+        cd ../../frontend/
         npm test
