@@ -127,7 +127,7 @@ const Parts4p4 = () => {
 
     const handleContinueClick = () => {
         if (textIndex === texts.length - 1) {
-        navigate('/Scene2-parts');
+        navigate('/Scene5-parts1');
         return;
         }
         if (textIndex === 0) {

@@ -352,10 +352,10 @@ const Parts4p3 = () => {
         // If option C is selected
         if (objectPicked) {
             setTexts([
-              "Encontré un [Objeto mundano de modelo simple]",
+              "Encontré un tenedor",
               "Esto me está mareando… ¿Cómo pudo traer eso?",
               "El comisario se sentó aludiendo a su mareo mientras se sostenía la cabeza...[También cuestionaba mis acciones, pero entre más lo sostenía más me gustaba su presencia…]",
-              "Parece un… [Objeto] pero… está demasiado destruido y se ve… huele a sangre y mierda…",
+              "Parece un… tenedor pero… está demasiado destruido y se ve… huele a sangre y mierda…",
               "Lenguaje… Pero si huele a … ¿De dónde sacó eso?",
               "Estaba en el piso, en medio de un círculo rojo corroído en el piso, pensé que podría ser importante… ",
             ]);
@@ -517,7 +517,7 @@ const Parts4p3 = () => {
             { showAdditionalButtons && textIndex === 6 && !shownOptions.has("S4C") && (
                 <div>
                   <div>
-                  <button  onClick={() =>handleOptionClick("S4C")} className="options_scene4p2" id="S4C">C. Objeto mundano de modelo simple</button>
+                  <button  onClick={() =>handleOptionClick("S4C")} className="options_scene4p2" id="S4C">C. Tenedor</button>
                   </div>
                 </div>
             )}

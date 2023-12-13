@@ -31,7 +31,7 @@ const Parts4p4 = () => {
         "[Tenía una idea… Comencé a soltar a Thomas, lentamente… Comenzó a gritar que no lo soltara]",
         "[Le guiñé el ojo y se calló. Sabía que podía confiar en mí, no iba a defraudar a este  niño,,,]",
         "Buena elección, detective… disfrutemos de esta cena juntos",
-        "[Cuando terminó su frase salí disparado hacia uno de los [Objeto mundano de modelo simple] y me lancé al agujero, no sabía si funcionaría… sólo podía confiar en que los gritos de lo que sea que fuese eso, fuesen una buena señal…]",
+        "[Cuando terminó su frase salí disparado hacia uno de los tenedores y me lancé al agujero, no sabía si funcionaría… sólo podía confiar en que los gritos de lo que sea que fuese eso, fuesen una buena señal…]",
         "[Por favor… que esto acabe de una vez y que Thomas esté a salvo… Sentí como todo desaparecía a mi alrededor…]",
 
       ]
@@ -170,7 +170,7 @@ const Parts4p4 = () => {
 
     const handleContinueClick = () => {
         if (textIndex === texts.length - 1) {
-        navigate('/Scene2-parts');
+        navigate('/Scene5-parts2');
         return;
         }
         if (textIndex === 0) {
