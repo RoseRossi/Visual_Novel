@@ -12,6 +12,7 @@ import { Detective } from "./Detective"
 
 
 import { canNextScene } from "../../../../api/utils.jsx";
+import { fetchPutDataProgressUser } from "../../../../api/fetchs.jsx";
 
 const FeatherAnimation = () => {
   const featherRef = useRef();
@@ -149,6 +150,14 @@ const Parts = () => {
       });
 
       if (response.status) {
+
+        localStorage.setItem("default", JSON.stringify({
+          email: data.email,
+          scene: 2,
+          total: data.total,
+          isLogged: data.isLogged
+        }));
+        
         navigate('/Scene2-parts');
       } else {
         alert("No se pudo actualizar el progreso, intente nuevamente");

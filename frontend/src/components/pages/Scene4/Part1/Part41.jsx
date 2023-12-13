@@ -9,7 +9,10 @@ import { Hand } from "./Hand";
 import { Fork } from "./Fork";
 import { Photo } from "./Photo";
 
-    const Parts4p1 = () => {
+import { canNextScene } from "../../../../api/utils.jsx";
+import { fetchPutDataProgressUser } from "../../../../api/fetchs.jsx";
+
+const Parts4p1 = () => {
     const canvasARef = useRef();
     const audioRef = useRef(null);
     const navigate = useNavigate();
@@ -17,40 +20,69 @@ import { Photo } from "./Photo";
     const [playSound, setPlaySound] = useState(false);
     const [showAdditionalButtons, setShowAdditionalButtons] = useState(false);
 
-    const handleContinueClick = () => {
+    const handleContinueClick = async () => {
+      // Verificate if exist user in localStorage.
+      if (localStorage.getItem("default")) {
+
+        const data = JSON.parse(localStorage.getItem("default"));
+        const response = await fetchPutDataProgressUser({
+          email: data.email,
+          scene: 5,
+          total: data.total
+        });
+
+        if (response.status) {
+
+          localStorage.setItem("default", JSON.stringify({
+            email: data.email,
+            scene: 5,
+            total: data.total,
+            isLogged: data.isLogged
+          }));
+
           navigate('/Scene4-parts2');
-          return;
+        } else {
+          alert("No se pudo actualizar el progreso, intente nuevamente");
+        }
+      }
     }
 
 
-      const handleOptionClick = (id) => {
-        switch (id) {
-          case "S1A": //humanidad -10
-          case "S1B": //humanidad -5
-          case "S1C": //humanidad +10
-          case "S2A": //humanidad -5
-          case "S2B": //humanidad +10
-          case "S2C": //humanidad -10
-          case "S3A": //humanidad +10
-          case "S3B": //humanidad -10
-          case "S3C": //humanidad -5
-            console.log(id);
-            break;
-        }
-      };
+    const handleOptionClick = (id) => {
+      switch (id) {
+        case "S1A": //humanidad -10
+        case "S1B": //humanidad -5
+        case "S1C": //humanidad +10
+        case "S2A": //humanidad -5
+        case "S2B": //humanidad +10
+        case "S2C": //humanidad -10
+        case "S3A": //humanidad +10
+        case "S3B": //humanidad -10
+        case "S3C": //humanidad -5
+          console.log(id);
+          break;
+      }
+    };
 
-      const finalText = "[Puede que aún haya algo más...] "
-      const handleBackClick = () => {
-        setCurrentTextC(finalText);
-        setShowAdditionalButtons(false);
-        setClickedObject(null);  
-      };
+    const finalText = "[Puede que aún haya algo más...] "
+    const handleBackClick = () => {
+      setCurrentTextC(finalText);
+      setShowAdditionalButtons(false);
+      setClickedObject(null);  
+    };
 
-      const [clickedObject, setClickedObject] = useState(null);
+    const [clickedObject, setClickedObject] = useState(null);
   
     const [currentTextC, setCurrentTextC] = useState(
       "¿Qué... pasó? [Me siento extraño, ajeno a mi cuerpo y siento náuseas... Ese hedor... Debo recoger todo lo que pueda e ir a la comisaría]"
     );
+
+    // Scene.
+    const [scene_, setScene_] = useState({
+      scene: 4,
+      total: 0,
+      prev: '/Scene3-parts'
+    });
 
     const handleObjectHover = (event) => {
       event.nativeEvent.target.style.cursor = "pointer";
@@ -77,6 +109,8 @@ import { Photo } from "./Photo";
 
     useEffect(() => {
         document.addEventListener("click", playAudio);
+        // Validate if can enter to this scene.
+        if (!canNextScene(scene_.scene)) {navigate(scene_.prev);}
         return () => {
             document.removeEventListener("click", playAudio);
         };

@@ -10,6 +10,9 @@ const Monster = React.lazy(() => import("./Monster"));
 const Detective3 = React.lazy(() => import("./Detective3"));
 
 
+import { canNextScene } from "../../../../api/utils.jsx";
+import { fetchPutDataProgressUser } from "../../../../api/fetchs.jsx";
+
 const Parts3 = () => {
     const texts = [ //39 objetos
         /* 0 index*/"[Ha pasado un día desde que encontraron la escena del crimen… Edward está encargándose del papeleo y todos no notaran cuando vaya a investigar. El mapa es de la zona industrial, y hay marcas de lápiz borrado descuidadamente alrededor de una de las bodegas más pequeñas]",
@@ -319,6 +322,12 @@ const Parts3 = () => {
     const [playB] = useSound("../assets/sounds/fear.mp3", { volume: 0.3, loop: true });
     const [playC] = useSound("../assets/sounds/chew.mp3", { volume: 0.1, loop: true });
     const [playSound, setPlaySound] = useState(false);
+    // Scene.
+    const [scene_, setScene_] = useState({
+        scene: 3,
+        total: 0,
+        prev: '/Scene2-parts'
+    });
 
     const playAudio = () => {
         if (audioRef.current) {
@@ -329,6 +338,8 @@ const Parts3 = () => {
     
     useEffect(() => {
         document.addEventListener("click", playAudio);
+        // Validate if can enter to this scene.
+        if (!canNextScene(scene_.scene)) {navigate(scene_.prev);}
         return () => {
             document.removeEventListener("click", playAudio);
         };
@@ -356,11 +367,34 @@ const Parts3 = () => {
     };
 
 
-    const handleContinueClick = () => {
+    const handleContinueClick = async () => {
         console.log("textIndex actual",textIndex);
         console.log("modelIndex actual",modelIndex);
         if (textIndex === texts.length - 1) {
-            navigate('/Scene4-parts1');
+            // Verificate if exist user in localStorage.
+            if (localStorage.getItem("default")) {
+
+                const data = JSON.parse(localStorage.getItem("default"));
+                const response = await fetchPutDataProgressUser({
+                email: data.email,
+                scene: 4,
+                total: data.total
+                });
+
+                if (response.status) {
+
+                localStorage.setItem("default", JSON.stringify({
+                    email: data.email,
+                    scene: 4,
+                    total: data.total,
+                    isLogged: data.isLogged
+                }));
+
+                 navigate('/Scene4-parts1')
+                } else {
+                 alert("No se pudo actualizar el progreso, intente nuevamente");
+                }
+            }
             return;
           }
         const newIndex = (textIndex + 1) % texts.length;
