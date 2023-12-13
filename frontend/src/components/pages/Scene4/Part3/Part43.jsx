@@ -48,8 +48,6 @@ const Parts4p3 = () => {
     },
   ]);
 
-
-
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
@@ -57,7 +55,7 @@ const Parts4p3 = () => {
   const [shownOptions, setShownOptions] = useState(new Set());
   const [humanidad, setHumanidad] = useState(0);
   const [variable,setVariable] = useState(false);
-  const [variable2, setVariable2] = useState(5);
+  const [variable2, setVariable2] = useState(false);
 
   //setShownOptions(new Set());
   const handleContinueClick = () => {
@@ -115,18 +113,25 @@ const Parts4p3 = () => {
         ]);
       } else {
         setTexts([
+          "...",
           "Creo que deberíamos esperar antes de ir… tengo un mal presentimiento.",
           "Daré la orden de los refuerzos, podemos ir en la noche.",
           "No me siento muy bien…",
           "[Vomité… todo estaba rojo y perdí el conocimiento…]",
         ]);
         setTitles([
+          " ",
           "Thomas",
           "Smith",
           "Detective",
           "Detective",
         ]);
         setModels([
+          {
+            component: <Thomas />,
+            position: { x: 0.5, y: -7, z: 5 },
+            scale: 5,
+          },
           {
             component: <Thomas />,
             position: { x: 0.5, y: -7, z: 5 },
@@ -152,12 +157,19 @@ const Parts4p3 = () => {
       if (texts[textIndex] === "[Podía sentir cómo mi cuerpo se adormecía… y caí dormido]") {
         console.log("entro")
         setVariable(true);
+      } 
+      
+      if (texts[textIndex] === "[Vomité… todo estaba rojo y perdí el conocimiento…]") {
+        console.log("entro")
+        setVariable2(true);
       }
       return;
     }
     if (variable==true){
-      navigate('/Scene2-parts');
-    }
+      navigate('/Scene4-parts4');
+    } else if (variable2==true){
+      navigate('/Scene4-parts5');
+    } 
     if (textIndex === 0) {
       setShowAdditionalButtons(true)
     }
@@ -177,7 +189,7 @@ const Parts4p3 = () => {
       case "S4A":
         // If option A is selected
         if (handPicked) {
-          setHumanidad(humanidad - 3);
+          setHumanidad(humanidad + 21);
           setTexts([
             "Encontré esta mano… en el piso, en unas bodegas.",
             "Espere, es… Comisario se parece a…",

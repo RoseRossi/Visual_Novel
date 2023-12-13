@@ -12,6 +12,8 @@ import Parts3 from './components/pages/Scene3/Parts/Parts';
 import Parts4p2 from "./components/pages/Scene4/Part2/Part42";
 import Parts4p1 from "./components/pages/Scene4/Part1/Part41";
 import Parts4p3 from "./components/pages/Scene4/Part3/Part43";
+import Parts4p4 from "./components/pages/Scene4/Part4/Part44";
+import Parts4p5 from "./components/pages/Scene4/Part5/Part45";
 
 const App = () => {
     return (
@@ -27,6 +29,8 @@ const App = () => {
                     <Route path="/Scene4-parts1" element={<Parts4p1/>} /> {/*exploración*/}
                     <Route path="/Scene4-parts2" element={<Parts4p2/>} /> {/*comisaria*/}
                     <Route path="/Scene4-parts3" element={<Parts4p3/>} /> {/*comisaria*/}
+                    <Route path="/Scene4-parts4" element={<Parts4p4/>} /> {/*comisaria*/}
+                    <Route path="/Scene4-parts5" element={<Parts4p5/>} /> {/*comisaria*/}
                     <Route
                         path="*"
                         element={

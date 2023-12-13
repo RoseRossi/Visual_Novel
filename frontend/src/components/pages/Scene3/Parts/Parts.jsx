@@ -3,8 +3,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls} from "@react-three/drei";
 import "./parts.css";
 import useSound from "use-sound";
-import { Link, useNavigate } from "react-router-dom";
-import { AmbientLight, DirectionalLight } from 'three';
 
 const Bag = React.lazy(() => import("./Bag"));
 const Bones = React.lazy(() => import("./Bones"));
@@ -351,9 +349,9 @@ const Parts3 = () => {
     const redLightColor = '#ff0000';
 
     const calculateLightColor = () => {
-        if (textIndex === 10) return redLightColor;
-        if (textIndex === 12) return redLightColor;
-        if (textIndex === 20) return blackLightColor;
+        if (textIndex >= 10 && textIndex <= 15 ) return redLightColor;
+        if (textIndex >= 16 && textIndex <= 32) return blackLightColor;
+        if (textIndex >= 35) return blackLightColor;
         return '#ffffff'; // Luz blanca predeterminada para otros casos
     };
 
@@ -422,7 +420,6 @@ const Parts3 = () => {
                                         ref={canvasRef}
                                         style={{ width: "50vw", height: "50vh" }}
                                     >
-                                        
                                         {models.map((model, modelIndex) => (
                                             <group key={modelIndex}>
                                                 {modelIndex === textIndex && (
@@ -435,7 +432,6 @@ const Parts3 = () => {
                                         ))}
                                         <ambientLight intensity={0.5} color={calculateLightColor()} />
                                         <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
-    
                                     </Canvas>
                                     <audio ref={audioRef} loop>
                                     </audio>
