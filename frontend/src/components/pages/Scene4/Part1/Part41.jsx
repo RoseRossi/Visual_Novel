@@ -166,7 +166,8 @@ import { Photo } from "./Photo";
             onPointerOut={handleObjectHoverOut}
             onClick={() =>
               handleObjCClick(
-                "[Es una mano masculina cercenada con las uñas encarnadas, está fresca y tiene muy buen aroma. Es casi apetecible...]", "Hand"
+                "[Es una mano masculina cercenada con las uñas encarnadas, está fresca y tiene muy buen aroma. Es casi apetecible...]",
+                "Hand"
               )
             }
           />
