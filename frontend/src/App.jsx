@@ -13,9 +13,9 @@ import Parts3 from './components/pages/Scene3/Parts/Parts';
 import Parts4p2 from "./components/pages/Scene4/Part2/Part42";
 import Parts4p1 from "./components/pages/Scene4/Part1/Part41";
 import Parts4p3 from "./components/pages/Scene4/Part3/Part43";
-import Parts5BE from "./components/pages/Scene5/Parts5-BE";
-import Parts5GE from "./components/pages/Scene5/Parts5-GE";
-import Parts5NE from "./components/pages/Scene5/Parts5-NE";
+import Parts5BE from "./components/pages/Scene5/Parts5BE";
+import Parts5GE from "./components/pages/Scene5/Parts5GE";
+import Parts5NE from "./components/pages/Scene5/Parts5NE";
 
 
 import { isUserLoggedIn } from "./api/utils.jsx";
