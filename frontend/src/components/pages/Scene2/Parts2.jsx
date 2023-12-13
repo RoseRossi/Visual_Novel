@@ -15,11 +15,13 @@ import { Body } from "./Body";
 import { Rag } from "./Rag"
 import useSound from 'use-sound';
 
+import { canNextScene } from "../../../api/utils.jsx";
+import { fetchPutDataProgressUser } from "../../../api/fetchs.jsx";
+
 const Parts2 = () => {
   const canvasRef = useRef();
   const canvasARef = useRef();
   const cameraRef = useRef();
-  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOptionP, setSelectedOptionP] = useState(null);
   const audioRef = useRef(null);
@@ -47,6 +49,12 @@ const Parts2 = () => {
     setSelectedOption(position);
   };
 
+  // Scene.
+  const [scene_, setScene_] = useState({
+    scene: 2,
+    total: 0,
+    prev: '/Scene1-parts'
+  });
 
   const handleBackToInitialPosition = () => {
     cameraRef.current.position.set(15, -3, -70);
@@ -295,6 +303,33 @@ const Parts2 = () => {
     }
   };
 
+  const nextSceneUpdate = async () => {
+    // Verificate if exist user in localStorage.
+    if (localStorage.getItem("default")) {
+
+      const data = JSON.parse(localStorage.getItem("default"));
+      const response = await fetchPutDataProgressUser({
+        email: data.email,
+        scene: 3,
+        total: data.total
+      });
+
+      if (response.status) {
+
+        localStorage.setItem("default", JSON.stringify({
+          email: data.email,
+          scene: 3,
+          total: data.total,
+          isLogged: data.isLogged
+        }));
+
+        navigate('/Scene3-parts');
+      } else {
+        alert("No se pudo actualizar el progreso, intente nuevamente");
+      }
+    }
+  }
+
   const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.1;
@@ -304,6 +339,8 @@ const Parts2 = () => {
 
   useEffect(() => {
     document.addEventListener("click", playAudio);
+    // Validate if can enter to this scene.
+    if (!canNextScene(scene_.scene)) {navigate(scene_.prev);}
     return () => {
       document.removeEventListener("click", playAudio);
     };
@@ -319,7 +356,9 @@ const Parts2 = () => {
     }
   }, [playSound]);
 
+  const navigate = useNavigate();
   return (
+    
     <>
       {selectedOption == null && (
         <div className="container-Scene2" >
@@ -343,7 +382,7 @@ const Parts2 = () => {
               <button className="options_scene1" id="S1C" onClick={() => { handleCameraPosition([8, -2, -55]); }}>
                 C. Los alrededores
               </button>
-              <button className="options_scene1" id="S1D" onClick={() => { navigate('/Scene3-parts'); return; }}>
+              <button className="options_scene1" id="S1D" onClick={nextSceneUpdate}>
                 Mejor me voy...
               </button>
             </div>

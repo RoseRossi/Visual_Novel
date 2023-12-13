@@ -5,7 +5,9 @@ import "./home.css";
 import { fectIsUserRegistered , fetchSendEmail } from "../../api/fetchs.jsx";
 import CodeEmail from "./Validate/CodeEmail.jsx";
 
-const Home = ({ ...props }) => {
+const Home = ({
+    data_
+}) => {
     const [email, setEmail] = useState("");
     const [contraseña, setContraseña] = useState("");
     const audioRef = useRef(null);
@@ -46,7 +48,7 @@ const Home = ({ ...props }) => {
                     setIsSendEmail(true);
                     setCodeValue(responseEmail.code);
                 }
-                //navigate('/Prologue');
+                
                 setIsRegister(false);
                 return;
             }
@@ -63,8 +65,26 @@ const Home = ({ ...props }) => {
         }
     }
 
+    const createStoreLocalState = () =>
+    {
+        const default_ = {
+            email: "",
+            password: "",
+            scene: 0,
+            total: 0,
+            isLogged: false
+        }
+
+        // Verificate if exist user in localStorage.
+        if (!localStorage.getItem("default")) {
+            localStorage.setItem("default", JSON.stringify(default_));
+        }
+    }
+
     useEffect(() => {
+        console.log("data_", data_);
         document.addEventListener("click", playAudio);
+        createStoreLocalState();
         return () => {
             document.removeEventListener("click", playAudio);
         };
@@ -117,19 +137,20 @@ const Home = ({ ...props }) => {
                         <Link to="/Register" className="register">Registrarse</Link>
                     </form>
                     :
-                    <CodeEmail stateChange={
-                        {
+                    <CodeEmail 
+                        stateChange={{
                             isSendEmail: isSendEmail,
                             setIsSendEmail: setIsSendEmail
-                        }
-                    } 
-                    codeValue={codeValue}
-                    dataUser={
-                        {
+                        }} 
+                        codeValue={codeValue}
+                        dataUser={{
                             email: email,
-                            contraseña: contraseña
-                        }
-                    }
+                            password: contraseña
+                        }}
+                        logged={{
+                            isLogged: data_.isLogged,
+                            setIsLogged: data_.setIsLogged
+                        }}
                     />
                 }
             </div>

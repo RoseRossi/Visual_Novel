@@ -11,7 +11,8 @@ import { fetchPutDataProgressUser ,  fetchPostProgressUser } from "../../../api/
 const CodeEmail = ({
     stateChange,
     codeValue,
-    dataUser
+    dataUser,
+    logged
 }) => {
 
     // States.
@@ -28,7 +29,7 @@ const CodeEmail = ({
         '/Scene2-parts',
         '/Scene3-parts',
         '/Scene4-parts1',
-       '/Scene4-parts2'
+        '/Scene4-parts2'
     ]
 
     // Handlers.
@@ -43,15 +44,43 @@ const CodeEmail = ({
         setdisabled(event.target.value.length < 8);
     }
 
+    const insertDataLogin = ({
+        email,
+        password,
+        scene,
+        total,
+    }) =>
+    {
+        // Verificate if exist user in localStorage.
+        if (localStorage.getItem("default")) {
+            localStorage.setItem("default", JSON.stringify({
+                email: email,
+                password: password,
+                scene: scene,
+                total: total,
+                isLogged: true
+            }));
+        }
+    }
+
     const onSubmit = async (event) =>
     {
         event.preventDefault();
         const value = event.target[0].value;
         if (code !== value) { alert("Codigo incorrecto"); return;}
+        
         const data = await fetchPostProgressUser({
             email: dataProgressUser.email
         });
+
         const continueScene = (data.data)[0].scene;
+
+        insertDataLogin({
+            email: dataProgressUser.email,
+            password: dataProgressUser.password,
+            scene: continueScene,
+            total: (data.data)[0].total
+        })
 
         if (continueScene <= (scene_.length -1)) {
             navigate(scene_[continueScene]);
@@ -59,11 +88,14 @@ const CodeEmail = ({
         else {
             navigate(scene_[0]);
         }
+
+        logged.setIsLogged(true);
     }
 
     // Effects.
 
     React.useEffect(() => {
+        console.log("codeValue", codeValue);
         setCode(codeValue);
     }, [codeValue]);
 
