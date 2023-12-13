@@ -6,7 +6,7 @@ const userData = [
 	{
 		correo: 'pepitoperez@gmail.com',
     contraseña: 123123
-	},
+	}
 ];
 
 test('post new user', async () => {
