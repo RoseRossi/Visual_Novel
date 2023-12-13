@@ -6,23 +6,30 @@ import { fetchPutDataProgressUser } from "../../../../api/fetchs.jsx";
 const Prologue = () => {
   const navigate =  useNavigate();
   const handleContinueClick = async () => {
-    // Verificate if exist user in localStorage.
-    if (localStorage.getItem("default")) {
-      const data = JSON.parse(localStorage.getItem("default"));
-      const response = await fetchPutDataProgressUser({
+  // Verificate if exist user in localStorage.
+  if (localStorage.getItem("default")) {
+
+    const data = JSON.parse(localStorage.getItem("default"));
+    const response = await fetchPutDataProgressUser({
+      email: data.email,
+      scene: 1,
+      total: data.total
+    });
+
+    if (response.status) {
+
+      localStorage.setItem("default", JSON.stringify({
         email: data.email,
         scene: 1,
-        total: data.total
-      });
+        total: data.total,
+        isLogged: data.isLogged
+      }));
 
-      if (response.status) {
-        navigate('/Scene1-parts');
-      }
-      else {
-        alert("No se pudo actualizar el progreso, intente nuevamente");
-      }
-
+      navigate('/Scene1-parts');
+    } else {
+      alert("No se pudo actualizar el progreso, intente nuevamente");
     }
+  }
   };
   return (
     <>

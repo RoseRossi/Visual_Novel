@@ -121,14 +121,59 @@ const Parts = () => {
   const handleOptionClick = (id) => {
       switch (id) {
         case "S1A": //humanidad +10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 10,
+          }));
+          handleContinueClick();
+          break;
         case "S1B": //humanidad -10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total - 10,
+          }));
+          handleContinueClick();
+          break;
         case "S1C": //humanidad +5
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 5,
+          }));
+          handleContinueClick();
+          break;
         case "S1D": //humanidad -5
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total - 5,
+          }));
+          handleContinueClick();
+          break;
         case "S2A": //humanidad +10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 10,
+          }));
+          handleContinueClick();
+          break;
         case "S2B": //humanidad -10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total - 10,
+          }));
+          handleContinueClick();
+          break;
         case "S2C": //humanidad -5
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total -5,
+          }));
+          handleContinueClick();
+          break;
         case "S2D": //humanidad +5
-          console.log(id);
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 5,
+          }));
           handleContinueClick();
           break;
         default:

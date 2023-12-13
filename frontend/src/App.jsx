@@ -63,6 +63,8 @@ const App = () => {
                     <Router>
                         <Routes>
                             <Route path="/" element={<Home data_={dataManager} />} />
+                            <Route path="/Register" element={<Register/>} />
+                            <Route path="/Prologue" element={<Prologue/>} />
                             <Route
                                 path="*"
                                 element={<> <h1>No Found Route</h1> </>}

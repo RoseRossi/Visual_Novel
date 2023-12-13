@@ -6,6 +6,9 @@ import "./Part42.css";
 import { Thomas } from "../../Scene1/Parts/Thomas.jsx";
 import { Detective } from "../../Scene1/Parts/Detective.jsx";
 
+import { canNextScene } from "../../../../api/utils.jsx";
+import { fetchPutDataProgressUser } from "../../../../api/fetchs.jsx";
+
 const Parts4p2 = () => {
 
   const texts = [
@@ -101,16 +104,19 @@ const Parts4p2 = () => {
     },
   ];
 
+  // Scene.
+  const [scene_, setScene_] = useState({
+    scene: 5,
+    total: 0,
+    prev: '/Scene4-parts1'
+  });
+
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [showAdditionalButtons,setShowAdditionalButtons] = useState(false);
   const navigate = useNavigate();
 
   const handleContinueClick = () => {
-    if (textIndex === texts.length - 1) {
-      navigate('/Scene2-parts');
-      return;
-    }
     if (textIndex === 0) {
       setShowAdditionalButtons(true);
     }
@@ -119,15 +125,57 @@ const Parts4p2 = () => {
     setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
   };
 
-  const handleOptionClick = (id) => {
+  const handleOptionClick = async (id) => {
     if (id === "S4A"){ //solo neutral, humanidad se torna 20 sí o sí
-        console.log("sí op a");
-        navigate('/Scene4-parts3');
-        return;
+      // Verificate if exist user in localStorage.
+      if (localStorage.getItem("default")) {
+
+        const data = JSON.parse(localStorage.getItem("default"));
+        const response = await fetchPutDataProgressUser({
+          email: data.email,
+          scene: 6,
+          total: data.total
+        });
+
+        if (response.status) {
+
+          localStorage.setItem("default", JSON.stringify({
+            email: data.email,
+            scene: 6,
+            total: data.total,
+            isLogged: data.isLogged
+          }));
+
+          navigate('/Scene4-parts3');
+        } else {
+          alert("No se pudo actualizar el progreso, intente nuevamente");
+        }
+      }
     }else{ //good humanidad mayor 20 y bad humanidad menor a 20
-        console.log(id);
-        navigate('/Scene4-parts3');
-        return;
+             // Verificate if exist user in localStorage.
+      if (localStorage.getItem("default")) {
+
+        const data = JSON.parse(localStorage.getItem("default"));
+        const response = await fetchPutDataProgressUser({
+          email: data.email,
+          scene: 6,
+          total: data.total
+        });
+
+        if (response.status) {
+
+          localStorage.setItem("default", JSON.stringify({
+            email: data.email,
+            scene: 6,
+            total: data.total,
+            isLogged: data.isLogged
+          }));
+
+          navigate('/Scene4-parts3');
+        } else {
+          alert("No se pudo actualizar el progreso, intente nuevamente");
+        }
+      }
     }
   };
 
@@ -140,6 +188,8 @@ const Parts4p2 = () => {
     }
   };
   useEffect(() => {
+    // Validate if can enter to this scene.
+    if (!canNextScene(scene_.scene)) {navigate(scene_.prev);}
     resizeCanvas();
   }, []);
 
