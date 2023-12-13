@@ -1,10 +1,16 @@
 import React from "react";
 import "./prologue.css";
 import { useNavigate } from 'react-router-dom';
+import { fetchPutDataProgressUser } from "../../../../api/fetchs.jsx";
 
 const Prologue = () => {
   const navigate =  useNavigate();
-  const handleContinueClick = () => {
+  const handleContinueClick = async () => {
+    // const response = await fetchPutDataProgressUser({
+    //   email: "",
+    //   scene: "1",
+    //   total: "1"
+    // });
     navigate('/Scene1-parts');
   };
   return (

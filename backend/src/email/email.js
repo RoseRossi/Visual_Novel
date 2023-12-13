@@ -2,10 +2,10 @@ const { remindEmail ,  correoToken } = require('./../env');
 const nodeMailer = require('nodemailer');
 
 //peticion post
-const enviarCorreo = (email,data) => 
+const enviarCorreo = async (email,data) => 
 {
     let code = '',
-    isSend = false;
+    isSend = true;
     try {
         //sacar hora y fecha en variables const aparate
         const date = new Date();
@@ -41,8 +41,6 @@ const enviarCorreo = (email,data) =>
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
                 console.log(err);
-            } else {
-                isSend = true;
             }
         });
     } catch (error) {

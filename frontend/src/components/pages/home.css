@@ -85,3 +85,94 @@ form {
     font-size: 16px;
     color: rgb(151, 151, 120);
 }
+
+._code_email_container {
+    display: grid;
+    grid-template-rows: 100%;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+._code_email_container > section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    padding: 30px;
+    max-width: 80%;
+    min-height: 200px;
+    background: rgba(2, 17, 22, 0.6);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 999;
+}
+
+._code_email_container > section 
+section:first-child p {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+._code_email_container > section 
+section:last-child {
+    width: calc(100% - 40px);
+    height: 100%;
+    padding: 20px;
+}
+
+._code_email_container > section 
+section:last-child form {
+    all: unset;
+    display: grid;
+    gap: 30px;
+    width: -webkit-fill-available;
+}
+
+._code_email_container > section 
+section:last-child form input {
+    justify-self: center;
+    width: 90%;
+    height: 30px;
+    background: rgba(2, 17, 22);
+    border-radius: 3px;
+    margin: unset;
+    border: none;
+    color: #fff;
+}
+
+._code_email_container > section 
+section:last-child form button {
+    justify-self: center;
+    margin: auto 0;
+}
+
+._code_email_container > section 
+section:last-child form button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+._code_email_container > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    z-index: 99;
+    cursor: pointer;
+}
+
+html,body {
+    overflow: hidden;
+}

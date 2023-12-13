@@ -1,0 +1,201 @@
+.container-Scene2{
+    display: flex;
+    margin-top: 15rem;
+    margin-left: 15rem;
+    width: 60%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    top: -100px;
+}
+
+.card-Scene2{
+    background-color: #102128bd;
+    padding: 30px;
+    border: 1px solid #102128;
+    border-radius: 20px;
+    height: fit-content;
+    width: 700px;
+    top: -60px;
+}
+
+.titulo-Scene2 {
+    text-align: left;
+    color: #D1CEAE;
+    font-size: 40px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 600;
+    font-style: normal;
+    text-shadow: 2px 2px 2px black;
+}
+  
+.text-Scene2 {
+    text-align: justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+}
+
+/**Para opcion A */
+.containerA-Scene2{
+    display: flex;
+    margin-top: 15rem;
+    margin-left: 15rem;
+    width: 60%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    top: -250px; 
+    left: -200px;
+}
+
+.cardA-Scene2{
+    background-color: #102128bd;
+    padding: 30px;
+    border: 1px solid #102128;
+    border-radius: 20px;
+    height: fit-content;
+    width: 700px;
+}
+.textA-Scene2{
+    text-align:justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+}
+
+.canvasA{
+    width: 70vw;
+    height: 50vh;
+    position: absolute;
+    z-index: 3;
+    margin-right: 15rem;
+    margin-top: 17rem;
+    left: 20%;       
+}
+
+.canvasB{
+    width: 90vw;
+    height: 70vh;
+    position: absolute;
+    z-index: 1;
+    margin-left: 5rem;
+    margin-top: -10rem;      
+}
+
+/**Para opción B*/
+
+.containerB-Scene2{
+    display: flex;
+    margin-top: 19rem;
+    margin-left: 15rem;
+    width: 60%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+}
+
+.cardB-Scene2{
+    background-color: #102128bd;
+    padding: 30px;
+    border: 1px solid #102128;
+    border-radius: 20px;
+    height: fit-content;
+    width: 700px;
+    position: absolute;
+    margin-top: 5rem;
+    z-index: 2;
+}
+
+.tituloB-Scene2 {
+    text-align: left;
+    color: #D1CEAE;
+    font-size: 40px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 600;
+    font-style: normal;
+    text-shadow: 2px 2px 2px black;
+}
+  
+.textB-Scene2 {
+    text-align: justify;
+    color: #D1CEAE;
+    font-size: 18px;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 545;
+    font-style: italic;
+}
+
+.back-button{
+    position: absolute;
+    height: 60px;
+    width: 190px;
+    margin: -60px 30px 0px; 
+    background-color: #353535;
+    color: #FFDA38;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 1px solid #2e2d2d;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 400;
+    font-style: italic;
+    text-shadow: 2px 2px 2px black;
+}
+
+.back-button:hover{
+    background-color: #666355; 
+    cursor: pointer;
+}
+
+.back-button:active{
+    background-color: rgb(192, 186, 161); 
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.simple-text{
+    color: #FFDA38;
+}
+
+.continue-button{
+    height: 50px;
+    width: 180px;
+    margin: 260px 10px 0; 
+    background-color: #353535;
+    color: #FFDA38;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 1px solid #2e2d2d;
+    font-family: "Gentium Book Basic-Bold, Helvetica";
+    font-weight: 400;
+    font-style: italic;
+    text-shadow: 2px 2px 2px black;
+    z-index: 2;
+}
+
+.continue-button:hover {
+    background-color: #666355; 
+    cursor: pointer;
+}
+.continue-button:active {
+    background-color: #84806e;
+    cursor: pointer;
+}
