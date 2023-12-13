@@ -6,8 +6,12 @@ import "./Part45.css";
 import {Detective} from "../../Scene1/Parts/Detective.jsx";
 import {Thomas} from "../../Scene1/Parts/Thomas.jsx";
 import {Monster} from "../../Scene3/Parts/Monster.jsx";
+import useSound from 'use-sound';
 
 const Parts4p4 = () => {
+  const audioRef = useRef(null);
+  const [play] = useSound("../assets/sounds/terror.mp3");
+  const [playSound, setPlaySound] = useState(false);
     const texts = [
         "[Habían otras dos patrullas, dos policías hacían guardia fuera y otro estaba dormido dentro de la patrulla]",
         "[Me levanté y corrí dentro, tenía la sensación de que algo malo les iba a pasar si no estaba ahí]",
@@ -185,12 +189,40 @@ const Parts4p4 = () => {
         canvas.style.height = "50vh";
       }
     };
+
+    const playAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.1;
+        audioRef.current.play();
+      }
+    }
+  
+    useEffect(() => {
+      document.addEventListener("click", playAudio);
+      return () => {
+        document.removeEventListener("click", playAudio);
+      };
+    }, []);
+  
+    useEffect(() => {
+      if (playSound) {
+        play();
+        playA();
+        playB();
+        playC();
+        setPlaySound(false);
+      }
+    }, [playSound]);
+
     useEffect(() => {
       resizeCanvas();
     }, []);
 
     return (
         <div className="scene44-bg">
+          <audio ref={audioRef} loop>
+            <source src="../assets/sounds/terror.mp3" type="audio/mpeg" />
+          </audio>
           <div 
             style={{
               display: "flex",

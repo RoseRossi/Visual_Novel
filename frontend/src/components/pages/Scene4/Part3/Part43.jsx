@@ -9,7 +9,13 @@ import {Police} from "../../Scene1/Parts/Police.jsx";
 import { Hand } from "../../Scene4/Part1/Hand.jsx";
 import { Fork } from "../../Scene4/Part1/Fork.jsx";
 import { Photo } from "../../Scene4/Part1/Photo.jsx"; 
+import useSound from 'use-sound';
+
 const Parts4p3 = () => {
+  const audioRef = useRef(null);
+  const [play] = useSound("../assets/sounds/sonido.mp3");
+  const [playSound, setPlaySound] = useState(false);
+
 
   const [texts, setTexts] = useState([
     "[Lo mejor es cooperar… Necesito su ayuda después de todo…]",
@@ -446,6 +452,28 @@ const Parts4p3 = () => {
       canvas.style.height = "50vh";
     }
   };
+
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.1;
+      audioRef.current.play();
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", playAudio);
+    return () => {
+      document.removeEventListener("click", playAudio);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (playSound) {
+      play();
+      setPlaySound(false);
+    }
+  }, [playSound]);
+
   useEffect(() => {
     resizeCanvas();
   }, []);
@@ -464,6 +492,9 @@ const Parts4p3 = () => {
         }}
       >
         <div className="container-1" style={{ marginRight: "-60px" }}>
+        <audio ref={audioRef} loop>
+            <source src="../assets/sounds/sonido.mp3" type="audio/mpeg" />
+          </audio>
           <div className="container-2">
             <div className="scene1part1-container">
               <h1 className="title-part1">{titles[textIndex]}</h1>
