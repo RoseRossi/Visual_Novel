@@ -322,7 +322,7 @@ const Parts3 = () => {
 
     const playAudio = () => {
         if (audioRef.current) {
-            audioRef.current.volume = 0.1;
+            audioRef.current.volume = 0.5;
             audioRef.current.play();
         }
     }
@@ -360,7 +360,7 @@ const Parts3 = () => {
         console.log("textIndex actual",textIndex);
         console.log("modelIndex actual",modelIndex);
         if (textIndex === texts.length - 1) {
-            navigate('/Scene4-parts2');
+            navigate('/Scene4-parts1');
             return;
           }
         const newIndex = (textIndex + 1) % texts.length;
@@ -428,6 +428,7 @@ const Parts3 = () => {
                                         <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
                                     </Canvas>
                                     <audio ref={audioRef} loop>
+                                        <source src="../assets/sounds/fear.mp3" type="audio/mpeg" />
                                     </audio>
                                 </div>
                             </div>
