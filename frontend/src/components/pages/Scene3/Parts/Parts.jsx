@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, OrbitControls} from "@react-three/drei";
+import { useNavigate } from 'react-router-dom';
 import "./parts.css";
 import useSound from "use-sound";
 
@@ -322,7 +322,7 @@ const Parts3 = () => {
 
     const playAudio = () => {
         if (audioRef.current) {
-            audioRef.current.volume = 0.1;
+            audioRef.current.volume = 0.5;
             audioRef.current.play();
         }
     }
@@ -355,18 +355,12 @@ const Parts3 = () => {
         return '#ffffff'; // Luz blanca predeterminada para otros casos
     };
 
-    const calculateBackgroundColor = () => {
-        if (textIndex === 10) return blackLightColor;
-        if (textIndex === 12) return redLightColor;
-        if (textIndex === 20) return blackLightColor;
-        return '#ffffff'; // Color de fondo blanco predeterminado para otros casos
-    };
 
     const handleContinueClick = () => {
         console.log("textIndex actual",textIndex);
         console.log("modelIndex actual",modelIndex);
         if (textIndex === texts.length - 1) {
-            navigate('/Scene4-parts2');
+            navigate('/Scene4-parts1');
             return;
           }
         const newIndex = (textIndex + 1) % texts.length;
@@ -434,6 +428,7 @@ const Parts3 = () => {
                                         <directionalLight intensity={1} position={[5, 5, 5]} color={calculateLightColor()} />
                                     </Canvas>
                                     <audio ref={audioRef} loop>
+                                        <source src="../assets/sounds/fear.mp3" type="audio/mpeg" />
                                     </audio>
                                 </div>
                             </div>
