@@ -96,11 +96,11 @@ import { Photo } from "./Photo";
                 overflow: "hidden",
             }}
             >
-        <div className= "container-Scene2" >
+        <div className= "container-Scene42" >
             <audio ref={audioRef} loop>
                 <source src="../assets/sounds/scene2C.mp3" type="audio/mpeg" />
             </audio>
-            <div className="card-Scene2">
+            <div className="card-Scene42">
                 <p className="textA-Scene2"> {currentTextC} </p>
             </div>
             {showAdditionalButtons && clickedObject === "Hand" && (

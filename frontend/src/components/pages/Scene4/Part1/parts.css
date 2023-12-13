@@ -10,7 +10,7 @@
     left: 0;
   }
   
-  .container-Scene2{
+  .container-Scene42{
     display: flex;
     margin-top: 20rem;
     margin-left: 15rem;
@@ -23,7 +23,7 @@
     z-index: 1;
 }
 
-.card-Scene2{
+.card-Scene42{
     background-color: #102128bd;
     padding: 30px;
     border: 1px solid #102128;
