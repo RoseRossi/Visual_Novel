@@ -1,0 +1,7 @@
+{
+    "registerUser": "http://localhost:3700/backend/registerUser/",
+    "isUserRegistered": "http://localhost:3700/backend/isUserRegistered/",
+    "sendEmail": "http://localhost:3700/backend/sendEmail/",
+    "getDataProgressUser": "http://localhost:3700/backend/progressUserData/",
+    "updateProgressUser": "http://localhost:3700/backend/updateProgress/"
+}
