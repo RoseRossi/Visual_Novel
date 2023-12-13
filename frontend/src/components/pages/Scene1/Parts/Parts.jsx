@@ -9,6 +9,7 @@ import { Clock } from "three";
 import { Thomas } from "./Thomas";
 import { Police } from "./Police";
 import { Detective } from "./Detective"
+import useSound from 'use-sound';
 
 const FeatherAnimation = () => {
   const featherRef = useRef();
@@ -26,6 +27,9 @@ const FeatherAnimation = () => {
 };
 
 const Parts = () => {
+  const audioRef = useRef(null);
+  const [play] = useSound("../assets/sounds/scene2A.mp3");
+  const [playSound, setPlaySound] = useState(false);
 
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",
@@ -140,6 +144,31 @@ const Parts = () => {
       canvas.style.height = "50vh";
     }
   };
+
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.1;
+      audioRef.current.play();
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", playAudio);
+    return () => {
+      document.removeEventListener("click", playAudio);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (playSound) {
+      play();
+      playA();
+      playB();
+      playC();
+      setPlaySound(false);
+    }
+  }, [playSound]);
+
   useEffect(() => {
     resizeCanvas();
   }, []);
@@ -147,6 +176,9 @@ const Parts = () => {
 
   return (
     <div className="scene1-bg">
+      <audio ref={audioRef} loop>
+            <source src="../assets/sounds/scene2A.mp3" type="audio/mpeg" />
+          </audio>
       <div
         style={{
           display: "flex",
