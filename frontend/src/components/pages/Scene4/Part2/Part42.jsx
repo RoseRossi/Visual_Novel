@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./Part42.css";
+import { Thomas } from "../../Scene1/Parts/Thomas.jsx";
+import { Detective } from "../../Scene1/Parts/Detective.jsx";
 
 const Parts4p2 = () => {
 
@@ -37,11 +39,66 @@ const Parts4p2 = () => {
   ]
 
   const models = [
-    /*{
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
       component: <Thomas />,
       position: { x: 0.5, y: -7, z: 5 },
       scale: 5,
-    },*/
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Thomas />,
+      position: { x: 0.5, y: -7, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9, z: 5 },
+      scale: 5,
+    },
   ];
 
   const [modelIndex, setModelIndex] = useState(0);
@@ -63,11 +120,11 @@ const Parts4p2 = () => {
   };
 
   const handleOptionClick = (id) => {
-    if (id === "S4A"){
+    if (id === "S4A"){ //solo neutral, humanidad se torna 20 sí o sí
         console.log("sí op a");
-        navigate('/Scene2-parts');
+        navigate('/Scene4-parts3');
         return;
-    }else{
+    }else{ //good humanidad mayor 20 y bad humanidad menor a 20
         console.log(id);
         navigate('/Scene4-parts3');
         return;
