@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import "./Part43.css";
-
+import {Detective} from "../../Scene1/Parts/Detective.jsx";
+import {Thomas} from "../../Scene1/Parts/Thomas.jsx";
+import {Police} from "../../Scene1/Parts/Police.jsx";
 const Parts4p3 = () => {
 
   const [texts, setTexts] = useState([
@@ -20,13 +22,28 @@ const Parts4p3 = () => {
     "Detective",
   ]);
 
-  const models = [
-    /*{
+  const [models, setModels] = useState([
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9.2, z: 5 },
+      scale: 5,
+    },
+    {
       component: <Thomas />,
       position: { x: 0.5, y: -7, z: 5 },
       scale: 5,
-    },*/
-  ];
+    },
+    {
+      component: <Police />,
+      position: { x: -1, y: -11.5, z: 5 },
+      scale: 3.7,
+    },
+    {
+      component: <Detective />,
+      position: { x: 0.5, y: -9.2, z: 5 },
+      scale: 5,
+    },
+  ]);
 
   const [modelIndex, setModelIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
@@ -34,12 +51,13 @@ const Parts4p3 = () => {
   const navigate = useNavigate();
   const [shownOptions, setShownOptions] = useState(new Set());
   const [humanidad, setHumanidad] = useState(0);
-
+  const [variable,setVariable] = useState(false)
   //setShownOptions(new Set());
   const handleContinueClick = () => {
     if (textIndex === texts.length - 1) {
       setTextIndex(0)
-      if (humanidad <= 3) {
+      setModelIndex(0)
+      if (humanidad <  20) {
         setTexts([
           " ... ",
           "Hey, ¿Crees que puedes guiarnos hasta allá?.",
@@ -70,9 +88,17 @@ const Parts4p3 = () => {
           "Detective",
         ]);
       }
+      if (texts[textIndex] === "[Podía sentir cómo mi cuerpo se adormecía… y caí dormido]") {
+        console.log("entro")
+        setVariable(true);
+      }
       return;
-
     }
+
+    if (variable==true){
+      navigate('/Scene2-parts');
+    }
+
     if (textIndex === 0) {
       setShowAdditionalButtons(true);
     }
@@ -107,7 +133,6 @@ const Parts4p3 = () => {
               "Detective",
               "Thomas",
             ]);
-          // ...
         } else {
           setTexts([
               "Había una mano tirada en el piso…",
