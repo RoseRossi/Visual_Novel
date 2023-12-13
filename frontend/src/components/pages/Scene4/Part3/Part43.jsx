@@ -491,9 +491,11 @@ const Parts4p3 = () => {
                 </div>
             )}
             </div>
-              <button onClick={handleContinueClick} className="button_continue" type="submit" >
+            {!((showAdditionalButtons && textIndex === 3 && !shownOptions.has("S4A")) || (showAdditionalButtons && textIndex === 4 && !shownOptions.has("S4B")) || (showAdditionalButtons && textIndex === 6 && !shownOptions.has("S4C") )) && (
+              <button onClick={handleContinueClick} className="button_continue" type="submit">
                 Continuar
               </button>
+            )}
           </div>
         </div>
 
