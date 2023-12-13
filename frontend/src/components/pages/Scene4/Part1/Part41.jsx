@@ -22,15 +22,20 @@ import { Photo } from "./Photo";
           return;
     }
 
-    const handleOptionClick = (id) => {
-        if (id === "S4A"){
-            console.log("sí op a");
-            handleBackClick();
-            return;
-        }else{
+
+      const handleOptionClick = (id) => {
+        switch (id) {
+          case "S1A": //humanidad -10
+          case "S1B": //humanidad -5
+          case "S1C": //humanidad +10
+          case "S2A": //humanidad -5
+          case "S2B": //humanidad +10
+          case "S2C": //humanidad -10
+          case "S3A": //humanidad +10
+          case "S3B": //humanidad -10
+          case "S3C": //humanidad -5
             console.log(id);
-            handleBackClick();
-            return;
+            break;
         }
       };
 
@@ -119,26 +124,26 @@ import { Photo } from "./Photo";
               {showAdditionalButtons && clickedObject === "Fork" && (
                 <div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene41" id="S1A">A. *Recogerlo*  Esto no debería estar tirado aquí, aunque no es importante.</button>
+                    <button onClick={() =>handleOptionClick("S2A")} className="options_scene41" id="S2A">A. *Recogerlo*  Esto no debería estar tirado aquí, aunque no es importante.</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene41" id="S1B">B. *Tirarlo* No necesito ser un cura para saber que esto está maldito.</button>
+                    <button onClick={() =>handleOptionClick("S2B")} className="options_scene41" id="S2B">B. *Tirarlo* No necesito ser un cura para saber que esto está maldito.</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene41" id="S1C">C. *Ignorarlo* Mejor no estorbarle...</button>
+                    <button onClick={() =>handleOptionClick("S2C")} className="options_scene41" id="S2C">C. *Dejarlo* Mejor no estorbarle...</button>
                   </div>
                 </div>
               )}
               {showAdditionalButtons && clickedObject === "Photo" && (
                 <div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1A")} className="options_scene41" id="S1A">A. *Recogerla*  [Creo que es... Thomas... pero no estoy seguro. El equipo podrá darle más uso]</button>
+                    <button onClick={() =>handleOptionClick("S3A")} className="options_scene41" id="S3A">A. *Recogerla*  [Creo que es... Thomas... pero no estoy seguro. El equipo podrá darle más uso]</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1B")} className="options_scene41" id="S1B">B. *Quemarla* [No necesito esto tirado por ahí...]</button>
+                    <button onClick={() =>handleOptionClick("S3B")} className="options_scene41" id="S3B">B. *Quemarla* [No necesito esto tirado por ahí...]</button>
                   </div>
                   <div>
-                    <button onClick={() =>handleOptionClick("S1C")} className="options_scene41" id="S1C">C. *Dejarla* [No sirve para nada...]</button>
+                    <button onClick={() =>handleOptionClick("S3C")} className="options_scene41" id="S3C">C. *Dejarla* [No sirve para nada...]</button>
                   </div>
                 </div>
               )}
