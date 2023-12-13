@@ -66,15 +66,21 @@ const Parts2 = () => {
   };
 
   //new cosa para B
-  const handleModelClick = (titulo, texto, isPierro) => {
+  const handleModelClick = (titulo, texto, isPierro, isYoungman) => {
     setCurrentTitleB(titulo);
     setCurrentTextB(texto);
     setShowContinueButton(true);
     setContinueCounter(0); // Reiniciar contador
-    setSelectedOptionP(isPierro ? "Pierro" : "Youngman");
+    if (isPierro == "Pierro"){
+      setSelectedOptionP(isPierro);
+    } else if (isYoungman == "Youngman"){
+      setSelectedOptionP(isYoungman);
+    }
+    
   };
 
   const handleContinueButtonClick = () => {
+    console.log("entra")
     setContinueCounter((prevCounter) => prevCounter + 1);
     switch (continueCounter) {
       case 1:
@@ -247,7 +253,7 @@ const Parts2 = () => {
                     position={[-7, 5, -6.5]}
                     rotation-y={0.8}
                     scale={4}
-                    onClick={() => { handleModelClick("Detective", "Creí que había sido claro con que no debían tocar la escena hasta que llegase, Pierro.", "Pierro") }}
+                    onClick={() => { handleModelClick("Detective", "Creí que había sido claro con que no debían tocar la escena hasta que llegase, Pierro.", "Pierro", " ") }}
                     onPointerOver={handlePierroHover}
                     onPointerOut={handlePierroHoverOut}
                   />
@@ -255,7 +261,7 @@ const Parts2 = () => {
                   <Youngman
                     position={[2, -3.5, -1]}
                     scale={3.5}
-                    onClick={() => { handleModelClick("Joven", "Mucho gusto, detective. Mi nombre es Henry.", "Youngman") }}
+                    onClick={() => { handleModelClick("Joven", "Mucho gusto, detective. Mi nombre es Henry.", " ", "Youngman") }}
                     onPointerOver={handleJovenHover}
                     onPointerOut={handleJovenHoverOut}
                   />

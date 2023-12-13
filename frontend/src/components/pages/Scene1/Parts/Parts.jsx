@@ -9,6 +9,7 @@ import { Clock } from "three";
 import { Thomas } from "./Thomas";
 import { Police } from "./Police";
 import { Detective } from "./Detective"
+import useSound from 'use-sound';
 
 
 import { canNextScene } from "../../../../api/utils.jsx";
@@ -30,6 +31,9 @@ const FeatherAnimation = () => {
 };
 
 const Parts = () => {
+  const audioRef = useRef(null);
+  const [play] = useSound("../assets/sounds/scene2A.mp3");
+  const [playSound, setPlaySound] = useState(false);
 
   const texts = [
     "El bastardo hizo un árbol de navidad…en agosto",
@@ -121,14 +125,59 @@ const Parts = () => {
   const handleOptionClick = (id) => {
       switch (id) {
         case "S1A": //humanidad +10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 10,
+          }));
+          handleContinueClick();
+          break;
         case "S1B": //humanidad -10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total - 10,
+          }));
+          handleContinueClick();
+          break;
         case "S1C": //humanidad +5
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 5,
+          }));
+          handleContinueClick();
+          break;
         case "S1D": //humanidad -5
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total - 5,
+          }));
+          handleContinueClick();
+          break;
         case "S2A": //humanidad +10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 10,
+          }));
+          handleContinueClick();
+          break;
         case "S2B": //humanidad -10
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total - 10,
+          }));
+          handleContinueClick();
+          break;
         case "S2C": //humanidad -5
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total -5,
+          }));
+          handleContinueClick();
+          break;
         case "S2D": //humanidad +5
-          console.log(id);
+          setScene_((prevScene) => ({
+            ...prevScene,
+            total: prevScene.total + 5,
+          }));
           handleContinueClick();
           break;
         default:
@@ -183,6 +232,30 @@ const Parts = () => {
     }
   };
 
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.1;
+      audioRef.current.play();
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", playAudio);
+    return () => {
+      document.removeEventListener("click", playAudio);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (playSound) {
+      play();
+      playA();
+      playB();
+      playC();
+      setPlaySound(false);
+    }
+  }, [playSound]);
+
   useEffect(() => {
     // Validate if can enter to this scene.
     if (!canNextScene(scene_.scene)) {navigate(scene_.prev);}
@@ -192,6 +265,9 @@ const Parts = () => {
 
   return (
     <div className="scene1-bg">
+      <audio ref={audioRef} loop>
+            <source src="../assets/sounds/scene2A.mp3" type="audio/mpeg" />
+          </audio>
       <div
         style={{
           display: "flex",

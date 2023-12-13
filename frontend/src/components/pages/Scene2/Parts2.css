@@ -90,14 +90,14 @@
     position: absolute;
     z-index: 1;
     margin-left: 5rem;
-    margin-top: -10rem;      
+    margin-top: -8rem;      
 }
 
 /**Para opción B*/
 
 .containerB-Scene2{
     display: flex;
-    margin-top: 19rem;
+    margin-top: 50rem;
     margin-left: 15rem;
     width: 60%;
     height: 60%;
@@ -116,7 +116,7 @@
     height: fit-content;
     width: 700px;
     position: absolute;
-    margin-top: 5rem;
+    margin-top: 18rem;
     z-index: 2;
 }
 
@@ -177,7 +177,7 @@
 .continue-button{
     height: 50px;
     width: 180px;
-    margin: 260px 10px 0; 
+    margin: 500px 10px 0; 
     background-color: #353535;
     color: #FFDA38;
     text-align: center;
@@ -188,7 +188,7 @@
     font-weight: 400;
     font-style: italic;
     text-shadow: 2px 2px 2px black;
-    z-index: 2;
+    z-index: 3;
 }
 
 .continue-button:hover {

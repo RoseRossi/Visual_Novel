@@ -13,12 +13,11 @@ import Parts3 from './components/pages/Scene3/Parts/Parts';
 import Parts4p2 from "./components/pages/Scene4/Part2/Part42";
 import Parts4p1 from "./components/pages/Scene4/Part1/Part41";
 import Parts4p3 from "./components/pages/Scene4/Part3/Part43";
-import Parts5BE from "./components/pages/Scene5/Parts5BE";
-import Parts5GE from "./components/pages/Scene5/Parts5GE";
-import Parts5NE from "./components/pages/Scene5/Parts5NE";
-
-
-import { isUserLoggedIn } from "./api/utils.jsx";
+import Parts4p4 from "./components/pages/Scene4/Part4/Part44";
+import Parts4p5 from "./components/pages/Scene4/Part5/Part45";
+import Parts5BE from "./components/pages/Scene5/Parts5-BE";
+import Parts5GE from "./components/pages/Scene5/Parts5-GE";
+import Parts5NE from "./components/pages/Scene5/Parts5-NE";
 
 const App = () => {
     // States.
@@ -52,6 +51,8 @@ const App = () => {
                             <Route path="/Scene5-parts1" element={<Parts5BE/>} />
                             <Route path="/Scene5-parts2" element={<Parts5GE/>} />
                             <Route path="/Scene5-parts3" element={<Parts5NE/>} />
+                    <Route path="/Scene4-parts4" element={<Parts4p4/>} /> {/*comisaria*/}
+                    <Route path="/Scene4-parts5" element={<Parts4p5/>} /> {/*comisaria*/}
                             <Route
                                 path="*"
                                 element={<> <h1>No Found Route</h1> </>}
@@ -63,6 +64,8 @@ const App = () => {
                     <Router>
                         <Routes>
                             <Route path="/" element={<Home data_={dataManager} />} />
+                            <Route path="/Register" element={<Register/>} />
+                            <Route path="/Prologue" element={<Prologue/>} />
                             <Route
                                 path="*"
                                 element={<> <h1>No Found Route</h1> </>}
