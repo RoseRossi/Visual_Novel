@@ -122,7 +122,7 @@ const Parts4p2 = () => {
   const handleOptionClick = (id) => {
     if (id === "S4A"){
         console.log("sí op a");
-        navigate('/Scene2-parts');
+        navigate('/Scene4-parts3');
         return;
     }else{
         console.log(id);

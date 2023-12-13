@@ -13,9 +13,6 @@ const Parts5GE = () => {
         "Trae las flores, yo cargo el coche",
         "[Cargamos los aparatos en el coche, y nos dirigimos al cementerio… ya había memorizado el camino entre tantas tumbas…]",
         "Buenas tardes, detective. Disculpe la demora…",
-        //Index 11
-        ""
-
     ];
     const titles = [
         //Good ending
@@ -25,21 +22,17 @@ const Parts5GE = () => {
         "Thomas",
         "Thomas",
     ]
-    const models = [
-    ]
-
 
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
 
-    const navigate = useNavigate();
+    const [showButton, setShowButton] = useState(true);
 
     const handleContinueClick = () => {
         console.log("textIndex actual",textIndex);
         console.log("modelIndex actual",modelIndex);
-        if (textIndex === texts.length - 1) {
-            navigate('/Scene');
-            return;
+        if (textIndex === texts.length - 2) {
+            setShowButton(false);
           }
 
         const newIndex = (textIndex + 1) % texts.length;
@@ -70,9 +63,11 @@ const Parts5GE = () => {
                                             <h1 className="title-part1">{titles[textIndex]}</h1>
                                             <p className="scene1part1-text">{texts[textIndex]}</p>
                                         </div>
+                                        {showButton && (
                                         <button onClick={handleContinueClick} className="button_continue" type="submit">
                                             Continuar
                                         </button>
+                                        )}
                                     </div>
                                 </div>
                                 <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>

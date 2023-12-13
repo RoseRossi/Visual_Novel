@@ -12,10 +12,6 @@ const Parts5NE = () => {
         "[Thomas olía muy bien… quizás pueda… ir por algo de comer…]",
         "El detective pierde la fuerza dentro de su propio cuerpo y se vuelve esclavo de su hambre, no puede evitar sentir cómo algo se burla de él, mientras ahora sólo se cuestiona y tortura por haber podido hacer las cosas diferente…",
         "[No he podido dormir en días… siento que me observan…]",
-
-        //Index 11
-        ""
-
     ];
     const titles = [
         //Neutral ending
@@ -23,23 +19,18 @@ const Parts5NE = () => {
         "Detective",
         "",
         "Thomas",
-        ""
     ]
-    const models = [
-    ]
-
 
     const [modelIndex, setModelIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
 
-    const navigate = useNavigate();
+    const [showButton, setShowButton] = useState(true);
 
     const handleContinueClick = () => {
         console.log("textIndex actual",textIndex);
         console.log("modelIndex actual",modelIndex);
-        if (textIndex === texts.length - 1) {
-            navigate('/Scene');
-            return;
+        if (textIndex === texts.length - 2) {
+            setShowButton(false);
           }
           //Poner la variación del diálogo
         const newIndex = (textIndex + 1) % texts.length;
@@ -70,9 +61,11 @@ const Parts5NE = () => {
                                             <h1 className="title-part1">{titles[textIndex]}</h1>
                                             <p className="scene1part1-text">{texts[textIndex]}</p>
                                         </div>
+                                        {showButton && (
                                         <button onClick={handleContinueClick} className="button_continue" type="submit">
                                             Continuar
                                         </button>
+                                        )}
                                     </div>
                                 </div>
                                 <div style={{ position: "relative", marginRight: "15rem", marginTop: "10rem" }}>
