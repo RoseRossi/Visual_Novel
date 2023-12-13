@@ -10,7 +10,7 @@ import useSound from 'use-sound';
 
 const Parts4p4 = () => {
   const audioRef = useRef(null);
-  const [play] = useSound("../assets/sounds/scene2B.mp3");
+  const [play] = useSound("../assets/sounds/terror.mp3");
   const [playSound, setPlaySound] = useState(false);
     const texts = [
         "[Habían otras dos patrullas, dos policías hacían guardia fuera y otro estaba dormido dentro de la patrulla]",
@@ -221,7 +221,7 @@ const Parts4p4 = () => {
     return (
         <div className="scene44-bg">
           <audio ref={audioRef} loop>
-            <source src="../assets/sounds/scene2B.mp3" type="audio/mpeg" />
+            <source src="../assets/sounds/terror.mp3" type="audio/mpeg" />
           </audio>
           <div 
             style={{
