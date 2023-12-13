@@ -324,7 +324,7 @@ const Parts3 = () => {
 
     const playAudio = () => {
         if (audioRef.current) {
-            audioRef.current.volume = 0.1;
+            audioRef.current.volume = 0.5;
             audioRef.current.play();
         }
     }
@@ -438,6 +438,7 @@ const Parts3 = () => {
     
                                     </Canvas>
                                     <audio ref={audioRef} loop>
+                                        <source src="../assets/sounds/fear.mp3" type="audio/mpeg" />
                                     </audio>
                                 </div>
                             </div>
