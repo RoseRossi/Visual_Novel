@@ -120,11 +120,11 @@ const Parts4p2 = () => {
   };
 
   const handleOptionClick = (id) => {
-    if (id === "S4A"){
+    if (id === "S4A"){ //solo neutral, humanidad se torna 20 sí o sí
         console.log("sí op a");
         navigate('/Scene4-parts3');
         return;
-    }else{
+    }else{ //good humanidad mayor 20 y bad humanidad menor a 20
         console.log(id);
         navigate('/Scene4-parts3');
         return;
