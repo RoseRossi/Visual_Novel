@@ -5,9 +5,14 @@ import { Html, OrbitControls } from "@react-three/drei";
 import "./Part44.css";
 import {Detective} from "../../Scene1/Parts/Detective.jsx";
 import {Thomas} from "../../Scene1/Parts/Thomas.jsx";
+import useSound from 'use-sound';
 
 
 const Parts4p4 = () => {
+  const audioRef = useRef(null);
+  const [play] = useSound("../assets/sounds/scene2.mp3");
+  const [playSound, setPlaySound] = useState(false);
+
     const texts = [
         "[Desperté cuando ya habían llegado a las bodegas, ellos salieron antes y me dejaron en el coche…]",
         "[Decidí bajar para seguirlos… el recolector podía seguir aquí… no estaban a salvo]",
@@ -141,12 +146,40 @@ const Parts4p4 = () => {
         canvas.style.height = "50vh";
       }
     };
+
+    const playAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.1;
+        audioRef.current.play();
+      }
+    }
+  
+    useEffect(() => {
+      document.addEventListener("click", playAudio);
+      return () => {
+        document.removeEventListener("click", playAudio);
+      };
+    }, []);
+  
+    useEffect(() => {
+      if (playSound) {
+        play();
+        playA();
+        playB();
+        playC();
+        setPlaySound(false);
+      }
+    }, [playSound]);
+
     useEffect(() => {
       resizeCanvas();
     }, []);
 
     return (
         <div className="scene44-bg">
+          <audio ref={audioRef} loop>
+            <source src="../assets/sounds/scene2.mp3" type="audio/mpeg" />
+          </audio>
           <div 
             style={{
               display: "flex",
