@@ -6,6 +6,7 @@ import "./Part43.css";
 import {Detective} from "../../Scene1/Parts/Detective.jsx";
 import {Thomas} from "../../Scene1/Parts/Thomas.jsx";
 import {Police} from "../../Scene1/Parts/Police.jsx";
+
 const Parts4p3 = () => {
 
   const [texts, setTexts] = useState([
