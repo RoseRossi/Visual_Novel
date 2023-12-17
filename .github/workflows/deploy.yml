@@ -28,12 +28,21 @@ jobs:
         token_format: 'access_token'
         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
+    - name: Install kubectl
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y kubectl
+
+    - name: Install gke-gcloud-auth-plugin
+      run: |
+        sudo apt-get install -y google-cloud-sdk
+        sudo apt-get install -y kubectl-credential-gke
+        
     - name: Configurar kubectl
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
         gcloud container clusters get-credentials ${{ secrets.GCP_CLUSTER_NAME }} --zone ${{ secrets.GCP_CLUSTER_ZONE }}
-        gcloud components install kubectl
-        gcloud components install kubectl-credential-gke
+
     - name: Desplegar en GKE
       run: kubectl apply -f ~/webnovel/deployment.yaml
