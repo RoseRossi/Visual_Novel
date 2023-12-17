@@ -24,10 +24,11 @@ jobs:
     - name: Configurar Google Cloud SDK
       uses: google-github-actions/auth@v2
       with:
-        # service_account_key: ${{ secrets.GCP_SA_KEY }}
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        # install_components: 'gke-gcloud-auth-plugin'
-        # export_default_credentials: true
+        # service_account: ${{ secrets.USER_SERVICE_IAM }}
+        install_components: 'gke-gcloud-auth-plugin'
+        export_default_credentials: true
 
     - name: Configurar kubectl
       env:
