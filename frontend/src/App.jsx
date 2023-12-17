@@ -21,6 +21,7 @@ import Parts5NE from "./components/pages/Scene5/Parts5NE";
 
 import { isUserLoggedIn } from "./api/utils";
 
+// Test
 const App = () => {
     // States.
     const [isLogged, setIsLogged] = React.useState(false),
