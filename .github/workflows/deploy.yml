@@ -33,10 +33,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y kubectl
 
-    # - name: Install gke-gcloud-auth-plugin
-    #   run: |
-    #     sudo apt-get install -y google-cloud-sdk
-    #     sudo apt-get install -y kubectl-credential-gke
+    - name: Install gke-gcloud-auth-plugin
+      run: |
+        sudo apt-get install -y google-cloud-sdk
+        sudo apt-get install -y kubectl-credential-gke
 
     - name: Configurar kubectl
       env:
