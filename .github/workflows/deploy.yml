@@ -13,13 +13,13 @@ jobs:
     - name: Checkout del código fuente
       uses: actions/checkout@v4
 
-    # - name: Construir y subir imágenes al Docker Hub
-    #   run: |
-    #     docker build -t cristiank/webnovel_frontend:latest -f frontend/Dockerfile .
-    #     docker build -t cristiank/webnovel_backend:latest -f backend/Dockerfile .
-    #     echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-    #     docker push cristiank/webnovel_frontend:latest
-    #     docker push cristiank/webnovel_backend:latest
+    - name: Construir y subir imágenes al Docker Hub
+      run: |
+        docker build -t cristiank/webnovel_frontend:latest -f frontend/Dockerfile .
+        docker build -t cristiank/webnovel_backend:latest -f backend/Dockerfile .
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        docker push cristiank/webnovel_frontend:latest
+        docker push cristiank/webnovel_backend:latest
 
     - name: Configurar Google Cloud SDK
       uses: google-github-actions/auth@v2
@@ -53,7 +53,6 @@ jobs:
     - name: Configurar kubectl
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
-        # KUBECONFIG: ${{ runner.workspace }}/kubeconfig.yaml
       run: |
         gcloud container clusters get-credentials ${{ secrets.GCP_CLUSTER_NAME }} --zone ${{ secrets.GCP_CLUSTER_ZONE }}
 
