@@ -30,7 +30,7 @@ jobs:
 
     - name: Configurar Docker para autenticación con Google Cloud SDK
       run: |
-        echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}" | gcloud auth activate-service-account imawebnovel@webnovel2023.iam.gserviceaccount.com --key-file=-
+        echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}" | gcloud auth activate-service-account --key-file=-
         gcloud auth configure-docker -q
 
     - name: Install kubectl
