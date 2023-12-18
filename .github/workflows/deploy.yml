@@ -50,4 +50,5 @@ jobs:
         gcloud container clusters get-credentials ${{ secrets.GCP_CLUSTER_NAME }} --zone ${{ secrets.GCP_CLUSTER_ZONE }}
 
     # - name: Desplegar en GKE
-    #   run: kubectl rollout restart deployment/webnovel2023
+      run: |
+        kubectl rollout restart deployment/webnovel2023
