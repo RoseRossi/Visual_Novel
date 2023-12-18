@@ -32,12 +32,10 @@ jobs:
       run: |
         echo '${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}' > gcp-key.json
         gcloud auth activate-service-account --key-file=gcp-key.json
-        gcloud components install kubectl
         gcloud components install kubectl-credential-gke
 
     - name: Print Google Cloud SDK version
       run: gcloud version
-
 
     - name: Install kubectl
       run: |
