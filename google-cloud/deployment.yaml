@@ -23,3 +23,11 @@ spec:
         image: cristiank/webnovel_backend:latest
         ports:
         - containerPort: 3700
+        env:
+        - name: URIMOONGODB
+          value: ""
+        - name: remindEmail
+          value: ""
+        - name: correoToken
+          value: ""
+

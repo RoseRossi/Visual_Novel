@@ -21,8 +21,8 @@ import Parts5NE from "./components/pages/Scene5/Parts5NE";
 
 import { isUserLoggedIn } from "./api/utils";
 
-// Test
 const App = () => {
+    console.log("Despligue Automatizado :3");
     // States.
     const [isLogged, setIsLogged] = React.useState(false),
     dataManager = {
