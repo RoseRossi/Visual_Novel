@@ -32,6 +32,7 @@ jobs:
       run: |
         echo '${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}' > gcp-key.json
         gcloud auth activate-service-account --key-file=gcp-key.json
+        gcloud components install gke-gcloud-auth-plugin
 
     - name: Print Google Cloud SDK version
       run: gcloud version
