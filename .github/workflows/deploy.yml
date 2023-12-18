@@ -37,10 +37,10 @@ jobs:
       run: gcloud version
 
 
-    # - name: Install kubectl
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install -y kubectl
+    - name: Install kubectl
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y kubectl
 
     - name: Configurar kubectl
       env:
