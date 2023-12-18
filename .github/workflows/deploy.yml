@@ -13,13 +13,13 @@ jobs:
     - name: Checkout del código fuente
       uses: actions/checkout@v2
 
-    - name: Construir y subir imágenes al Docker Hub
-      run: |
-        docker build -t cristiank/webnovel_frontend:latest -f frontend/Dockerfile .
-        docker build -t cristiank/webnovel_backend:latest -f backend/Dockerfile .
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-        docker push cristiank/webnovel_frontend:latest
-        docker push cristiank/webnovel_backend:latest
+    # - name: Construir y subir imágenes al Docker Hub
+    #   run: |
+    #     docker build -t cristiank/webnovel_frontend:latest -f frontend/Dockerfile .
+    #     docker build -t cristiank/webnovel_backend:latest -f backend/Dockerfile .
+    #     echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+    #     docker push cristiank/webnovel_frontend:latest
+    #     docker push cristiank/webnovel_backend:latest
 
     - name: Configurar Google Cloud SDK
       uses: google-github-actions/auth@v2
@@ -43,10 +43,11 @@ jobs:
         USE_GKE_GCLOUD_AUTH_PLUGIN: True
       run: |
         sudo apt-get update
-        sudo apt-get install -y apt-transport-https ca-certificates gnupg
-        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-        sudo apt-get update
-        sudo apt-get install -y google-cloud-sdk kubectl-credential-gke
+        sudo apt-get install google-cloud-sdk
+      # sudo apt-get install -y apt-transport-https ca-certificates gnupg
+      # echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+      # sudo apt-get update
+      # sudo apt-get install -y google-cloud-sdk kubectl-credential-gke
 
     - name: Configurar kubectl
       env:
