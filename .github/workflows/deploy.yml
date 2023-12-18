@@ -45,6 +45,11 @@ jobs:
         sudo apt-get update && sudo apt-get install google-cloud-cli
         sudo apt-get install -y kubectl
 
+     -name: Install google-cloud-sdk-gke-gcloud-auth-plugin
+      run: |
+        sudo apt-get update
+        sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+
     - name: Configurar kubectl
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
