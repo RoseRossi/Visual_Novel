@@ -28,18 +28,21 @@ jobs:
         token_format: 'access_token'
         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-    - name: Configurar Google Cloud SDK
+    - name: Configurar Google Credentials
       run: |
         echo '${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}' > gcp-key.json
         gcloud auth activate-service-account --key-file=gcp-key.json
-        gcloud components install gke-gcloud-auth-plugin
 
     - name: Print Google Cloud SDK version
       run: gcloud version
 
-    - name: Install kubectl
+    - name: Install Dependences
       run: |
         sudo apt-get update
+        sudo apt-get install apt-transport-https ca-certificates gnupg curl sudo
+        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+        sudo apt-get update && sudo apt-get install google-cloud-cli
         sudo apt-get install -y kubectl
 
     - name: Configurar kubectl
