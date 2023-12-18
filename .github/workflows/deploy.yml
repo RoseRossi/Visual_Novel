@@ -35,8 +35,9 @@ jobs:
 
     - name: Import Google Cloud SDK GPG key
       run: |
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05
-
+        gpg --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05
+        gpg --export --armor B53DC80D13EDEF05 | sudo apt-key add -
+        
     - name: Install gke-gcloud-auth-plugin
       run: |
         sudo apt-get update
