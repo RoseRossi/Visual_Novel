@@ -27,7 +27,13 @@ jobs:
         credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}'
         token_format: 'access_token'
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        install_components: 'kubectl gke-gcloud-auth-plugin'
+
+    - name: Configurar Google Cloud SDK
+      run: |
+        echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}" > gcp-key.json
+        gcloud auth activate-service-account --key-file=gcp-key.json
+        gcloud components install kubectl
+        gcloud components install kubectl-credential-gke
 
     # - name: Configurar Docker para autenticación con Google Cloud SDK
     #   run: |
