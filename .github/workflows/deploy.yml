@@ -30,15 +30,11 @@ jobs:
 
     - name: Configurar Google Cloud SDK
       run: |
-        echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}" > gcp-key.json
+        echo '${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}' > gcp-key.json
         gcloud auth activate-service-account --key-file=gcp-key.json
         gcloud components install kubectl
         gcloud components install kubectl-credential-gke
 
-    # - name: Configurar Docker para autenticación con Google Cloud SDK
-    #   run: |
-    #     echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}" | gcloud auth activate-service-account --key-file=-
-    #     gcloud auth configure-docker -q
     - name: Print Google Cloud SDK version
       run: gcloud version
 
