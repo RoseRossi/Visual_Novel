@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout del código fuente
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     # - name: Construir y subir imágenes al Docker Hub
     #   run: |
