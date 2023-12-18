@@ -39,6 +39,8 @@ jobs:
         gpg --export --armor B53DC80D13EDEF05 | sudo apt-key add -
         
     - name: Install gke-gcloud-auth-plugin
+      env:
+        USE_GKE_GCLOUD_AUTH_PLUGIN: True
       run: |
         sudo apt-get update
         sudo apt-get install -y apt-transport-https ca-certificates gnupg
